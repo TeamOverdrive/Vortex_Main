@@ -104,11 +104,21 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      */
     public void pushBeaconForward(boolean red) {
-        encoderDrive(DRIVE_SPEED, 24.0, 24.0, 5.0);
+        while(!(opticalSensor.getLightDetected() >= 155)) {
+            leftMotor.setPower(Math.abs(DRIVE_SPEED));
+            rightMotor.setPower(Math.abs(DRIVE_SPEED));
+        }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
-        encoderDrive(DRIVE_SPEED, -48.0, -48.0, 10.0);
+        while(!(opticalSensor.getLightDetected() >= 155)) {
+            leftMotor.setPower(-Math.abs(DRIVE_SPEED));
+            rightMotor.setPower(-Math.abs(DRIVE_SPEED));
+        }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
@@ -120,11 +130,21 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      */
     public void pushBeaconBackward(boolean red) {
-        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
+        while(!(opticalSensor.getLightDetected() >= 155)) {
+            leftMotor.setPower(-Math.abs(DRIVE_SPEED));
+            rightMotor.setPower(-Math.abs(DRIVE_SPEED));
+        }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
-        encoderDrive(DRIVE_SPEED, 48.0, 48.0, 10.0);
+        while(!(opticalSensor.getLightDetected() >= 155)) {
+            leftMotor.setPower(Math.abs(DRIVE_SPEED));
+            rightMotor.setPower(Math.abs(DRIVE_SPEED));
+        }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
