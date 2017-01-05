@@ -1,5 +1,13 @@
 [
     {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\icon_robotcontroller.png",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\drawable\\icon_robotcontroller.png"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\button_shape.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\drawable\\button_shape.xml"
+    },
+    {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\icon_menu.png",
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\drawable\\icon_menu.png"
     },
@@ -12,7 +20,15 @@
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\drawable\\button_shape.xml"
     },
     {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\icon_menu.png",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\drawable\\icon_menu.png"
+    },
+    {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\icon_robotcontroller.png",
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\drawable\\icon_robotcontroller.png"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\black_border.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\Blocks-release\\res\\drawable\\black_border.xml"
     }
 ]

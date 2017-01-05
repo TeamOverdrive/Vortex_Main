@@ -24,5 +24,7 @@ public class AutoDrive_Test extends AutoSuper {
         encoderDrive(DRIVE_SPEED, 24.0, 24.0, 5.0);
         turn90R();
         pushBeaconForward(true);
+        turn90R();
+        encoderDrive(DRIVE_SPEED, 52.0, 52.0, 10.0);
     }
 }
