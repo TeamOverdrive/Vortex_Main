@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\WirelessP2p-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9403be210676ed196cdcc64c7391b9ae2361c174">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-WirelessP2p-release_9fd355830c2632c5193e57d1fa4766ef5f2e87da\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\ModernRobotics-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="01999c87afe3d10ffa06f3efa66f39e61e6aba0c">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-ModernRobotics-release_841952cd2e66af4143f24e4597ac66a3c85b2118\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5a051fb9930d4b0df111f4e71ba2c97136f8d1f7">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_4bab5c4cbf141544b396dde482e254c733d007a1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9b4e06b30e1233aa48333665a6776c8b20df5a00">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_21cbf35c346a1d78ee581feb7b55c46a4e107a20\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\Inspection-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b3051d2a26a36e5b402fd8aa14ec8a4bea328974">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-Inspection-release_24058b2f99f10fa406e2165ea015e051dbea12e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\Hardware-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d30a44d837c8f25360e4190341f43399eea81172">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-Hardware-release_b6136d0aa89b16b5722644e8edd358e6a1316acb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="dc4ad03580e3f29564476f06b65f06d89704c0a9">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-RobotCore-release_b3fa817bd97d9519a51f3a3076d84852e2927f73\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\d2xx.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="84a174a0d6bebc32bf1e7cd4139224f0b05df829">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\d2xx_bb0f1ed0c2ebcd932e6998505fc178a784155b3c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e41e89c3862ada464fa42ad96b3f1c56d992fc89">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_782f0e7ee37dc5611716d1bd9e1364ca450dd2aa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\Analytics-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9dafed45e330aec14abcce05bdb7bbdb2a2d7092">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-Analytics-release_2369a6b1453650328faf611d265d53358eb0ce28\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\Blocks-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="442e93c10918df3270cc37f9fcf9e90c43072eea">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-Blocks-release_f6b5fcf1145176de17f000bcdd5841d63b6aa659\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\FtcCommon-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2204deca0490727b9009dba5cdb2ec515cdbcc63">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-FtcCommon-release_61e49fe5c779cdeef894c3d36d5ebf480472e9a3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\Vuforia.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f1dde8a0e6ed1172450c657386da45fd1d7565f4">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\Vuforia_14ca837e6970d70440072d6c82246e2fcb3c4b0b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d3fb718ef307cfff9ad988d06b98eadc292d1a34">
+        <dex dex="C:\Users\david.turner\Downloads\ftc_app-master\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.7_3de852b7831557d2e9cecfd5110198d76cdd5f99\classes.dex" />
+    </item>
+
+</items>
