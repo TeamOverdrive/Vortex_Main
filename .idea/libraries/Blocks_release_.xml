@@ -5,8 +5,6 @@
       <root url="file://$PROJECT_DIR$/FtcRobotController/build/intermediates/exploded-aar/Blocks-release/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/libs/Blocks-release-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

@@ -5,9 +5,6 @@
       <root url="file://$PROJECT_DIR$/TeamCode/build/intermediates/exploded-aar/FtcCommon-release/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/libs/FtcCommon-release-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/FtcCommon-release-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
