@@ -4,6 +4,10 @@
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\ftc_app-master\\FtcRobotController\\unspecified\\res\\menu\\ftc_robot_controller.xml"
     },
     {
+        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\menu\\main_menu.xml",
+        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\menu\\main_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\menu\\main_menu.xml",
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\menu\\main_menu.xml"
     },
@@ -22,5 +26,13 @@
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\menu\\main_menu.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\menu\\main_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\menu\\ftc_robot_controller.xml",
+        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Vortex_Main\\FtcRobotController\\unspecified\\res\\menu\\ftc_robot_controller.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\menu\\menu_server.xml",
+        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Blocks-release\\res\\menu\\menu_server.xml"
     }
 ]
