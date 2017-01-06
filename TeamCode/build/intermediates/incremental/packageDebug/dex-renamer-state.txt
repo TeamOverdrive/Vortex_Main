@@ -1,7 +1,4 @@
-#Tue Jan 03 23:54:44 EST 2017
-base.0=C\:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_21cbf35c346a1d78ee581feb7b55c46a4e107a20
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_782f0e7ee37dc5611716d1bd9e1364ca450dd2aa\\classes.dex
-base.1=C\:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_782f0e7ee37dc5611716d1bd9e1364ca450dd2aa
-file.0=C\:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_21cbf35c346a1d78ee581feb7b55c46a4e107a20\\classes.dex
+#Thu Jan 05 20:56:59 EST 2017
+base.0=C\:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=C\:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
