@@ -16,7 +16,7 @@ public class AutoDrive_Test extends AutoSuper {
     @Override
     public void runOpMode() {
         super.runOpMode();
-        waitForStart();
+        waitForStart();/*
         boolean light = false;
         colorSensor1.enableLed(light);
         colorSensor2.enableLed(light);
@@ -35,6 +35,8 @@ public class AutoDrive_Test extends AutoSuper {
             out = "Sensor 2 blue: " + Double.toString(colorSensor2.blue());
             RobotLog.d(out);
             telemetry.update();
-        }
+        }*/
+        encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
+        launchBalls(2);
     }
 }

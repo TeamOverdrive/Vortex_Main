@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import android.graphics.Color;
 import android.hardware.Sensor;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -49,7 +50,7 @@ public class Init {
     private ColorSensor colorSensor1;
     private ColorSensor colorSensor2;
     private OpticalDistanceSensor opticalSensor;
-    private GyroSensor gyroSensor;
+    private ModernRoboticsI2cGyro gyroSensor;
     private UltrasonicSensor ultrasonicSensor;
 
     private static final double MID_SERVO       =  0.5 ;
@@ -72,7 +73,7 @@ public class Init {
         intakeMotor = null;
         pushButton1 = null;
         pushButton2 = null;
-     //   ballRelease = null;
+        ballRelease = null;
         colorSensor1 = null;
         colorSensor2 = null;
         opticalSensor = null;
@@ -85,14 +86,6 @@ public class Init {
      * @param map The hardware mapping that was defined in LinearOpMode.
      */
     public void initTeleop(HardwareMap map) {
-     /*   double left;
-        double right;
-        double max;
-
-        /* Initialize the hardware variables.
-         * The init() method of the hardware class does all the work here
-         */
-      /*  HardwareMap hwMap           =  null;  */
         hardwareMap = map;
 
         initAll();
@@ -160,11 +153,11 @@ public class Init {
         distanceFlag = hardwareMap.servo.get("distance_flag");
         lineFlag = hardwareMap.servo.get("line_flag");
 
-        ballRelease.setPosition(0.7);
-        pushButton1.setPosition(.5);
-        pushButton2.setPosition(0.5);
+        ballRelease.setPosition(1.0);
+        pushButton1.setPosition(0.5);
+        pushButton2.setPosition(0.0);
         distanceFlag.setPosition(0.5);
-        lineFlag.setPosition(0.3);
+        lineFlag.setPosition(0.5);
 
 
         // Set the drive motor directions:
@@ -187,8 +180,7 @@ public class Init {
         colorSensor2 = hardwareMap.colorSensor.get("color_sensor2");
         opticalSensor = hardwareMap.opticalDistanceSensor.get("optical_sensor");
         //ultrasonicSensor = hardwareMap.ultrasonicSensor.get("ultrasonic_sensor");
-        gyroSensor = hardwareMap.gyroSensor.get("gyro_sensor");
-
+        gyroSensor = (ModernRoboticsI2cGyro)hardwareMap.gyroSensor.get("gyro_sensor");
         opticalSensor.enableLed(true);
     }
 
@@ -239,6 +231,8 @@ public class Init {
         return lineFlag;
     }
 
+    public Servo getBallRelease() { return ballRelease; }
+
     public ColorSensor getColorSensor1() {
         return colorSensor1;
     }
@@ -251,7 +245,7 @@ public class Init {
         return opticalSensor;
     }
 
-    public GyroSensor getGyroSensor() {
+    public ModernRoboticsI2cGyro getGyroSensor() {
         return gyroSensor;
     }
 

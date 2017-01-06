@@ -135,6 +135,9 @@ public class TeleopMain_Vortex extends LinearOpMode {
         distanceFlag = init.getDistanceFlag();
         shooterFlag = init.getShooterFlag();
         lineFlag = init.getLineFlag();
+        ballRelease = init.getBallRelease();
+
+        opticalSensor = init.getOpticalSensor();
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
@@ -146,8 +149,8 @@ public class TeleopMain_Vortex extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             RobotLog.d("LinearOpMode received a CancellationException; shutting down this linear op mode");
-            if (opticalSensor.getLightDetected() > 0.2) lineFlag.setPosition(0.0);
-            else lineFlag.setPosition(0.5);
+            /*if (opticalSensor.getLightDetected() > 0.2) lineFlag.setPosition(0.0);
+            else lineFlag.setPosition(0.5);*/
 
             /* ===================================================================================*/
             /* Gamepad 1 - Controls */
@@ -184,10 +187,10 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
             // Indicator button push controls
             // Use gamepad left & right Bumpers to push left or right with the push button device
-            if (gamepad1.right_bumper) pushButton1.setPosition(0.5);
-            else pushButton1.setPosition(0.0);
-            if (gamepad1.left_bumper) pushButton2.setPosition(0.0);
-            else pushButton2.setPosition(0.5);
+            if (gamepad1.right_bumper) pushButton1.setPosition(0.0);
+            else pushButton1.setPosition(0.5);
+            if (gamepad1.left_bumper) pushButton2.setPosition(0.5);
+            else pushButton2.setPosition(0.0);
 
             /* ===================================================================================*/
             /* Gamepad 2 - Controls */
@@ -213,8 +216,8 @@ public class TeleopMain_Vortex extends LinearOpMode {
             }
 
             // Ball Release Control
-            if (gamepad2.x) ballRelease.setPosition(MID_SERVO);
-            else ballRelease.setPosition(0.7);
+            if (gamepad2.x) ballRelease.setPosition(0.7);
+            else ballRelease.setPosition(1.0);
 
             //Scissor Lift Controls for handling the cap ball lifting
             float leftRange = gamepad2.left_stick_y;

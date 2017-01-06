@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -57,7 +58,7 @@ public class AutoSuper extends LinearOpMode {
     protected ColorSensor colorSensor1;
     protected ColorSensor colorSensor2;
     protected OpticalDistanceSensor opticalSensor;
-    protected GyroSensor gyroSensor;
+    protected ModernRoboticsI2cGyro gyroSensor;
     protected UltrasonicSensor ultrasonicSensor;
 
     /**
@@ -78,7 +79,7 @@ public class AutoSuper extends LinearOpMode {
         //Define the servos.
         pushButton1 = init.getPushButton1();
         pushButton2 = init.getPushButton2();
-     //   ballRelease = init.getBallRelease();
+        ballRelease = init.getBallRelease();
         distanceFlag = init.getDistanceFlag();
         shooterFlag = init.getShooterFlag();
         lineFlag = init.getLineFlag();
@@ -221,14 +222,42 @@ public class AutoSuper extends LinearOpMode {
             runtime.reset();
             while (opModeIsActive() && (runtime.seconds() < 2.5)) {
                 shooterMotor.setPower(-1.0);
-                telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
             }
             shooterMotor.setPower(0.0);
-            //Allow next ball through
-            intakeMotor.setPower(1.0);
-            sleep(1000);
-            intakeMotor.setPower(0.0);
+            if (opModeIsActive()) {
+                ballRelease.setPosition(0.7);
+                sleep(500);
+                ballRelease.setPosition(1.0);
+            }
+        }
+    }
+
+    /**
+     * Calibrates the gyro.
+     * This code is copied and pasted from the sample code.
+     */
+    public void calibrateGyro() {
+        telemetry.addData(">", "Gyro Calibrating. Do Not move!");
+        telemetry.update();
+        gyroSensor.calibrate();
+        // make sure the gyro is calibrated.
+        while (!isStopRequested() && gyroSensor.isCalibrating())  {
+            sleep(50);
+            idle();
+        }
+        telemetry.addData(">", "Gyro Calibrated.  Press Start.");
+        telemetry.update();
+    }
+
+    /**
+     * Turns relative to the initial heading.
+     * @precondition The gyro has been calibrated properly in user code.
+     * @param degrees The degrees relative to the starting heading.
+     */
+    public void turnWithGyro(int degrees) {
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 4.0) {
+
         }
     }
 
