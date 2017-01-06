@@ -40,7 +40,7 @@ public class Init {
     /* Declare Servos */
     private Servo pushButton1;
     private Servo pushButton2;
-    // private Servo ballRelease;
+    private Servo ballRelease;
     private Servo distanceFlag;
     private Servo shooterFlag;
     private Servo lineFlag;
@@ -154,20 +154,18 @@ public class Init {
         shooterMotor = hardwareMap.dcMotor.get("shooter");
         intakeMotor = hardwareMap.dcMotor.get("intake");
 
-     //   ballRelease = hardwareMap.servo.get("ball_release");
+        ballRelease = hardwareMap.servo.get("ball_release");
         pushButton1 = hardwareMap.servo.get("push_button1");
         pushButton2 = hardwareMap.servo.get("push_button2");
         distanceFlag = hardwareMap.servo.get("distance_flag");
-        //shooterFlag = hardwareMap.servo.get("shooter_flag");
         lineFlag = hardwareMap.servo.get("line_flag");
 
-     //   ballRelease.setPosition(MID_SERVO);
-        pushButton1.setPosition(0);
-        pushButton2.setPosition(1);
-        distanceFlag.setPosition(MID_SERVO);
-        //shooterFlag.setPosition(MID_SERVO);
-        lineFlag.setPosition(MID_SERVO);
-        lineFlag.setPosition(MID_SERVO);
+        ballRelease.setPosition(0.7);
+        pushButton1.setPosition(.5);
+        pushButton2.setPosition(0.5);
+        distanceFlag.setPosition(0.5);
+        lineFlag.setPosition(0.3);
+
 
         // Set the drive motor directions:
         // "REVERSE" the motor that runs backwards when connected directly to the battery.  Set to REVERSE if using AndyMark motors
@@ -189,7 +187,9 @@ public class Init {
         colorSensor2 = hardwareMap.colorSensor.get("color_sensor2");
         opticalSensor = hardwareMap.opticalDistanceSensor.get("optical_sensor");
         //ultrasonicSensor = hardwareMap.ultrasonicSensor.get("ultrasonic_sensor");
-        //gyroSensor = hardwareMap.gyroSensor.get("gyro_sensor");
+        gyroSensor = hardwareMap.gyroSensor.get("gyro_sensor");
+
+        opticalSensor.enableLed(true);
     }
 
 

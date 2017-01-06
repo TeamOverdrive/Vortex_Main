@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.RobotLog;
 
 /**
  * A super class for all autonomous codes.
@@ -91,11 +92,15 @@ public class AutoSuper extends LinearOpMode {
     }
 
     public void turn90L() {
-        encoderDrive(DRIVE_SPEED, -9.0, 9.0, 3.0);
+        sleep(500);
+        encoderDrive(DRIVE_SPEED, 12.0, -12.0, 3.0);
+        sleep(500);
     }
 
     public void turn90R() {
-        encoderDrive(DRIVE_SPEED, 9.0, -9.0, 3.0);
+        sleep(500);
+        encoderDrive(DRIVE_SPEED, -12.0, 12.0, 3.0);
+        sleep(500);
     }
 
     /**
@@ -104,21 +109,11 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      */
     public void pushBeaconForward(boolean red) {
-        while(!(opticalSensor.getLightDetected() >= 155)) {
-            leftMotor.setPower(Math.abs(DRIVE_SPEED));
-            rightMotor.setPower(Math.abs(DRIVE_SPEED));
-        }
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
+        driveToWLine(1);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
-        while(!(opticalSensor.getLightDetected() >= 155)) {
-            leftMotor.setPower(-Math.abs(DRIVE_SPEED));
-            rightMotor.setPower(-Math.abs(DRIVE_SPEED));
-        }
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
+        driveToWLine(-1);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
@@ -130,21 +125,11 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      */
     public void pushBeaconBackward(boolean red) {
-        while(!(opticalSensor.getLightDetected() >= 155)) {
-            leftMotor.setPower(-Math.abs(DRIVE_SPEED));
-            rightMotor.setPower(-Math.abs(DRIVE_SPEED));
-        }
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
+        driveToWLine(-1);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
-        while(!(opticalSensor.getLightDetected() >= 155)) {
-            leftMotor.setPower(Math.abs(DRIVE_SPEED));
-            rightMotor.setPower(Math.abs(DRIVE_SPEED));
-        }
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
+        driveToWLine(1);
         for (int i = 0; i < 3; i++) {
             if (pushBeacon(red)) break;
         }
@@ -177,6 +162,11 @@ public class AutoSuper extends LinearOpMode {
         return false;
     }
 
+    /**
+     * Pushes the button on the beacon based on alliance color and the randomized side that should
+     * be used.
+     * @param red A boolean representing whether or not the desired color is red.
+     */
     private void pushButton(boolean red) {
         if (red) {
             if (colorSensor1.red() >= 155) {
@@ -201,22 +191,44 @@ public class AutoSuper extends LinearOpMode {
     }
 
     /**
+     * Drives until it reaches a white line on the ground.
+     * ONLY USE 1 OR -1 AS INPUT VALUES.
+     * @param dir Positive for forward, negative for reverse.
+     */
+    public boolean driveToWLine(int dir) {
+        encoderDrive(DRIVE_SPEED, -8*dir, -8*dir, 2.0);
+        leftMotor.setPower(-(DRIVE_SPEED/2) * dir);
+        rightMotor.setPower(-(DRIVE_SPEED/2) * dir);
+        runtime.reset();
+        while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.2) && runtime.seconds() < 3) {
+            telemetry.addData("Light Level", opticalSensor.getLightDetected());
+            String out = Double.toString(opticalSensor.getLightDetected());
+            RobotLog.d(out);
+            telemetry.update();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+        return runtime.seconds() < 3;
+    }
+
+    /**
      * Launch the balls loaded in the hopper at the center structure.
-     * Takes approximately 1 second per ball.
+     * Takes approximately 4 seconds per ball.
      * @param num The number of balls in the hopper. This is a positive integer <= 2
      */
     public void launchBalls(int num) {
         for (int i = 0; i < num; i++) {
-            shooterMotor.setPower(1.0);
-            sleep(250);
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 2.5)) {
+                shooterMotor.setPower(-1.0);
+                telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+                telemetry.update();
+            }
             shooterMotor.setPower(0.0);
-            //ballRelease.setPosition(0.5); //Set this to be the open value.
-            intakeMotor.setPower(1.0); //Remove this when the ball release is added.
-            sleep(250);
+            //Allow next ball through
+            intakeMotor.setPower(1.0);
+            sleep(1000);
             intakeMotor.setPower(0.0);
-            shooterMotor.setPower(1.0);
-            sleep(250);
-            shooterMotor.setPower(0.0);
         }
     }
 

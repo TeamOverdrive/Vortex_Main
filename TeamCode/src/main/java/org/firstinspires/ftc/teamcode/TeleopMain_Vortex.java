@@ -90,7 +90,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
     /* Declare Servos */
     private Servo pushButton1;
     private Servo pushButton2;
-    //    private Servo ballRelease;
+    private Servo ballRelease;
     private Servo distanceFlag;
     private Servo shooterFlag;
     private Servo lineFlag;
@@ -146,6 +146,8 @@ public class TeleopMain_Vortex extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             RobotLog.d("LinearOpMode received a CancellationException; shutting down this linear op mode");
+            if (opticalSensor.getLightDetected() > 0.2) lineFlag.setPosition(0.0);
+            else lineFlag.setPosition(0.5);
 
             /* ===================================================================================*/
             /* Gamepad 1 - Controls */
@@ -162,28 +164,38 @@ public class TeleopMain_Vortex extends LinearOpMode {
             leftThrottle = (float) scaleInput(leftThrottle);
             rightThrottle = (float) scaleInput(rightThrottle);
 
+            if (Math.abs(leftThrottle) == 0 && Math.abs(rightThrottle) == 0) {
+                if (gamepad1.dpad_up) {
+                    rightMotor.setPower(0.2);
+                    leftMotor.setPower(0.2);
+                }
+                else if (gamepad1.dpad_down) {
+                    rightMotor.setPower(-0.2);
+                    leftMotor.setPower(-0.2);
+                }
+                else {
+                    rightMotor.setPower(0.0);
+                    leftMotor.setPower(0.0);
+                }
+            }
             /* Set power to the drive motors  */
             rightMotor.setPower(rightThrottle);
             leftMotor.setPower(leftThrottle);
 
             // Indicator button push controls
             // Use gamepad left & right Bumpers to push left or right with the push button device
-            if (gamepad1.right_bumper)
-                pushOffset += PUSH_SPEED;
-            else if (gamepad1.left_bumper)
-                pushOffset -= PUSH_SPEED;
-
-            // Move servo to new position.  Servo to be manually returned to original position.
-            pushOffset = Range.clip(pushOffset, -0.5, 0.5);
-            pushButton1.setPosition(MID_SERVO + pushOffset);
+            if (gamepad1.right_bumper) pushButton1.setPosition(0.5);
+            else pushButton1.setPosition(0.0);
+            if (gamepad1.left_bumper) pushButton2.setPosition(0.0);
+            else pushButton2.setPosition(0.5);
 
             /* ===================================================================================*/
             /* Gamepad 2 - Controls */
 
             /* Intake Controls */
-            if (gamepad2.right_bumper)
+            if (gamepad2.right_bumper || (gamepad1.right_trigger > 0))
                 intakeMotor.setPower(1.0);
-            else if (gamepad2.left_bumper)
+            else if (gamepad2.left_bumper || (gamepad1.left_trigger > 0))
                 intakeMotor.setPower(-1.0);
             else
                 intakeMotor.setPower(0.0);
@@ -197,38 +209,12 @@ public class TeleopMain_Vortex extends LinearOpMode {
             }
             else if (gamepad2.b) {
                 shooterMotor.setPower(0.0);
-                /*
-                If this has an encoder the value in the following line should be set to the
-                default value. This allows the launcher to reset after use.
-                TODO Uncomment when useful.
-                shooterMotor.setTargetPosition(0);
                 launch = false;
-                counter = 0;
-                */
             }
-
-            /**
-             * Automatically launches the ball based on tick count.
-             * Counts the number of ticks that have occured since the last launch and drops a ball
-             * into the launcher when necessary.
-             * For this to work an encoder must be on the shooterMotor.
-             * TODO Uncomment when useful.
-            if (launch) {
-                if (counter % NUM_TICKS < 3) BallRelease.setPosition(1.0);
-                else BallRelease.setPosition(0.0);
-            }
-            */
 
             // Ball Release Control
-            if (gamepad2.y)
-                releaseOffset += RELEASE_SPEED;
-            else if (gamepad2.x)
-                releaseOffset -= RELEASE_SPEED;
-
-            // Move servo to new position for ball release to shooter.
-            releaseOffset = Range.clip(releaseOffset, -0.5, 0.5);
-            // ballRelease.setPosition(MID_SERVO + releaseOffset);
-
+            if (gamepad2.x) ballRelease.setPosition(MID_SERVO);
+            else ballRelease.setPosition(0.7);
 
             //Scissor Lift Controls for handling the cap ball lifting
             float leftRange = gamepad2.left_stick_y;
