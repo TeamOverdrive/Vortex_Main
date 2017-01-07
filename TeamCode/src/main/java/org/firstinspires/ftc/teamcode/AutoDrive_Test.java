@@ -16,6 +16,7 @@ public class AutoDrive_Test extends AutoSuper {
     @Override
     public void runOpMode() {
         super.runOpMode();
+        //calibrateGyro();
         waitForStart();/*
         boolean light = false;
         colorSensor1.enableLed(light);
@@ -36,7 +37,15 @@ public class AutoDrive_Test extends AutoSuper {
             RobotLog.d(out);
             telemetry.update();
         }*/
-        encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
+        encoderDrive(DRIVE_SPEED*0.8, -20.0, -20.0, 5.0);
         launchBalls(2);
+        turn90L();
+        encoderDrive(DRIVE_SPEED, -16.0, -16.0, 5.0);
+        turn90R();
+        encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
+        turn90L();
+        encoderDrive(DRIVE_SPEED*0.8, -21.0, -21.0, 5.0);
+        turn90R();
+        pushBeaconBackward(true);
     }
 }

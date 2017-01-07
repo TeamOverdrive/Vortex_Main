@@ -149,8 +149,8 @@ public class TeleopMain_Vortex extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             RobotLog.d("LinearOpMode received a CancellationException; shutting down this linear op mode");
-            /*if (opticalSensor.getLightDetected() > 0.2) lineFlag.setPosition(0.0);
-            else lineFlag.setPosition(0.5);*/
+            if (opticalSensor.getLightDetected() > 0.2) lineFlag.setPosition(0.0);
+            else lineFlag.setPosition(0.5);
 
             /* ===================================================================================*/
             /* Gamepad 1 - Controls */
@@ -216,8 +216,8 @@ public class TeleopMain_Vortex extends LinearOpMode {
             }
 
             // Ball Release Control
-            if (gamepad2.x) ballRelease.setPosition(0.7);
-            else ballRelease.setPosition(1.0);
+            if (gamepad2.x) ballRelease.setPosition(0.0);
+            else ballRelease.setPosition(0.2);
 
             //Scissor Lift Controls for handling the cap ball lifting
             float leftRange = gamepad2.left_stick_y;

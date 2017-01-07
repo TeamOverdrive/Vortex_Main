@@ -93,15 +93,15 @@ public class AutoSuper extends LinearOpMode {
     }
 
     public void turn90L() {
-        sleep(500);
-        encoderDrive(DRIVE_SPEED, 12.0, -12.0, 3.0);
-        sleep(500);
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, 12.0, -12.0, 3.0);
+        sleep(100);
     }
 
     public void turn90R() {
-        sleep(500);
-        encoderDrive(DRIVE_SPEED, -12.0, 12.0, 3.0);
-        sleep(500);
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, -12.0, 12.0, 3.0);
+        sleep(100);
     }
 
     /**
@@ -111,13 +111,9 @@ public class AutoSuper extends LinearOpMode {
      */
     public void pushBeaconForward(boolean red) {
         driveToWLine(1);
-        for (int i = 0; i < 3; i++) {
-            if (pushBeacon(red)) break;
-        }
+        if (!pushButton(red)) pushButton(red);
         driveToWLine(-1);
-        for (int i = 0; i < 3; i++) {
-            if (pushBeacon(red)) break;
-        }
+        if (!pushButton(red)) pushButton(red);
     }
 
     /**
@@ -127,26 +123,22 @@ public class AutoSuper extends LinearOpMode {
      */
     public void pushBeaconBackward(boolean red) {
         driveToWLine(-1);
-        for (int i = 0; i < 3; i++) {
-            if (pushBeacon(red)) break;
-        }
+        pushButton(red);
         driveToWLine(1);
-        for (int i = 0; i < 3; i++) {
-            if (pushBeacon(red)) break;
-        }
+        pushButton(red);
     }
 
     /**
      * Activates the beacon based on the team's color.
      * @param red A boolean answer to whether or not the desired color is red.
      * @return Determine whether or not the beacon was successfully pushed.
-     */
+     *//*
     private boolean pushBeacon(boolean red) {
         if (red) {
-            if (colorSensor1.red() >= 155 && colorSensor2.red() >= 155) {
+            if (colorSensor1.red() >= 4 && colorSensor2.red() >= 4) {
                 return true;
             }
-            else if (colorSensor1.blue() >= 155 && colorSensor2.blue() >= 155) {
+            else if (colorSensor1.blue() >= 4 && colorSensor2.blue() >= 4) {
                 sleep(5*1000);
                 pushButton(red);
             }
@@ -161,34 +153,43 @@ public class AutoSuper extends LinearOpMode {
             }
         }
         return false;
-    }
+    }*/
 
     /**
      * Pushes the button on the beacon based on alliance color and the randomized side that should
      * be used.
      * @param red A boolean representing whether or not the desired color is red.
      */
-    private void pushButton(boolean red) {
+    private boolean pushButton(boolean red) {
+        colorSensor1.enableLed(false);
+        colorSensor2.enableLed(false);
         if (red) {
-            if (colorSensor1.red() >= 155) {
+            if (colorSensor1.red() >= 3) {
                 pushButton1.setPosition(PUSH_MAX1); //Fix this value.
                 pushButton1.setPosition(PUSH_MIN1);
             }
-            else {
+            else if (colorSensor2.red() >= 3){
                 pushButton2.setPosition(PUSH_MAX2);
                 pushButton2.setPosition(PUSH_MIN2);
+            }
+            if (colorSensor1.red() >= 3 && colorSensor2.red() >= 3) {
+                return true;
             }
         }
         else {
-            if (colorSensor1.blue() >= 155) {
+            if (colorSensor1.blue() >= 3) {
                 pushButton1.setPosition(PUSH_MAX1);
                 pushButton2.setPosition(PUSH_MIN1);
             }
-            else {
+            else if (colorSensor2.blue() >= 3){
                 pushButton2.setPosition(PUSH_MAX2);
                 pushButton2.setPosition(PUSH_MIN2);
             }
+            if (colorSensor1.blue() >= 3 && colorSensor2.blue() >= 3) {
+                return true;
+            }
         }
+        return false;
     }
 
     /**
@@ -197,7 +198,6 @@ public class AutoSuper extends LinearOpMode {
      * @param dir Positive for forward, negative for reverse.
      */
     public boolean driveToWLine(int dir) {
-        encoderDrive(DRIVE_SPEED, -8*dir, -8*dir, 2.0);
         leftMotor.setPower(-(DRIVE_SPEED/2) * dir);
         rightMotor.setPower(-(DRIVE_SPEED/2) * dir);
         runtime.reset();
@@ -218,18 +218,21 @@ public class AutoSuper extends LinearOpMode {
      * @param num The number of balls in the hopper. This is a positive integer <= 2
      */
     public void launchBalls(int num) {
+        intakeMotor.setPower(1.0);
         for (int i = 0; i < num; i++) {
+
             runtime.reset();
             while (opModeIsActive() && (runtime.seconds() < 2.5)) {
                 shooterMotor.setPower(-1.0);
             }
             shooterMotor.setPower(0.0);
             if (opModeIsActive()) {
-                ballRelease.setPosition(0.7);
+                ballRelease.setPosition(0.0);
                 sleep(500);
-                ballRelease.setPosition(1.0);
+                ballRelease.setPosition(0.2);
             }
         }
+        intakeMotor.setPower(0.0);
     }
 
     /**

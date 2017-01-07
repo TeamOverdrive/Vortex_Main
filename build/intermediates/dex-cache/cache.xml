@@ -21,51 +21,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\ModernRobotics-release\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="01999c87afe3d10ffa06f3efa66f39e61e6aba0c">
-        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-ModernRobotics-release_434ac08d835ab3b4464315974eac38d5f9b19d8a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Inspection-release\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b3051d2a26a36e5b402fd8aa14ec8a4bea328974">
-        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-Inspection-release_abbe6e620ce9afc92f6b2ec80587c7275a444194.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\Vuforia.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="f1dde8a0e6ed1172450c657386da45fd1d7565f4">
-        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\Vuforia_40e9a536a6a759399550b7545bf9fe923605fc20.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Hardware-release\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d30a44d837c8f25360e4190341f43399eea81172">
-        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-Hardware-release_adad57f9658781aedaeb5b515608956973abd44d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Vortex_Main\FtcRobotController\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b5e2901141f17ab4c09167f11fbd09dda76e187f">
-        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\Vortex_Main-FtcRobotController-unspecified_7226617a004e2a23e2a16b05025eedb8a1ecd75f.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\gson-2.7.jar"
         jumboMode="false"
         optimize="true"
@@ -93,6 +48,33 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\ModernRobotics-release\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="01999c87afe3d10ffa06f3efa66f39e61e6aba0c">
+        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-ModernRobotics-release_434ac08d835ab3b4464315974eac38d5f9b19d8a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Inspection-release\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b3051d2a26a36e5b402fd8aa14ec8a4bea328974">
+        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-Inspection-release_abbe6e620ce9afc92f6b2ec80587c7275a444194.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\Vuforia.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f1dde8a0e6ed1172450c657386da45fd1d7565f4">
+        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\Vuforia_40e9a536a6a759399550b7545bf9fe923605fc20.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Blocks-release\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -111,12 +93,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Hardware-release\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d30a44d837c8f25360e4190341f43399eea81172">
+        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-Hardware-release_adad57f9658781aedaeb5b515608956973abd44d.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\support-annotations-23.4.0.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="5a051fb9930d4b0df111f4e71ba2c97136f8d1f7">
         <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_758332a935c47f3f0ddb4e568c3f17006911dc8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Vortex_Main\FtcRobotController\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="311aee1b0e021df8fda098ae1583a952417b3975">
+        <dex dex="C:\Users\Nathan\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\pre-dexed\debug\Vortex_Main-FtcRobotController-unspecified_7226617a004e2a23e2a16b05025eedb8a1ecd75f.jar" />
     </item>
 
 </items>
