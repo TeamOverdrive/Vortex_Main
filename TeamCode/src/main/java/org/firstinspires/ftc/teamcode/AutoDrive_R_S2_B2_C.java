@@ -1,16 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.util.RobotLog;
-
 /**
- * @author Samuel Turner
- * @version 2017.1.3
+ * Created by Nathan on 1/6/2017.
  */
-
-@Autonomous(name = "AutoDrive: Pos1-Shoot 2-2 Beacons-End Center", group = "Vortex")
-
-public class AutoDrive_Pos1_Shoot2_2Beacons_Center extends AutoSuper {
+public class AutoDrive_R_S2_B2_C extends AutoSuper {
     @Override
     public void runOpMode() {
         //Initialize everything.
@@ -27,28 +20,26 @@ public class AutoDrive_Pos1_Shoot2_2Beacons_Center extends AutoSuper {
         encoderDrive(DRIVE_SPEED, -20.0, -20.0, 5.0);
         launchBalls(2);
         //Step 2: Get between the beacons.
-        turn90R();
-        telemetry.addData("0", "Heading %03d", gyroSensor.getHeading());
-        telemetry.update();
-        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
         turn90L();
         telemetry.addData("0", "Heading %03d", gyroSensor.getHeading());
         telemetry.update();
         encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
         turn90R();
+        telemetry.addData("0", "Heading %03d", gyroSensor.getHeading());
+        telemetry.update();
+        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
+        turn90L();
         telemetry.addData("0", "Heading %03d", gyroSensor.getHeading());
         telemetry.update();
         encoderDrive(DRIVE_SPEED, -12.0, -12.0, 3.0);
-        turn90L();
+        turn90R();
         telemetry.addData("0", "Heading %03d", gyroSensor.getHeading());
         telemetry.update();
         //Insert code here using the gyro
         //Step 3: Hit the beacons.
-        pushBeaconForward(false);
+        pushBeaconForward(true);
         //Step 4: Reach the center
         turn90R();
         encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
-        turn90L();
-        encoderDrive(DRIVE_SPEED, -12.0, -12.0, 4.0);
     }
 }

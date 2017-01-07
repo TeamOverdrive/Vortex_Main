@@ -133,6 +133,9 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      * @return Determine whether or not the beacon was successfully pushed.
      *//*
+     * Unused since it has fundamental problems. Namely it does not push the button and also it
+     * utilizes more time than we have. If shooting time is decreased and we get into position
+     * faster, this code becomes feasible.
     private boolean pushBeacon(boolean red) {
         if (red) {
             if (colorSensor1.red() >= 4 && colorSensor2.red() >= 4) {
@@ -172,6 +175,7 @@ public class AutoSuper extends LinearOpMode {
                 pushButton2.setPosition(PUSH_MAX2);
                 pushButton2.setPosition(PUSH_MIN2);
             }
+            sleep(500);
             if (colorSensor1.red() >= 3 && colorSensor2.red() >= 3) {
                 return true;
             }
@@ -185,6 +189,7 @@ public class AutoSuper extends LinearOpMode {
                 pushButton2.setPosition(PUSH_MAX2);
                 pushButton2.setPosition(PUSH_MIN2);
             }
+            sleep(500);
             if (colorSensor1.blue() >= 3 && colorSensor2.blue() >= 3) {
                 return true;
             }

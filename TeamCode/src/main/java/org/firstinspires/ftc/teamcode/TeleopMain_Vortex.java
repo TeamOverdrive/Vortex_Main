@@ -148,7 +148,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            RobotLog.d("LinearOpMode received a CancellationException; shutting down this linear op mode");
+            //Triggers the white line flag.
             if (opticalSensor.getLightDetected() > 0.2) lineFlag.setPosition(0.0);
             else lineFlag.setPosition(0.5);
 
@@ -233,17 +233,19 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
 
             // Send telemetry message to signify robot running;
-         /*   telemetry.addData("claw",  "Offset = %.2f", clawOffset);  */
             telemetry.addData("status left_drive", leftMotor);
             telemetry.addData("status right_drive", rightMotor);
             telemetry.addData("status intake", intakeMotor);
             telemetry.addData("shooter", shooterMotor);
             telemetry.addData("lift", liftMotor);
+            telemetry.addData("color sensor 1: ", colorSensor1);
+            telemetry.addData("color sensor 2: ", colorSensor2);
             telemetry.update();
 
             // Pause for metronome tick.  40 mS each cycle = update 25 times a second.
          /*   robot.waitForTick(40);  */
         }
+        RobotLog.d("LinearOpMode received a CancellationException; shutting down this linear op mode");
     }
 
     /**
