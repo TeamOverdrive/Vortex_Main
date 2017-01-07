@@ -149,7 +149,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             //Triggers the white line flag.
-            if (opticalSensor.getLightDetected() > 0.2) lineFlag.setPosition(0.0);
+            if (opticalSensor.getLightDetected() > 0.08) lineFlag.setPosition(0.0);
             else lineFlag.setPosition(0.5);
 
             /* ===================================================================================*/

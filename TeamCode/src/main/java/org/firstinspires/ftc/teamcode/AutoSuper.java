@@ -30,10 +30,10 @@ public class AutoSuper extends LinearOpMode {
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.6;
     static final double TURN_SPEED = -0.5;
-    static final double PUSH_MAX1 = 0.5;
-    static final double PUSH_MAX2 = 0.0;
-    static final double PUSH_MIN1 = 0.0;
-    static final double PUSH_MIN2 = 0.5;
+    static final double PUSH_MAX1 = 0.0;
+    static final double PUSH_MAX2 = 0.5;
+    static final double PUSH_MIN1 = 0.5;
+    static final double PUSH_MIN2 = 0.0;
 
     static final double     WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
     static final double     APPROACH_SPEED  = 0.5;
@@ -112,6 +112,7 @@ public class AutoSuper extends LinearOpMode {
     public void pushBeaconForward(boolean red) {
         driveToWLine(1);
         if (!pushButton(red)) pushButton(red);
+        encoderDrive(DRIVE_SPEED, 24.0, 24.0, 5.0);
         driveToWLine(-1);
         if (!pushButton(red)) pushButton(red);
     }
@@ -123,9 +124,10 @@ public class AutoSuper extends LinearOpMode {
      */
     public void pushBeaconBackward(boolean red) {
         driveToWLine(-1);
-        pushButton(red);
+        if (!pushButton(red)) pushButton(red);
+        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
         driveToWLine(1);
-        pushButton(red);
+        if (!pushButton(red)) pushButton(red);
     }
 
     /**
@@ -166,34 +168,39 @@ public class AutoSuper extends LinearOpMode {
     private boolean pushButton(boolean red) {
         colorSensor1.enableLed(false);
         colorSensor2.enableLed(false);
+        telemetry.addData("color1", colorSensor1.red());
+        telemetry.addData("color2", colorSensor2.red());
+        telemetry.update();
         if (red) {
-            if (colorSensor1.red() >= 3) {
-                pushButton1.setPosition(PUSH_MAX1); //Fix this value.
-                pushButton1.setPosition(PUSH_MIN1);
+            if (colorSensor1.red() >= 1) {
+                pushButton1.setPosition(0.5); //Fix this value.
+                pushButton1.setPosition(0.0);
             }
-            else if (colorSensor2.red() >= 3){
+            else if (colorSensor2.red() >= 1){
                 pushButton2.setPosition(PUSH_MAX2);
                 pushButton2.setPosition(PUSH_MIN2);
             }
             sleep(500);
-            if (colorSensor1.red() >= 3 && colorSensor2.red() >= 3) {
+            if (colorSensor1.red() >= 1 && colorSensor2.red() >= 1) {
                 return true;
             }
         }
         else {
-            if (colorSensor1.blue() >= 3) {
+            if (colorSensor1.blue() >= 1) {
                 pushButton1.setPosition(PUSH_MAX1);
                 pushButton2.setPosition(PUSH_MIN1);
             }
-            else if (colorSensor2.blue() >= 3){
+            else if (colorSensor2.blue() >= 1){
                 pushButton2.setPosition(PUSH_MAX2);
                 pushButton2.setPosition(PUSH_MIN2);
             }
             sleep(500);
-            if (colorSensor1.blue() >= 3 && colorSensor2.blue() >= 3) {
+            if (colorSensor1.blue() >= 1 && colorSensor2.blue() >= 1) {
                 return true;
             }
         }
+        intakeMotor.setPower(1);
+        intakeMotor.setPower(0);
         return false;
     }
 
@@ -206,7 +213,7 @@ public class AutoSuper extends LinearOpMode {
         leftMotor.setPower(-(DRIVE_SPEED/2) * dir);
         rightMotor.setPower(-(DRIVE_SPEED/2) * dir);
         runtime.reset();
-        while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.2) && runtime.seconds() < 3) {
+        while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 5) {
             telemetry.addData("Light Level", opticalSensor.getLightDetected());
             String out = Double.toString(opticalSensor.getLightDetected());
             RobotLog.d(out);

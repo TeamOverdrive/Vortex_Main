@@ -14,15 +14,16 @@ public class AutoDrive_R_S2_B2_C extends AutoSuper {
         super.runOpMode();
         waitForStart();
         //Step 1: Launch the balls.
-        encoderDrive(DRIVE_SPEED, -20.0, -20.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -22.0, -22.0, 5.0);
         launchBalls(2);
         //Step 2: Get between the beacons.
         turn90L();
-        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -18.0, -18.0, 5.0);
         turn90R();
-        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
         turn90L();
-        encoderDrive(DRIVE_SPEED, -12.0, -12.0, 3.0);
+        //Needs adjustment
+        encoderDrive(DRIVE_SPEED, -18.0, -18.0, 3.0);
         turn90R();
         //Step 3: Hit the beacons.
         pushBeaconForward(true);

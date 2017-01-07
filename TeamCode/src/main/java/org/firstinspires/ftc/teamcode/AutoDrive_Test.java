@@ -36,7 +36,7 @@ public class AutoDrive_Test extends AutoSuper {
             out = "Sensor 2 blue: " + Double.toString(colorSensor2.blue());
             RobotLog.d(out);
             telemetry.update();
-        }*/
+        }*//*
         encoderDrive(DRIVE_SPEED*0.8, -20.0, -20.0, 5.0);
         launchBalls(2);
         turn90L();
@@ -46,6 +46,7 @@ public class AutoDrive_Test extends AutoSuper {
         turn90L();
         encoderDrive(DRIVE_SPEED*0.8, -21.0, -21.0, 5.0);
         turn90R();
+        pushBeaconBackward(true);*/
         pushBeaconBackward(true);
     }
 }
