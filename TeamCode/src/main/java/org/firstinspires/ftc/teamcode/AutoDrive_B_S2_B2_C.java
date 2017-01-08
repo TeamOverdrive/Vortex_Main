@@ -13,9 +13,11 @@ public class AutoDrive_B_S2_B2_C extends AutoSuper {
     public void runOpMode() {
         //Initialize everything.
         super.runOpMode();
+        calibrateGyro();
         waitForStart();
         //Step 1: Launch the balls.
-        encoderDrive(DRIVE_SPEED, -22.0, -22.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -18.0, -18.0, 5.0);
+        encoderDrive(DRIVE_SPEED/2, -4.0, -4.0, 5.0);
         launchBalls(2);
         //Step 2: Get between the beacons.
         turn90R();
@@ -24,7 +26,7 @@ public class AutoDrive_B_S2_B2_C extends AutoSuper {
         encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
         turn90R();
         //Needs adjustment
-        encoderDrive(DRIVE_SPEED, -18.0, -18.0, 3.0);
+        encoderDrive(DRIVE_SPEED, -20.0, -20.0, 3.0);
         turn90R();
         //Step 3: Hit the beacons.
         pushBeaconBackward(true);

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.hardware.Sensor;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -51,7 +52,7 @@ public class Init {
     private ColorSensor colorSensor2;
     private OpticalDistanceSensor opticalSensor;
     private ModernRoboticsI2cGyro gyroSensor;
-    private UltrasonicSensor ultrasonicSensor;
+    private ModernRoboticsI2cRangeSensor ultrasonicSensor;
 
     private static final double MID_SERVO       =  0.5 ;
 
@@ -179,7 +180,7 @@ public class Init {
         colorSensor1 = hardwareMap.colorSensor.get("color_sensor1");
         colorSensor2 = hardwareMap.colorSensor.get("color_sensor2");
         opticalSensor = hardwareMap.opticalDistanceSensor.get("optical_sensor");
-        //ultrasonicSensor = hardwareMap.ultrasonicSensor.get("ultrasonic_sensor");
+        ultrasonicSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultrasonic_sensor");
         gyroSensor = (ModernRoboticsI2cGyro)hardwareMap.gyroSensor.get("gyro_sensor");
         opticalSensor.enableLed(true);
     }
@@ -243,7 +244,7 @@ public class Init {
         return gyroSensor;
     }
 
-    public UltrasonicSensor getUltrasonicSensor() {
+    public ModernRoboticsI2cRangeSensor getUltrasonicSensor() {
         return ultrasonicSensor;
     }
 }

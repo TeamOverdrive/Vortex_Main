@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -59,7 +60,7 @@ public class AutoSuper extends LinearOpMode {
     protected ColorSensor colorSensor2;
     protected OpticalDistanceSensor opticalSensor;
     protected ModernRoboticsI2cGyro gyroSensor;
-    protected UltrasonicSensor ultrasonicSensor;
+    protected ModernRoboticsI2cRangeSensor ultrasonicSensor;
 
     /**
      * Defines the standard starting setup for the Autonomous classes.
@@ -98,9 +99,29 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
+    public void turn90LGyro() {
+        sleep(250);
+        int tDeg = ((gyroSensor.getHeading() + 273)) % 360;
+        while (gyroSensor.getHeading() != tDeg) {
+            leftMotor.setPower(DRIVE_SPEED * 0.4);
+            rightMotor.setPower(DRIVE_SPEED * 0.4);
+        }
+        sleep(100);
+    }
+
     public void turn90R() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, -12.0, 12.0, 3.0);
+        sleep(100);
+    }
+
+    public void turn90RGyro() {
+        sleep(250);
+        int tDeg = ((gyroSensor.getHeading() + 87)) % 360;
+        while (gyroSensor.getHeading() != tDeg) {
+            leftMotor.setPower(DRIVE_SPEED * 0.4);
+            rightMotor.setPower(DRIVE_SPEED * 0.4);
+        }
         sleep(100);
     }
 

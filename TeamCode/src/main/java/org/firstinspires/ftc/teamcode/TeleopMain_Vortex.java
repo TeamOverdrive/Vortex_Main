@@ -32,6 +32,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -48,6 +49,7 @@ import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 /**
  * This OpMode started with the common Pushbot hardware class to define the devices on the robot.  The
@@ -100,7 +102,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
     private ColorSensor colorSensor2;
     private OpticalDistanceSensor opticalSensor;
     private GyroSensor gyroSensor;
-    private UltrasonicSensor ultrasonicSensor;
+    private ModernRoboticsI2cRangeSensor ultrasonicSensor;
 
     private static final double MID_SERVO       =  0.5 ;
 
@@ -138,10 +140,15 @@ public class TeleopMain_Vortex extends LinearOpMode {
         ballRelease = init.getBallRelease();
 
         opticalSensor = init.getOpticalSensor();
+        ultrasonicSensor = init.getUltrasonicSensor();
+        gyroSensor = init.getGyroSensor();
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
         telemetry.update();
+
+        //Calibrate the gyro
+        calibrateGyro();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -151,6 +158,10 @@ public class TeleopMain_Vortex extends LinearOpMode {
             //Triggers the white line flag.
             if (opticalSensor.getLightDetected() > 0.08) lineFlag.setPosition(0.0);
             else lineFlag.setPosition(0.5);
+            if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 10.0) {
+                distanceFlag.setPosition(0.0);
+            }
+            else distanceFlag.setPosition(0.5);
 
             /* ===================================================================================*/
             /* Gamepad 1 - Controls */
@@ -233,13 +244,15 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
 
             // Send telemetry message to signify robot running;
-            telemetry.addData("status left_drive", leftMotor);
+            /*telemetry.addData("status left_drive", leftMotor);
             telemetry.addData("status right_drive", rightMotor);
             telemetry.addData("status intake", intakeMotor);
             telemetry.addData("shooter", shooterMotor);
             telemetry.addData("lift", liftMotor);
             telemetry.addData("color sensor 1: ", colorSensor1);
-            telemetry.addData("color sensor 2: ", colorSensor2);
+            telemetry.addData("color sensor 2: ", colorSensor2);*/
+            telemetry.addData("Ultrasonic", ultrasonicSensor.getDistance(DistanceUnit.CM));
+            telemetry.addData("Gyro", gyroSensor.getHeading());
             telemetry.update();
 
             // Pause for metronome tick.  40 mS each cycle = update 25 times a second.
@@ -272,4 +285,22 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
         return dScale;
     }
+
+    /**
+     * Calibrates the gyro.
+     * This code is copied and pasted from the sample code.
+     */
+    public void calibrateGyro() {
+        telemetry.addData(">", "Gyro Calibrating. Do Not move!");
+        telemetry.update();
+        gyroSensor.calibrate();
+        // make sure the gyro is calibrated.
+        while (!isStopRequested() && gyroSensor.isCalibrating())  {
+            sleep(50);
+            idle();
+        }
+        telemetry.addData(">", "Gyro Calibrated.  Press Start.");
+        telemetry.update();
+    }
+
 }
