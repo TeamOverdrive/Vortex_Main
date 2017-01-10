@@ -152,36 +152,6 @@ public class AutoSuper extends LinearOpMode {
     }
 
     /**
-     * Activates the beacon based on the team's color.
-     * @param red A boolean answer to whether or not the desired color is red.
-     * @return Determine whether or not the beacon was successfully pushed.
-     *//*
-     * Unused since it has fundamental problems. Namely it does not push the button and also it
-     * utilizes more time than we have. If shooting time is decreased and we get into position
-     * faster, this code becomes feasible.
-    private boolean pushBeacon(boolean red) {
-        if (red) {
-            if (colorSensor1.red() >= 4 && colorSensor2.red() >= 4) {
-                return true;
-            }
-            else if (colorSensor1.blue() >= 4 && colorSensor2.blue() >= 4) {
-                sleep(5*1000);
-                pushButton(red);
-            }
-        }
-        else {
-            if (colorSensor1.blue() >= 155 && colorSensor2.blue() >= 155) {
-                return true;
-            }
-            else if (colorSensor1.blue() >= 155 && colorSensor2.blue() >= 155) {
-                sleep(5*1000);
-                pushButton(red);
-            }
-        }
-        return false;
-    }*/
-
-    /**
      * Pushes the button on the beacon based on alliance color and the randomized side that should
      * be used.
      * @param red A boolean representing whether or not the desired color is red.
@@ -194,8 +164,8 @@ public class AutoSuper extends LinearOpMode {
         telemetry.update();
         if (red) {
             if (colorSensor1.red() >= 1) {
-                pushButton1.setPosition(0.5); //Fix this value.
-                pushButton1.setPosition(0.0);
+                pushButton1.setPosition(PUSH_MAX1);
+                pushButton2.setPosition(PUSH_MIN1);
             }
             else if (colorSensor2.red() >= 1){
                 pushButton2.setPosition(PUSH_MAX2);
@@ -220,8 +190,6 @@ public class AutoSuper extends LinearOpMode {
                 return true;
             }
         }
-        intakeMotor.setPower(1);
-        intakeMotor.setPower(0);
         return false;
     }
 
