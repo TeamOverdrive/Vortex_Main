@@ -179,8 +179,8 @@ public class Init {
 
         //Define all of the sensors.
         colorSensor1 = hardwareMap.colorSensor.get("color_sensor1");
-        colorSensor2 = hardwareMap.colorSensor.get("color_sensor2");
-        colorSensor1.setI2cAddress(I2cAddr.create8bit(0x3a));
+        colorSensor2 = hardwareMap.colorSensor.get("color_sensor2");  // Local version is set to default -- 0x3c
+        colorSensor1.setI2cAddress(I2cAddr.create8bit(0x3a)); // Adjusting local version to look for 2nd color sensor - front sensor
         opticalSensor = hardwareMap.opticalDistanceSensor.get("optical_sensor");
         ultrasonicSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultrasonic_sensor");
         gyroSensor = (ModernRoboticsI2cGyro)hardwareMap.gyroSensor.get("gyro_sensor");
