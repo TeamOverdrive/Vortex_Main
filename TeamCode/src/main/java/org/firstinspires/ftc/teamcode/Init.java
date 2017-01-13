@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
@@ -179,6 +180,7 @@ public class Init {
         //Define all of the sensors.
         colorSensor1 = hardwareMap.colorSensor.get("color_sensor1");
         colorSensor2 = hardwareMap.colorSensor.get("color_sensor2");
+        colorSensor1.setI2cAddress(I2cAddr.create8bit(0x3a));
         opticalSensor = hardwareMap.opticalDistanceSensor.get("optical_sensor");
         ultrasonicSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultrasonic_sensor");
         gyroSensor = (ModernRoboticsI2cGyro)hardwareMap.gyroSensor.get("gyro_sensor");

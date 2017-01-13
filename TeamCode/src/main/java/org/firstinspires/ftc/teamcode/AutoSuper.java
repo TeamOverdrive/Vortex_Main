@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -11,6 +12,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.RobotLog;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 /**
  * A super class for all autonomous codes.
@@ -54,7 +57,7 @@ public class AutoSuper extends LinearOpMode {
     protected Servo distanceFlag;
     protected Servo shooterFlag;
     protected Servo lineFlag;
-
+    ModernRoboticsI2cColorSensor color;
     /* Declare Sensors*/
     protected ColorSensor colorSensor1;
     protected ColorSensor colorSensor2;
@@ -99,30 +102,44 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
-    public void turn90LGyro() {
-        sleep(250);
-        int tDeg = ((gyroSensor.getHeading() + 273)) % 360;
-        while (gyroSensor.getHeading() != tDeg) {
-            leftMotor.setPower(DRIVE_SPEED * 0.4);
-            rightMotor.setPower(DRIVE_SPEED * 0.4);
-        }
-        sleep(100);
-    }
-
     public void turn90R() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, -12.0, 12.0, 3.0);
         sleep(100);
     }
 
-    public void turn90RGyro() {
+    /**
+     * Turns the robot the given number of degrees in the given direction.
+     * Negative is left and positive is right.
+     * Don't use degrees > 180 for safety reasons.
+     * @param deg The number of degrees to turn.
+     */
+    public void turnGyroRelL(int deg) {
         sleep(250);
-        int tDeg = ((gyroSensor.getHeading() + 87)) % 360;
+        int tDeg = ((gyroSensor.getHeading() + deg)) % 360;
         while (gyroSensor.getHeading() != tDeg) {
-            leftMotor.setPower(DRIVE_SPEED * 0.4);
+            leftMotor.setPower(-DRIVE_SPEED * 0.4);
             rightMotor.setPower(DRIVE_SPEED * 0.4);
         }
         sleep(100);
+    }
+
+    public void turnGyroAbsL(int deg) {
+        while(opModeIsActive() && gyroSensor.getHeading() != deg) {
+            leftMotor.setPower(-DRIVE_SPEED * 0.3);
+            rightMotor.setPower(DRIVE_SPEED * 0.3);
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+    }
+
+    public void turnGyroAbsR(int deg) {
+        while(opModeIsActive() && gyroSensor.getHeading() != deg) {
+            leftMotor.setPower(DRIVE_SPEED * 0.3);
+            rightMotor.setPower(-DRIVE_SPEED * 0.3);
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
     }
 
     /**
@@ -156,37 +173,49 @@ public class AutoSuper extends LinearOpMode {
      * be used.
      * @param red A boolean representing whether or not the desired color is red.
      */
-    private boolean pushButton(boolean red) {
+    public boolean pushButton(boolean red) {
         colorSensor1.enableLed(false);
         colorSensor2.enableLed(false);
-        telemetry.addData("color1", colorSensor1.red());
-        telemetry.addData("color2", colorSensor2.red());
+        telemetry.addData("color1 red", colorSensor1.red());
+        telemetry.addData("color1 blue", colorSensor1.blue());
+        telemetry.addData("color2 red", colorSensor2.red());
+        telemetry.addData("color2 blue", colorSensor2.blue());
         telemetry.update();
         if (red) {
-            if (colorSensor1.red() >= 1) {
-                pushButton1.setPosition(PUSH_MAX1);
-                pushButton2.setPosition(PUSH_MIN1);
+            if (colorSensor1.red() >= 2 && colorSensor2.red() >= 2) {
+                return true;
             }
-            else if (colorSensor2.red() >= 1){
+            if (colorSensor1.red() >= 2) {
+                pushButton1.setPosition(PUSH_MAX1);
+                sleep(750);
+                pushButton1.setPosition(PUSH_MIN1);
+            }
+            else if (colorSensor2.red() >= 2){
                 pushButton2.setPosition(PUSH_MAX2);
+                sleep(750);
                 pushButton2.setPosition(PUSH_MIN2);
             }
             sleep(500);
-            if (colorSensor1.red() >= 1 && colorSensor2.red() >= 1) {
+            if (colorSensor1.red() >= 2 && colorSensor2.red() >= 2) {
                 return true;
             }
         }
         else {
-            if (colorSensor1.blue() >= 1) {
-                pushButton1.setPosition(PUSH_MAX1);
-                pushButton2.setPosition(PUSH_MIN1);
+            if (colorSensor1.blue() >= 2 && colorSensor2.blue() >= 2) {
+                return true;
             }
-            else if (colorSensor2.blue() >= 1){
+            if (colorSensor1.blue() >= 2) {
+                pushButton1.setPosition(PUSH_MAX1);
+                sleep(750);
+                pushButton1.setPosition(PUSH_MIN1);
+            }
+            else if (colorSensor2.blue() >= 2){
                 pushButton2.setPosition(PUSH_MAX2);
+                sleep(750);
                 pushButton2.setPosition(PUSH_MIN2);
             }
             sleep(500);
-            if (colorSensor1.blue() >= 1 && colorSensor2.blue() >= 1) {
+            if (colorSensor1.blue() >= 2 && colorSensor2.blue() >= 2) {
                 return true;
             }
         }
@@ -199,8 +228,8 @@ public class AutoSuper extends LinearOpMode {
      * @param dir Positive for forward, negative for reverse.
      */
     public boolean driveToWLine(int dir) {
-        leftMotor.setPower(-(DRIVE_SPEED/2) * dir);
-        rightMotor.setPower(-(DRIVE_SPEED/2) * dir);
+        leftMotor.setPower(-(DRIVE_SPEED / 2) * dir);
+        rightMotor.setPower(-(DRIVE_SPEED / 2) * dir);
         runtime.reset();
         while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 5) {
             telemetry.addData("Light Level", opticalSensor.getLightDetected());
@@ -263,6 +292,18 @@ public class AutoSuper extends LinearOpMode {
         while(opModeIsActive() && runtime.seconds() < 4.0) {
 
         }
+    }
+
+    public void approachWall() {
+        while(opModeIsActive() && ultrasonicSensor.getDistance(DistanceUnit.CM) >= 8) {
+            leftMotor.setPower(0.3);
+            rightMotor.setPower(0.5);
+            sleep(500);
+            leftMotor.setPower(0.5);
+            rightMotor.setPower(0.3);
+            sleep(500);
+        }
+        driveToWLine(1);
     }
 
     /**

@@ -8,12 +8,12 @@
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Blocks-release\\res\\layout\\activity_programming_mode.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
-        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\servo_controller_banner.xml"
-    },
-    {
         "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\simple_device.xml",
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\simple_device.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\servo_controller_banner.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_load.xml",
@@ -28,16 +28,16 @@
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\activity_configure_from_template.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
-        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Blocks-release\\res\\layout\\activity_blocks.xml"
+        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
+        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\activity_about.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\device_interface_module.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\device_interface_module.xml"
     },
     {
-        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
-        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\activity_about.xml"
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Blocks-release\\res\\layout\\activity_blocks.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrix_devices.xml",
@@ -52,12 +52,12 @@
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\analog_output_device.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\layout\\activity_inspection.xml"
-    },
-    {
         "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_controller.xml",
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Vortex_Main\\FtcRobotController\\unspecified\\res\\layout\\activity_ftc_controller.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
+        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\layout\\activity_inspection.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device.xml",
@@ -68,12 +68,12 @@
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\activity_ftc_configuration.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\shape.xml",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\shape.xml"
-    },
-    {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\file_info.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\file_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\shape.xml",
+        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\shape.xml"
     },
     {
         "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor.xml",
@@ -108,12 +108,12 @@
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\template_info.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\analog_input_device.xml"
-    },
-    {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_list.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\servo_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
+        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\analog_input_device.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2cs.xml",

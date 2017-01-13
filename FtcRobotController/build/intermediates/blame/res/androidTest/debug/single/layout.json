@@ -28,12 +28,12 @@
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\pwms.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\orange_warning.xml",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\orange_warning.xml"
-    },
-    {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\motor.xml",
         "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\motor.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\orange_warning.xml",
+        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\orange_warning.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\digital_devices.xml",
@@ -48,12 +48,12 @@
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\digital_device.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\digital_devices.xml",
-        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\digital_devices.xml"
-    },
-    {
         "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\header.xml",
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\bundles\\debug\\res\\layout\\header.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\digital_devices.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\digital_devices.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\analog_outputs.xml",
@@ -68,16 +68,16 @@
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\port_attached_row.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\shape.xml",
-        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\shape.xml"
+        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
+        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\simple_device.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\simple_device.xml"
     },
     {
-        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
-        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\shape.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\shape.xml"
     },
     {
         "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\i2c_device.xml",

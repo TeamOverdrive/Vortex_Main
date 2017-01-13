@@ -40,6 +40,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 
 /*
  *
@@ -81,11 +82,12 @@ public class SensorMRColor extends LinearOpMode {
     boolean bCurrState = false;
 
     // bLedOn represents the state of the LED.
-    boolean bLedOn = true;
+    boolean bLedOn = false;
 
     // get a reference to our ColorSensor object.
     colorSensor = hardwareMap.colorSensor.get("color_sensor1");
     colorSensor2 = hardwareMap.colorSensor.get("color_sensor2");
+    colorSensor.setI2cAddress(I2cAddr.create8bit(0x3a));
     // Set the LED in the beginning
     colorSensor.enableLed(bLedOn);
     colorSensor2.enableLed(bLedOn);
@@ -116,11 +118,12 @@ public class SensorMRColor extends LinearOpMode {
 
       // send the info back to driver station using telemetry function.
       telemetry.addData("LED", bLedOn ? "On" : "Off");
-      telemetry.addData("Clear", colorSensor.alpha());
-      telemetry.addData("Red  ", colorSensor.red());
-      telemetry.addData("Green", colorSensor.green());
-      telemetry.addData("Blue ", colorSensor.blue());
-      telemetry.addData("Hue", hsvValues[0]);
+      telemetry.addData("Red1", colorSensor.red());
+      telemetry.addData("Blue1", colorSensor.blue());
+      telemetry.addData("Red2", colorSensor2.red());
+      telemetry.addData("Blue2", colorSensor2.blue());
+      telemetry.addData("color 1", colorSensor.getI2cAddress());
+      telemetry.addData("color 2", colorSensor2.getI2cAddress());
 
       // change the background color to match the color detected by the RGB sensor.
       // pass a reference to the hue, saturation, and value array as an argument

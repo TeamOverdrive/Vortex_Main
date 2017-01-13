@@ -4,12 +4,12 @@
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\matrices.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor_controller_banner.xml",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\motor_controller_banner.xml"
-    },
-    {
         "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\servo_list.xml",
         "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\servo_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor_controller_banner.xml",
+        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\motor_controller_banner.xml"
     },
     {
         "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_configure_from_template.xml",
