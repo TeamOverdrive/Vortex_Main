@@ -1,17 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon_robotcontroller.png",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\ftc_app-master\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\icon_robotcontroller.png"
-    },
-    {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\ftc_app-master\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon_robotcontroller.png",
-        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Vortex_Main\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\icon_robotcontroller.png"
-    },
-    {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon_robotcontroller.png",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Vortex_Main\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\icon_robotcontroller.png"
     },
@@ -22,17 +10,5 @@
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon_menu.png",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Vortex_Main\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\icon_menu.png"
-    },
-    {
-        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Vortex_Main\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon_menu.png",
-        "source": "C:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\Vortex_Main\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\icon_menu.png"
-    },
-    {
-        "merged": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon_menu.png",
-        "source": "C:\\Users\\david.turner\\Downloads\\ftc_app-master\\TeamCode\\build\\intermediates\\exploded-aar\\ftc_app-master\\FtcRobotController\\unspecified\\res\\drawable-xhdpi-v4\\icon_menu.png"
     }
 ]

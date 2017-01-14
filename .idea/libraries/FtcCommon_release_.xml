@@ -5,6 +5,9 @@
       <root url="file://$PROJECT_DIR$/FtcRobotController/build/intermediates/exploded-aar/FtcCommon-release/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/FtcCommon-release-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/FtcCommon-release-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

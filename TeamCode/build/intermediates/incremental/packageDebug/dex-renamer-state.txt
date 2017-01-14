@@ -1,4 +1,7 @@
-#Wed Jan 11 14:30:04 EST 2017
-base.0=C\:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
-renamed.0=classes.dex
-file.0=C\:\\Users\\Nathan\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+#Sat Jan 14 10:39:26 EST 2017
+base.0=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_e54c2de32dc48082283b3ee30cb2ddb241aad350
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_0e0c5315e307c6cc57d80c13716df3f2ebf5241c\\classes.dex
+base.1=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_0e0c5315e307c6cc57d80c13716df3f2ebf5241c
+file.0=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_e54c2de32dc48082283b3ee30cb2ddb241aad350\\classes.dex
