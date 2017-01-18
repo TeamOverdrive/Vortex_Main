@@ -108,6 +108,32 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
+
+    public void turn45L() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, 6.0, -6.0, 3.0);
+        sleep(100);
+    }
+
+    public void turn45R() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, -6.0, 6.0, 3.0);
+        sleep(100);
+    }
+
+    public void turn135L() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, 18.0, -18.0, 3.0);
+        sleep(100);
+    }
+
+    public void turn135R() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, -18.0, 18.0, 3.0);
+        sleep(100);
+    }
+
+
     /**
      * Turns the robot the given number of degrees in the given direction.
      * Negative is left and positive is right.
