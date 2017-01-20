@@ -5,27 +5,33 @@
     density="xhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="204861116153488"
+    timestamp="297014052846787"
     token="7586708121168103481"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="228" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="26" />
+        duration="0" />
     <task
         name="verifier"
-        duration="3" />
+        duration="0" />
 
-    <artifact
-        location="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\outputs\apk\TeamCode-debug.apk"
-        type="MAIN" />
-
+    <build
+        timestamp="296975459081058"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\outputs\apk\TeamCode-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="297014052846787"
+        verifier="COLD_SWAP_REQUESTED" />
     <build
         timestamp="1081295166019094"
         verifier="FULL_BUILD_REQUESTED" >

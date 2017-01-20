@@ -108,7 +108,6 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
-
     public void turn45L() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, 6.0, -6.0, 3.0);
@@ -274,18 +273,19 @@ public class AutoSuper extends LinearOpMode {
      * @param num The number of balls in the hopper. This is a positive integer <= 2
      */
     public void launchBalls(int num) {
-        intakeMotor.setPower(1.0);
+        intakeMotor.setPower(0.0);
         for (int i = 0; i < num; i++) {
 
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 2.5)) {
+            while (opModeIsActive() && (runtime.seconds() < 1.5)) {
                 shooterMotor.setPower(-1.0);
             }
             shooterMotor.setPower(0.0);
             if (opModeIsActive()) {
-                ballRelease.setPosition(0.0);
-                sleep(500);
-                ballRelease.setPosition(0.2);
+                sleep(1000);  //Set the gate open process to delay for 1st ball to be launched
+                ballRelease.setPosition(0.0); //Set to open the gate to release the second ball
+                sleep(500);  //Set to hold open the gate to allow the second ball to pass the gate
+                ballRelease.setPosition(0.4);  //Set to close the gate after the second ball is released
             }
         }
         intakeMotor.setPower(0.0);

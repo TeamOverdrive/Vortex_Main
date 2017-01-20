@@ -155,7 +155,7 @@ public class Init {
         distanceFlag = hardwareMap.servo.get("distance_flag");
         lineFlag = hardwareMap.servo.get("line_flag");
 
-        ballRelease.setPosition(0.2);
+        ballRelease.setPosition(0.4);
         pushButton1.setPosition(0.5);
         pushButton2.setPosition(0.0);
         distanceFlag.setPosition(0.5);

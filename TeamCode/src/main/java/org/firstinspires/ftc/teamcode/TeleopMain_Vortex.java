@@ -228,7 +228,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
             // Ball Release Control
             if (gamepad2.x) ballRelease.setPosition(0.0);
-            else ballRelease.setPosition(0.2);
+            else ballRelease.setPosition(0.4);
 
             //Scissor Lift Controls for handling the cap ball lifting
             float leftRange = gamepad2.left_stick_y;
