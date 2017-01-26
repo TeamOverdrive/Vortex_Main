@@ -32,8 +32,8 @@ public class AutoSuper extends LinearOpMode {
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED = 0.6;
-    static final double TURN_SPEED = -0.5;
+    static final double DRIVE_SPEED = 0.8;  //modified speed from 0.6
+    static final double TURN_SPEED = -0.4;  //modified turn speed from 0.5
     static final double PUSH_MAX1 = 0.0;
     static final double PUSH_MAX2 = 0.5;
     static final double PUSH_MIN1 = 0.5;
@@ -143,16 +143,16 @@ public class AutoSuper extends LinearOpMode {
         sleep(250);
         int tDeg = ((gyroSensor.getHeading() + deg)) % 360;
         while (gyroSensor.getHeading() != tDeg) {
-            leftMotor.setPower(-DRIVE_SPEED * 0.4);
-            rightMotor.setPower(DRIVE_SPEED * 0.4);
+            leftMotor.setPower(-DRIVE_SPEED * 0.2);
+            rightMotor.setPower(DRIVE_SPEED * 0.2);
         }
         sleep(100);
     }
 
     public void turnGyroAbsL(int deg) {
         while(opModeIsActive() && gyroSensor.getHeading() != deg) {
-            leftMotor.setPower(-DRIVE_SPEED * 0.3);
-            rightMotor.setPower(DRIVE_SPEED * 0.3);
+            leftMotor.setPower(-DRIVE_SPEED * 0.2);
+            rightMotor.setPower(DRIVE_SPEED * 0.2);
         }
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
@@ -160,8 +160,8 @@ public class AutoSuper extends LinearOpMode {
 
     public void turnGyroAbsR(int deg) {
         while(opModeIsActive() && gyroSensor.getHeading() != deg) {
-            leftMotor.setPower(DRIVE_SPEED * 0.3);
-            rightMotor.setPower(-DRIVE_SPEED * 0.3);
+            leftMotor.setPower(DRIVE_SPEED * 0.2);
+            rightMotor.setPower(-DRIVE_SPEED * 0.2);
         }
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
@@ -277,10 +277,10 @@ public class AutoSuper extends LinearOpMode {
         for (int i = 0; i < num; i++) {
 
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+            while (opModeIsActive() && (runtime.seconds() < 1.8)) {
                 shooterMotor.setPower(-1.0);
             }
-            shooterMotor.setPower(0.0);
+            // shooterMotor.setPower(0.0);
             if (opModeIsActive()) {
                 sleep(1000);  //Set the gate open process to delay for 1st ball to be launched
                 ballRelease.setPosition(0.0); //Set to open the gate to release the second ball
@@ -288,6 +288,7 @@ public class AutoSuper extends LinearOpMode {
                 ballRelease.setPosition(0.4);  //Set to close the gate after the second ball is released
             }
         }
+        shooterMotor.setPower(0.0);
         intakeMotor.setPower(0.0);
     }
 

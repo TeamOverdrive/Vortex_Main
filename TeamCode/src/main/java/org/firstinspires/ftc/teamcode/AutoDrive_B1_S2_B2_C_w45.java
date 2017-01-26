@@ -16,13 +16,13 @@ public class AutoDrive_B1_S2_B2_C_w45 extends AutoSuper {
         calibrateGyro();
         waitForStart();
         //Step 1: Launch the balls.
-        encoderDrive(DRIVE_SPEED, -18.0, -18.0, 5.0);
-        encoderDrive(DRIVE_SPEED/2, -4.0, -4.0, 5.0);
+        encoderDrive(DRIVE_SPEED, 42.0, 42.0, 5.0);
+        encoderDrive(DRIVE_SPEED/2, 0.0, 7.0, 5.0);
         launchBalls(2);
         //Step 2: Get between the beacons.
-        turn45R();
-        encoderDrive(DRIVE_SPEED, -66.5, -66.5, 5.0);
-        turn135R();
+        turn135L();
+        encoderDrive(DRIVE_SPEED, 66.5, 66.5, 5.0);
+        //turnGyroAbsR(180);
         //encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
         //turnGyroAbsR(90);
         //Needs adjustment
