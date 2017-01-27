@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -22,7 +23,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  * available to the subclasses through polymorphism. Define all other autonomous classes as follows:
  *  public class 'name' extends AutoSuper {
  *      super.runOpMode();
- * @author Samuel Turner
+ * @author S Turner
  * @verson 2017.1.3
  */
 
@@ -33,16 +34,19 @@ public class AutoSuper extends LinearOpMode {
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.8;  //modified speed from 0.6
-    static final double TURN_SPEED = -0.4;  //modified turn speed from 0.5
+    static final double TURN_SPEED = 0.5;  //modified turn speed from 0.5
     static final double PUSH_MAX1 = 0.0;
     static final double PUSH_MAX2 = 0.5;
     static final double PUSH_MIN1 = 0.5;
     static final double PUSH_MIN2 = 0.0;
 
-    static final double     WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
-    static final double     APPROACH_SPEED  = 0.5;
+    static final double WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
+    static final double APPROACH_SPEED  = 0.5;
+    static final double HEADING_THRESHOLD = 1;  // As tight as possible with an integer gyro
+    static final double P_TURN_COEFF = 0.1;     // Larger is more responsive but less stable
+    static final double P_DRIVE_COEFF = 0.15;   // Larger is more responsive but less stable
 
-    //The following objects are all protected an thus can only be accessed by the autonomous sub-classes.
+    //The following objects are all protected and thus can only be accessed by the autonomous sub-classes.
     /* Declare OpMode members. */
     protected DcMotor leftMotor;
     protected DcMotor rightMotor;
@@ -57,8 +61,9 @@ public class AutoSuper extends LinearOpMode {
     protected Servo distanceFlag;
     protected Servo shooterFlag;
     protected Servo lineFlag;
-    ModernRoboticsI2cColorSensor color;
+
     /* Declare Sensors*/
+    ModernRoboticsI2cColorSensor color;
     protected ColorSensor colorSensor1;
     protected ColorSensor colorSensor2;
     protected OpticalDistanceSensor opticalSensor;
@@ -96,36 +101,46 @@ public class AutoSuper extends LinearOpMode {
         ultrasonicSensor = init.getUltrasonicSensor();
     }
 
+    /**
+     * Methods for Encoder based turns -- these methods do not use the Gyro Sensors to
+     * make corrections for over/under turning.
+     */
+    //Encoder 90 degree left turn
     public void turn90L() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, 12.0, -12.0, 3.0);
         sleep(100);
     }
 
+    //Encoder 90 degree right turn
     public void turn90R() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, -12.0, 12.0, 3.0);
         sleep(100);
     }
 
+    //Encoder 45 degree left turn
     public void turn45L() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, 6.0, -6.0, 3.0);
         sleep(100);
     }
 
+    //Encoder 45 degree right turn
     public void turn45R() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, -6.0, 6.0, 3.0);
         sleep(100);
     }
 
+    //Encoder 135 degree left turn
     public void turn135L() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, 18.0, -18.0, 3.0);
         sleep(100);
     }
 
+    //Encoder 135 degree right turn
     public void turn135R() {
         sleep(250);
         encoderDrive(DRIVE_SPEED/2, -18.0, 18.0, 3.0);
@@ -134,6 +149,8 @@ public class AutoSuper extends LinearOpMode {
 
 
     /**
+     * Methods for Gyro Sensor turning excluding turn correction / adjustments
+     *
      * Turns the robot the given number of degrees in the given direction.
      * Negative is left and positive is right.
      * Don't use degrees > 180 for safety reasons.
@@ -168,6 +185,20 @@ public class AutoSuper extends LinearOpMode {
     }
 
     /**
+     * Turns relative to the initial heading.
+     * @precondition The gyro has been calibrated properly in user code.
+     * @param degrees The degrees relative to the starting heading.
+     */
+    public void turnWithGyro(int degrees) {
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 4.0) {
+
+        }
+    }
+
+
+    /**  Methods for Beacon Pushing
+     *
      * Pushes the buttons on the beacon starting by moving forward, then reversing to
      * the second beacon.
      * @param red A boolean answer to whether or not the desired color is red.
@@ -247,7 +278,8 @@ public class AutoSuper extends LinearOpMode {
         return false;
     }
 
-    /**
+    /**  Method for white line identification and movement between lines
+     *
      * Drives until it reaches a white line on the ground.
      * ONLY USE 1 OR -1 AS INPUT VALUES.
      * @param dir Positive for forward, negative for reverse.
@@ -267,13 +299,13 @@ public class AutoSuper extends LinearOpMode {
         return runtime.seconds() < 3;
     }
 
-    /**
+    /** Method for launching balls
      * Launch the balls loaded in the hopper at the center structure.
-     * Takes approximately 4 seconds per ball.
+     * Takes approximately 2 seconds per ball.
      * @param num The number of balls in the hopper. This is a positive integer <= 2
      */
     public void launchBalls(int num) {
-        intakeMotor.setPower(0.0);
+        intakeMotor.setPower(0.0);      //Set intakeMotor to off since it's not needed
         for (int i = 0; i < num; i++) {
 
             runtime.reset();
@@ -292,14 +324,19 @@ public class AutoSuper extends LinearOpMode {
         intakeMotor.setPower(0.0);
     }
 
-    /**
-     * Calibrates the gyro.
-     * This code is copied and pasted from the sample code.
+    /**  Method gyro calibration
+     *
+     * Autonomous initialization routine that calibrates the gyro and resets
+     * the drive motor encoders before the start of the autonomous program.
+     *
+     * This code is copied and then modified from the sample code.
      */
     public void calibrateGyro() {
         telemetry.addData(">", "Gyro Calibrating. Do Not move!");
         telemetry.update();
-        gyroSensor.calibrate();
+        gyroSensor.calibrate();                                     // Calibrate Gyro Sensor
+        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);  // Reset left motor encoder
+        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Reset right motor encoder
         // make sure the gyro is calibrated.
         while (!isStopRequested() && gyroSensor.isCalibrating())  {
             sleep(50);
@@ -307,19 +344,233 @@ public class AutoSuper extends LinearOpMode {
         }
         telemetry.addData(">", "Gyro Calibrated.  Press Start.");
         telemetry.update();
+
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    /**
-     * Turns relative to the initial heading.
-     * @precondition The gyro has been calibrated properly in user code.
-     * @param degrees The degrees relative to the starting heading.
+    /** Method gyroDrive
+     *
+    *  Gyro Sensor Driving Setting and Methods to allow for gyro driving in autonomous.
+    *  This code is copied and then modified from the sample code.
+    *
+    *  Drive with the gyro on a fixed compass bearing based on encoder counts.  The target
+    *  speed for forward motion should allow for fluctuations to allow for heading adjustments.
+    *  The distance is set in inches from the current position.  Negative distance moves backwards.
+    *  The angle is in degrees relative to the last gyro reset.  0 is forward, +ve is counter
+    *  clockwise from forward, -ve is clockwise from forward position.
+     *
+     * This code is copied and then modified from the sample code.
      */
-    public void turnWithGyro(int degrees) {
-        runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 4.0) {
 
+    public void gyroDrive (double speed, double distance, double angle) {
+        int     newLeftTarget;
+        int     newRightTarget;
+        int     moveCounts;
+        double  max;
+        double  error;
+        double  steer;
+        double  leftSpeed;
+        double  rightSpeed;
+
+        if (opModeIsActive())  {
+            // Determine new target position, and pass to motor controller
+            moveCounts = (int)(distance * COUNTS_PER_INCH);
+            newLeftTarget = leftMotor.getCurrentPosition() + moveCounts;
+            newRightTarget = rightMotor.getCurrentPosition() + moveCounts;
+
+            //Set Target and turn on Run_To_Position
+            leftMotor.setTargetPosition(newLeftTarget);
+            rightMotor.setTargetPosition(newRightTarget);
+            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // Start moving
+            speed = Range.clip(Math.abs(speed),0.0, 1.0);
+            leftMotor.setPower(speed);
+            rightMotor.setPower(speed);
+
+            while (opModeIsActive() && (leftMotor.isBusy() && rightMotor.isBusy()))  {
+
+                // adjust relative speed based on heading error.
+                error = getError(angle);
+                steer = getSteer(error, P_DRIVE_COEFF);
+
+                // if driving in reverse, the motor correction also needs to be reversed
+                if (distance < 0)
+                    steer *= -1.0;
+
+                leftSpeed = speed - steer;
+                rightSpeed = speed + steer;
+
+                // Normalize speeds if any one exceeds +/- 1.0;
+                max = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+                if (max > 1.0)
+                {
+                    leftSpeed /= max;
+                    rightSpeed /= max;
+                }
+
+                leftMotor.setPower(leftSpeed);
+                rightMotor.setPower(rightSpeed);
+
+                // Display drive status for the driver.
+                telemetry.addData("Err/St",  "%5.1f/%5.1f",  error, steer);
+                telemetry.addData("Target",  "%7d:%7d",      newLeftTarget,  newRightTarget);
+                telemetry.addData("Actual",  "%7d:%7d",      leftMotor.getCurrentPosition(),
+                                                             rightMotor.getCurrentPosition());
+                telemetry.addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
+                telemetry.update();
+            }
+
+            // Stop all motion;
+            leftMotor.setPower(0);
+            rightMotor.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+
+    /**  Method gyroTurn
+     *
+     *  Method to spin on central axis to point in a new direction.
+     *  Move will stop if either of these conditions occur:
+     *  1) Move gets to the heading (angle)
+     *  2) Driver stops the opmode running.
+     *
+     * @param speed Desired speed of turn.
+     * @param angle      Absolute Angle (in Degrees) relative to last gyro reset.
+     *                   0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
+     *                   If a relative angle is required, add/subtract from current heading.
+     *
+     * This code is copied and then modified from the sample code.
+     */
+
+    public void gyroTurn (  double speed, double angle) {
+
+        // keep looping while we are still active, and not on heading.
+        while (opModeIsActive() && !onHeading(speed, angle, P_TURN_COEFF)) {
+            // Update telemetry & Allow time for other processes to run.
+            telemetry.update();
+        }
+    }
+
+    /** Method gyroHold
+     *
+     *  Method to obtain & hold a heading for a finite amount of time
+     *  Move will stop once the requested time has elapsed
+     *
+     * @param speed      Desired speed of turn.
+     * @param angle      Absolute Angle (in Degrees) relative to last gyro reset.
+     *                   0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
+     *                   If a relative angle is required, add/subtract from current heading.
+     * @param holdTime   Length of time (in seconds) to hold the specified heading.
+     *
+     * This code is copied and then modified from the sample code.
+     */
+    public void gyroHold( double speed, double angle, double holdTime) {
+
+        ElapsedTime holdTimer = new ElapsedTime();
+
+        // keep looping while we have time remaining.
+        holdTimer.reset();
+        while (opModeIsActive() && (holdTimer.time() < holdTime)) {
+            // Update telemetry & Allow time for other processes to run.
+            onHeading(speed, angle, P_TURN_COEFF);
+            telemetry.update();
+        }
+
+        // Stop all motion;
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
+    }
+
+
+    /** Gyro turn correction method used as a sub-routine in gyroTurn method
+     * Perform one cycle of closed loop heading control.
+     *
+     * @param speed     Desired speed of turn.
+     * @param angle     Absolute Angle (in Degrees) relative to last gyro reset.
+     *                  0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
+     *                  If a relative angle is required, add/subtract from current heading.
+     * @param PCoeff    Proportional Gain coefficient
+     * @return
+     *
+     * This code is copied and then modified from the sample code.
+     */
+    boolean onHeading(double speed, double angle, double PCoeff) {
+        double   error ;
+        double   steer ;
+        boolean  onTarget = false ;
+        double leftSpeed;
+        double rightSpeed;
+
+        // determine turn power based on +/- error
+        error = getError(angle);
+
+        if (Math.abs(error) <= HEADING_THRESHOLD) {
+            steer = 0.0;
+            leftSpeed  = 0.0;
+            rightSpeed = 0.0;
+            onTarget = true;
+        }
+        else {
+            steer = getSteer(error, PCoeff);
+            rightSpeed  = speed * steer;
+            leftSpeed   = -rightSpeed;
+        }
+
+        // Send desired speeds to motors.
+        leftMotor.setPower(leftSpeed);
+        rightMotor.setPower(rightSpeed);
+
+        // Display it for the driver.
+        telemetry.addData("Target", "%5.2f", angle);
+        telemetry.addData("Err/St", "%5.2f/%5.2f", error, steer);
+        telemetry.addData("Speed.", "%5.2f:%5.2f", leftSpeed, rightSpeed);
+
+        return onTarget;
+    }
+
+
+    /**  Sub-routine for angle error identification used in other methods
+     *
+     * getError determines the error between the target angle and the robot's current heading
+     * @param   targetAngle  Desired angle (relative to global reference established at last Gyro Reset).
+     * @return  error angle: Degrees in the range +/- 180. Centered on the robot's frame of reference
+     *          +ve error means the robot should turn LEFT (CCW) to reduce error.
+     *
+     * This code is copied and then modified from the sample code.
+     */
+    public double getError(double targetAngle) {
+
+        double robotError;
+
+        // calculate error in -179 to +180 range  (
+        robotError = targetAngle - gyroSensor.getIntegratedZValue();
+        while (robotError > 180)  robotError -= 360;
+        while (robotError <= -180) robotError += 360;
+        return robotError;
+    }
+
+    /**  Sub-routine for steering adjustments used in other methods
+     * returns desired steering force.  +/- 1 range.  +ve = steer left
+     * @param error   Error angle in robot relative degrees
+     * @param PCoeff  Proportional Gain Coefficient
+     * @return
+     */
+    public double getSteer(double error, double PCoeff) {
+        return Range.clip(error * PCoeff, -1, 1);
+    }
+
+
+/* Method approachWall is used for course adjustments to remain at the correct distance
+*  from the wall during autonomous driving.  The method uses the ultrasonic sensor to
+*  determine the distance from the wall and to make a course correction by adjusting
+*  motor speed.
+ */
 
     public void approachWall() {
         while(opModeIsActive() && ultrasonicSensor.getDistance(DistanceUnit.CM) >= 8) {
@@ -334,7 +585,7 @@ public class AutoSuper extends LinearOpMode {
     }
 
     /**
-     *  Method to perfmorm a relative move, based on encoder counts.
+     *  Method to perform a relative move, based on encoder counts.
      *  Encoders are not reset as the move is based on the current position.
      *  Move will stop if any of three conditions occur:
      *  1) Move gets to the desired position
