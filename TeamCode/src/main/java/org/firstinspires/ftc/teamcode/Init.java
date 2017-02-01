@@ -26,7 +26,7 @@ import java.util.concurrent.CancellationException;
  * Must be run at the start of every piece of code as follows:
  *  Init 'name' = new Init();
  *  'name'.init'mode'();
- * @author Samuel Turner
+ * @author S Turner
  * @version 2017.1.3
  */
 
@@ -45,7 +45,7 @@ public class Init {
     private Servo pushButton2;
     private Servo ballRelease;
     private Servo distanceFlag;
-    private Servo shooterFlag;
+    private Servo forkRelease;
     private Servo lineFlag;
 
     /* Declare Sensors*/
@@ -76,6 +76,7 @@ public class Init {
         pushButton1 = null;
         pushButton2 = null;
         ballRelease = null;
+        forkRelease = null;
         colorSensor1 = null;
         colorSensor2 = null;
         opticalSensor = null;
@@ -150,12 +151,14 @@ public class Init {
         intakeMotor = hardwareMap.dcMotor.get("intake");
 
         ballRelease = hardwareMap.servo.get("ball_release");
+        forkRelease = hardwareMap.servo.get("fork_release");
         pushButton1 = hardwareMap.servo.get("push_button1");
         pushButton2 = hardwareMap.servo.get("push_button2");
         distanceFlag = hardwareMap.servo.get("distance_flag");
         lineFlag = hardwareMap.servo.get("line_flag");
 
         ballRelease.setPosition(0.4);
+        forkRelease.setPosition(0.0);
         pushButton1.setPosition(0.5);
         pushButton2.setPosition(0.0);
         distanceFlag.setPosition(0.5);
@@ -220,9 +223,7 @@ public class Init {
 
     public Servo getDistanceFlag() { return distanceFlag; }
 
-    public Servo getShooterFlag() {
-        return shooterFlag;
-    }
+    public Servo getForkRelease() { return forkRelease; }
 
     public Servo getLineFlag() {
         return lineFlag;

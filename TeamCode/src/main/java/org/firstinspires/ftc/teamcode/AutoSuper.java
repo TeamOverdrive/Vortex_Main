@@ -34,7 +34,7 @@ public class AutoSuper extends LinearOpMode {
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.8;  //modified speed from 0.6
-    static final double TURN_SPEED = 0.5;  //modified turn speed from 0.5
+    static final double TURN_SPEED = 0.2;  //modified turn speed from 0.5
     static final double PUSH_MAX1 = 0.0;
     static final double PUSH_MAX2 = 0.5;
     static final double PUSH_MIN1 = 0.5;
@@ -42,9 +42,10 @@ public class AutoSuper extends LinearOpMode {
 
     static final double WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
     static final double APPROACH_SPEED  = 0.5;
-    static final double HEADING_THRESHOLD = 1;  // As tight as possible with an integer gyro
-    static final double P_TURN_COEFF = 0.1;     // Larger is more responsive but less stable
+    static final double HEADING_THRESHOLD = 1;  // As tight as possible with an integer gyro - increased from 1
+    static final double P_TURN_COEFF = 0.4;     // Larger is more responsive but less stable - increased from 0.1
     static final double P_DRIVE_COEFF = 0.15;   // Larger is more responsive but less stable
+    static double SONIC_RANGE;
 
     //The following objects are all protected and thus can only be accessed by the autonomous sub-classes.
     /* Declare OpMode members. */
@@ -59,7 +60,7 @@ public class AutoSuper extends LinearOpMode {
     protected Servo pushButton2;
     protected Servo ballRelease;
     protected Servo distanceFlag;
-    protected Servo shooterFlag;
+    protected Servo forkRelease;
     protected Servo lineFlag;
 
     /* Declare Sensors*/
@@ -90,7 +91,7 @@ public class AutoSuper extends LinearOpMode {
         pushButton2 = init.getPushButton2();
         ballRelease = init.getBallRelease();
         distanceFlag = init.getDistanceFlag();
-        shooterFlag = init.getShooterFlag();
+        forkRelease = init.getForkRelease();
         lineFlag = init.getLineFlag();
 
         //Define the sensors.
@@ -108,42 +109,42 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 90 degree left turn
     public void turn90L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 12.0, -12.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 11.5, -11.5, 3.0);
         sleep(100);
     }
 
     //Encoder 90 degree right turn
     public void turn90R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -12.0, 12.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -11.5, 11.5, 3.0);
         sleep(100);
     }
 
     //Encoder 45 degree left turn
     public void turn45L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 6.0, -6.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 5.0, -5.0, 3.0);
         sleep(100);
     }
 
     //Encoder 45 degree right turn
     public void turn45R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -6.0, 6.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -5.0, 5.0, 3.0);
         sleep(100);
     }
 
     //Encoder 135 degree left turn
     public void turn135L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 18.0, -18.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 16.5, -16.5, 3.0);
         sleep(100);
     }
 
     //Encoder 135 degree right turn
     public void turn135R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -18.0, 18.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -16.5, 16.5, 3.0);
         sleep(100);
     }
 
@@ -285,10 +286,10 @@ public class AutoSuper extends LinearOpMode {
      * @param dir Positive for forward, negative for reverse.
      */
     public boolean driveToWLine(int dir) {
-        leftMotor.setPower(-(DRIVE_SPEED / 2) * dir);
-        rightMotor.setPower(-(DRIVE_SPEED / 2) * dir);
+        leftMotor.setPower((DRIVE_SPEED/4) * dir);
+        rightMotor.setPower((DRIVE_SPEED/4) * dir);
         runtime.reset();
-        while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 5) {
+            while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 5 ) {
             telemetry.addData("Light Level", opticalSensor.getLightDetected());
             String out = Double.toString(opticalSensor.getLightDetected());
             RobotLog.d(out);
@@ -298,6 +299,23 @@ public class AutoSuper extends LinearOpMode {
         rightMotor.setPower(0.0);
         return runtime.seconds() < 3;
     }
+
+
+/* Method approachWall is used for course adjustments to remain at the correct distance
+*  from the wall during autonomous driving.  The method uses the ultrasonic sensor to
+*  determine the distance from the wall and to make a course correction by adjusting
+*  motor speed.
+ */
+
+    public void approachWall() throws InterruptedException{
+        while(opModeIsActive()) {
+            SONIC_RANGE = ultrasonicSensor.getDistance(DistanceUnit.CM);
+            leftMotor.setPower(0.5-((8.0 - SONIC_RANGE)*0.05));
+            rightMotor.setPower(0.5+((8.0 - SONIC_RANGE)*0.05));
+            }
+        driveToWLine(1);
+    }
+
 
     /** Method for launching balls
      * Launch the balls loaded in the hopper at the center structure.
@@ -565,24 +583,6 @@ public class AutoSuper extends LinearOpMode {
         return Range.clip(error * PCoeff, -1, 1);
     }
 
-
-/* Method approachWall is used for course adjustments to remain at the correct distance
-*  from the wall during autonomous driving.  The method uses the ultrasonic sensor to
-*  determine the distance from the wall and to make a course correction by adjusting
-*  motor speed.
- */
-
-    public void approachWall() {
-        while(opModeIsActive() && ultrasonicSensor.getDistance(DistanceUnit.CM) >= 8) {
-            leftMotor.setPower(0.3);
-            rightMotor.setPower(0.5);
-            sleep(500);
-            leftMotor.setPower(0.5);
-            rightMotor.setPower(0.3);
-            sleep(500);
-        }
-        driveToWLine(1);
-    }
 
     /**
      *  Method to perform a relative move, based on encoder counts.
