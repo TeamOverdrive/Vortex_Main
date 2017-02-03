@@ -73,8 +73,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  * Utilizes the Init object to initialize motors and sensors as necessary for the teleop mode.
  * See its documentation for more information.
  *
- * @author David Turner
- * @author Samuel Turner
+ * @author S Turner
  * @version 2017.1.3
  */
 
@@ -155,9 +154,10 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            //Triggers the white line flag.
+            //Triggers the white line flag (white flag)
             if (opticalSensor.getLightDetected() > 0.08) lineFlag.setPosition(0.0);
             else lineFlag.setPosition(0.5);
+            //Triggers the correct distance to the wall flag (black flag)
             if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 10.0) {
                 distanceFlag.setPosition(0.0);
             }

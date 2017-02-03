@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 /**
- * Created by Samuel Turner on 1/6/2017.
+ * Created by S Turner on 1/6/2017.
  */
 
 @Autonomous(name = "AutoDrive-Red: P2 Shoot2 Center Delay 10", group = "Vortex")

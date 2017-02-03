@@ -43,7 +43,7 @@ public class AutoSuper extends LinearOpMode {
     static final double WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
     static final double APPROACH_SPEED  = 0.5;
     static final double HEADING_THRESHOLD = 1;  // As tight as possible with an integer gyro - increased from 1
-    static final double P_TURN_COEFF = 0.4;     // Larger is more responsive but less stable - increased from 0.1
+    static final double P_TURN_COEFF = 0.1;     // Larger is more responsive but less stable - increased from 0.1
     static final double P_DRIVE_COEFF = 0.15;   // Larger is more responsive but less stable
     static double SONIC_RANGE;
 

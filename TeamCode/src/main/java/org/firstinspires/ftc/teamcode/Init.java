@@ -56,12 +56,6 @@ public class Init {
     private ModernRoboticsI2cRangeSensor ultrasonicSensor;
 
     private static final double MID_SERVO       =  0.5 ;
-
-    /*  HardwarePushbot robot           = new HardwarePushbot(); */  // Use a Pushbot's hardware
-    // could also use HardwarePushbotMatrix class.
-    /* double          clawOffset      = 0.0;                       // Servo mid position
-    final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
-     */
     private int NUM_TICKS = 10;
 
     /**
