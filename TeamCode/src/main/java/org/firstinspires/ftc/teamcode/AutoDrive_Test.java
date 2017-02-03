@@ -44,7 +44,7 @@ public class AutoDrive_Test extends AutoSuper {
         rightMotor.setPower(0.5+((8.0 - SONIC_RANGE)*0.05));
         runtime.reset();
 
-        while(opModeIsActive() && runtime.seconds() <15 ) {
+        while(opModeIsActive()) {
             telemetry.addData("Distance", ultrasonicSensor.getDistance(DistanceUnit.CM));
             String out = Double.toString(ultrasonicSensor.getDistance(DistanceUnit.CM));
             SONIC_RANGE = ultrasonicSensor.getDistance(DistanceUnit.CM);
@@ -53,7 +53,13 @@ public class AutoDrive_Test extends AutoSuper {
             }
 
     }*/
-    leftMotor.setPower((DRIVE_SPEED/4) * 1);
+        while (opModeIsActive()){
+            //gyroDrive(DRIVE_SPEED, 42.0, 135.0);
+            encoderDrive(DRIVE_SPEED/2, 15.2, 1.0, 3.0);
+            encoderDrive(DRIVE_SPEED/2, 1.0, 15.2, 3.0);
+            sleep(5000);
+
+    /*leftMotor.setPower((DRIVE_SPEED/4) * 1);
     rightMotor.setPower((DRIVE_SPEED/4) * 1);
     runtime.reset();
     while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 5 ) {
@@ -66,7 +72,7 @@ public class AutoDrive_Test extends AutoSuper {
     rightMotor.setPower(0.0);
     //return runtime.seconds() < 3;
 }
-
+*/
         /* while(opModeIsActive() && ultrasonicSensor.getDistance(DistanceUnit.CM) >= 8) {
             leftMotor.setPower(0.3);
             rightMotor.setPower(0.5);
@@ -76,6 +82,7 @@ public class AutoDrive_Test extends AutoSuper {
             rightMotor.setPower(0.3);
             sleep(500);}
         */
-        //pushBeaconBackward(true);
-           }
-
+            //pushBeaconBackward(true);
+        }
+    }
+}

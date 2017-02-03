@@ -180,12 +180,12 @@ public class TeleopMain_Vortex extends LinearOpMode {
 
             if (Math.abs(leftThrottle) == 0 && Math.abs(rightThrottle) == 0) {
                 if (gamepad1.dpad_up) {
-                    rightMotor.setPower(-0.8);
-                    leftMotor.setPower(-0.8);
+                    rightMotor.setPower(-1.0);
+                    leftMotor.setPower(-1.0);
                 }
                 else if (gamepad1.dpad_down) {
-                    rightMotor.setPower(0.8);
-                    leftMotor.setPower(0.8);
+                    rightMotor.setPower(1.0);
+                    leftMotor.setPower(1.0);
                 }
                 else {
                     rightMotor.setPower(0.0);
@@ -231,9 +231,12 @@ public class TeleopMain_Vortex extends LinearOpMode {
             else ballRelease.setPosition(0.4);
 
             // Fork Release Control
-            if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.5);
-            else if (gamepad2.dpad_up) forkRelease.setPosition(0.0);
+            if (gamepad2.dpad_up) forkRelease.setPosition(0.0);
+            else if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.5);
             else forkRelease.setPosition(0.0);
+            //if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.5);
+            //else if (gamepad2.dpad_up) forkRelease.setPosition(0.0);
+            //else forkRelease.setPosition(0.0);
 
             //Scissor Lift Controls for handling the cap ball lifting
             float leftRange = gamepad2.left_stick_y;
