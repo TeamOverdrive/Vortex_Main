@@ -83,7 +83,7 @@ public class AutoDrive_Test extends AutoSuper {
             leftMotor.setPower(0.5+((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
             rightMotor.setPower(0.5+((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
             sleep(500);}
-            
+
         while(opModeIsActive() && ultrasonicSensor.getDistance(DistanceUnit.CM) <= 7); {
             leftMotor.setPower(0.5+((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
             rightMotor.setPower(0.5-((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
