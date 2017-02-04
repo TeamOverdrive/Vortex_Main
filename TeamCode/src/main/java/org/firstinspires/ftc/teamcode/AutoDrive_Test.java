@@ -54,11 +54,10 @@ public class AutoDrive_Test extends AutoSuper {
             }
 
     }*/
-        while (opModeIsActive()){
-            if(ultrasonicSensor.getDistance(DistanceUnit.CM)<= 10.0) {
+        while (opModeIsActive()) {
+            if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 10.0) {
                 distanceFlag.setPosition(0.0);
-            }
-            else distanceFlag.setPosition(0.5);
+            } else distanceFlag.setPosition(0.5);
 
             //gyroDrive(DRIVE_SPEED, 42.0, 135.0);
         /*    encoderDrive(DRIVE_SPEED/2, 15.2, 1.0, 3.0);
@@ -79,17 +78,25 @@ public class AutoDrive_Test extends AutoSuper {
     //return runtime.seconds() < 3;
 }
 */
-        while(opModeIsActive() && ultrasonicSensor.getDistance(DistanceUnit.CM) >= 9) {
-            leftMotor.setPower(0.5+((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
-            rightMotor.setPower(0.5+((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
-            sleep(500);}
+            while (opModeIsActive())
+                if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
+                    leftMotor.setPower(0.9);
+                    rightMotor.setPower(0.1);
+                    sleep(100);
+                }
+            if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 9) {
+                leftMotor.setPower(0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05));
+                rightMotor.setPower(0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05));
+                sleep(100);
+            } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 7) {
+                leftMotor.setPower(0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05));
+                rightMotor.setPower(0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05));
+                sleep(100);
+            } else
+                leftMotor.setPower(0.5);
+                rightMotor.setPower(0.5);
 
-        while(opModeIsActive() && ultrasonicSensor.getDistance(DistanceUnit.CM) <= 7); {
-            leftMotor.setPower(0.5+((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
-            rightMotor.setPower(0.5-((8.0-ultrasonicSensor.getDistance(DistanceUnit.CM))*0.05));
-            sleep(500);}
-
-            telemetry.addData("Ultrasonic",ultrasonicSensor.getDistance(DistanceUnit.CM));
+            telemetry.addData("Ultrasonic", ultrasonicSensor.getDistance(DistanceUnit.CM));
             telemetry.update();
             //pushBeaconBackward(true);
         }
