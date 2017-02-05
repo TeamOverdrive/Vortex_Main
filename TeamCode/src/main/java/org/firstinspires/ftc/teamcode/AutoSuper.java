@@ -109,42 +109,42 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 90 degree left turn
     public void turn90L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 11.5, -11.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 13.0, -13.0, 3.0);
         sleep(100);
     }
 
     //Encoder 90 degree right turn
     public void turn90R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -11.5, 11.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -13.0, 13.0, 3.0);
         sleep(100);
     }
 
     //Encoder 45 degree left turn
     public void turn45L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 5.0, -5.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 6.5, -6.5, 3.0);
         sleep(100);
     }
 
     //Encoder 45 degree right turn
     public void turn45R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -5.0, 5.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -6.5, 6.5, 3.0);
         sleep(100);
     }
 
     //Encoder 135 degree left turn
     public void turn135L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 16.5, -16.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 19.5, -19.5, 3.0);
         sleep(100);
     }
 
     //Encoder 135 degree right turn
     public void turn135R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -16.5, 16.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -19.5, 19.5, 3.0);
         sleep(100);
     }
 
@@ -205,10 +205,10 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      */
     public void pushBeaconForward(boolean red) {
-        driveToWLine(1);
+        driveToWLine(-1);
         if (!pushButton(red)) pushButton(red);
         encoderDrive(DRIVE_SPEED, 24.0, 24.0, 5.0);
-        driveToWLine(-1);
+        driveToWLine(1);
         if (!pushButton(red)) pushButton(red);
     }
 
@@ -218,10 +218,10 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      */
     public void pushBeaconBackward(boolean red) {
-        driveToWLine(-1);
+        driveToWLine(1);
         if (!pushButton(red)) pushButton(red);
         encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
-        driveToWLine(1);
+        driveToWLine(-1);
         if (!pushButton(red)) pushButton(red);
     }
 
@@ -286,14 +286,29 @@ public class AutoSuper extends LinearOpMode {
      * @param dir Positive for forward, negative for reverse.
      */
     public boolean driveToWLine(int dir) {
-        leftMotor.setPower((DRIVE_SPEED/4) * dir);
-        rightMotor.setPower((DRIVE_SPEED/4) * dir);
+        leftMotor.setPower((DRIVE_SPEED/3) * dir);
+        rightMotor.setPower((DRIVE_SPEED/3) * dir);
         runtime.reset();
-            while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 5 ) {
+            while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 8 ) {
             telemetry.addData("Light Level", opticalSensor.getLightDetected());
             String out = Double.toString(opticalSensor.getLightDetected());
             RobotLog.d(out);
-            telemetry.update();
+               /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
+                    leftMotor.setPower((0.9) * dir);
+                    rightMotor.setPower((0.1) * dir);
+                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 9) {
+                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 7) {
+                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                } else {
+                    leftMotor.setPower((DRIVE_SPEED/2) * dir);
+                    rightMotor.setPower((DRIVE_SPEED/2) * dir);
+                }
+                */
+                sleep(100);
+                telemetry.update();
         }
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);

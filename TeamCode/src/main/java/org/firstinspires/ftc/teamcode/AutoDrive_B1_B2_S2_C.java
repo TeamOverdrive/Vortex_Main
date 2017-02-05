@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  * Created by S Turner on 1/27/2017.
  */
 
-@Autonomous(name = "AutoDrive-Blue: New P1 Beacon2 Shoot2 Center", group = "Vortex")
+@Autonomous(name = "AutoDrive-Blue: P1 B2 S2 Ctr", group = "Vortex")
 
-public class AutoDrive_New_B1_B2_S2_C extends AutoSuper {
+public class AutoDrive_B1_B2_S2_C extends AutoSuper {
     @Override
     public void runOpMode() {
         //Initialize everything.
@@ -17,9 +17,9 @@ public class AutoDrive_New_B1_B2_S2_C extends AutoSuper {
         waitForStart();
 
         //Step 1: Drive to side wall to position for beacon pushing.
-        gyroDrive(DRIVE_SPEED, 54.0, 0.0);
+        gyroDrive(DRIVE_SPEED, 52.0, 0.0);
         turn45L();
-        encoderDrive(DRIVE_SPEED, 30.0, 30.0, 5.0);
+        encoderDrive(DRIVE_SPEED, 36.0, 36.0, 5.0);
 
         //Step 2:  Run beacon push routine
         pushBeaconBackward(false);

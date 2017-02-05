@@ -17,6 +17,7 @@ public class AutoDrive_B1_S2_B2_C_w45 extends AutoSuper {
         waitForStart();
         //Step 1: Launch the balls.
         encoderDrive(DRIVE_SPEED, 42.0, 42.0, 5.0);
+
         encoderDrive(DRIVE_SPEED/2, 0.0, 7.0, 5.0);
         launchBalls(2);
         //Step 2: Get between the beacons.

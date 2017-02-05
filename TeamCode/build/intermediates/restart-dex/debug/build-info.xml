@@ -5,22 +5,22 @@
     density="xhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="112907492877662"
+    timestamp="73319277535662"
     token="7586708121168103481"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="992" />
+        duration="1326" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="56" />
+        duration="108" />
     <task
         name="verifier"
-        duration="9" />
+        duration="21" />
 
     <artifact
         location="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\outputs\apk\TeamCode-debug.apk"
