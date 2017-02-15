@@ -231,9 +231,9 @@ public class TeleopMain_Vortex extends LinearOpMode {
             else ballRelease.setPosition(0.4);
 
             // Fork Release Control
-            if (gamepad2.dpad_up) forkRelease.setPosition(0.0);
-            else if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.5);
-            else forkRelease.setPosition(0.0);
+            if (gamepad2.dpad_up) forkRelease.setPosition(0.5);
+            else if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.0);
+            else forkRelease.setPosition(0.5);
             //if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.5);
             //else if (gamepad2.dpad_up) forkRelease.setPosition(0.0);
             //else forkRelease.setPosition(0.0);

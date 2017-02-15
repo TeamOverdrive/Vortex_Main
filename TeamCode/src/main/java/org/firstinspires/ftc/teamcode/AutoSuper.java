@@ -30,10 +30,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class AutoSuper extends LinearOpMode {
     protected ElapsedTime runtime = new ElapsedTime();// FORWARD_SPEED was running the robot in reverse to the TeleOp program setup.  Speed is reversed to standardize the robot orientation.
     static final double COUNTS_PER_MOTOR_REV = 1120;    // eg: TETRIX Motor Encoder
-    static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
+    static final double DRIVE_GEAR_REDUCTION = 0.75;     // This is < 1.0 if geared UP
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED = 0.8;  //modified speed from 0.6
+    static final double DRIVE_SPEED = 0.6;  //modified speed from 0.6
     static final double TURN_SPEED = 0.2;  //modified turn speed from 0.5
     static final double PUSH_MAX1 = 0.0;
     static final double PUSH_MAX2 = 0.5;
@@ -41,7 +41,7 @@ public class AutoSuper extends LinearOpMode {
     static final double PUSH_MIN2 = 0.0;
 
     static final double WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
-    static final double APPROACH_SPEED  = 0.5;
+    static final double APPROACH_SPEED  = 0.3;  // Approach speed is set to allow the robot to stop on the white line and not go past
     static final double HEADING_THRESHOLD = 1;  // As tight as possible with an integer gyro - increased from 1
     static final double P_TURN_COEFF = 0.1;     // Larger is more responsive but less stable - increased from 0.1
     static final double P_DRIVE_COEFF = 0.15;   // Larger is more responsive but less stable
@@ -109,45 +109,117 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 90 degree left turn
     public void turn90L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 13.0, -13.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 9.7, -9.7, 3.0); //reduced from 13.0 for change in gearing
         sleep(100);
     }
 
     //Encoder 90 degree right turn
     public void turn90R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -13.0, 13.0, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -9.7, 9.7, 3.0); //reduced from 13.0 for change in gearing
         sleep(100);
     }
+
+    //Red Side 90 degree left turn
+    public void turn90L_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, 8.6, -8.6, 3.0); //reduced from 11.5 for change in gearing
+        sleep(100);
+    }
+
+    //Red Side 90 degree right turn
+    public void turn90R_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, -8.6, 8.6, 3.0); //reduced from 11.5 for change in gearing
+        sleep(100);
+    }
+
 
     //Encoder 45 degree left turn
     public void turn45L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 6.5, -6.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 4.9, -4.9, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 45 degree right turn
     public void turn45R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -6.5, 6.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -4.9, 4.9, 3.0); //reduced from 6.5 for change in gearing
+        sleep(100);
+    }
+
+    //Red Side 45 degree left turn
+    public void turn45L_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, 7.9, -7.9, 3.0); //reduced from 10.5 for change in gearing
+        sleep(100);
+    }
+
+    //Red Side 45 degree right turn
+    public void turn45R_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, -7.9, 7.9, 3.0); //reduced from 10.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 135 degree left turn
     public void turn135L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 19.5, -19.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, 14.6, -14.6, 3.0); //reduced from 19.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 135 degree right turn
     public void turn135R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -19.5, 19.5, 3.0);
+        encoderDrive(DRIVE_SPEED/2, -14.6, 14.6, 3.0); //reduced from 19.5 for change in gearing
         sleep(100);
     }
 
+
+    //Red Side 135 degree left turn
+    public void turn135L_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, 13.1, -13.1, 3.0); //reduced from 17.5 for change in gearing
+        sleep(100);
+    }
+
+    //Red Side 135 degree right turn
+    public void turn135R_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, -13.1, 13.1, 3.0); //reduced from 17.5 for change in gearing
+        sleep(100);
+    }
+
+    //Encoder 180 degree left turn
+    public void turn180L() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, 16.5, -16.5, 3.0); //reduced from 22.0 for change in gearing
+        sleep(100);
+    }
+
+    //Encoder 180 degree right turn
+    public void turn180R() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED/2, -16.5, 16.5, 3.0); //reduced from 22.0 for change in gearing
+        sleep(100);
+    }
+
+
+    //Red Side 180 degree left turn
+    public void turn180L_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, 16.5, -16.5, 3.0); //reduced from 22.0 for change in gearing
+        sleep(100);
+    }
+
+    //Red Side 180 degree right turn
+    public void turn180R_RED() {
+        sleep (250);
+        encoderDrive(DRIVE_SPEED/2, -16.5, 16.5, 3.0); //reduced from 22.0 for change in gearing
+        sleep(100);
+    }
 
     /**
      * Methods for Gyro Sensor turning excluding turn correction / adjustments
@@ -286,13 +358,43 @@ public class AutoSuper extends LinearOpMode {
      * @param dir Positive for forward, negative for reverse.
      */
     public boolean driveToWLine(int dir) {
-        leftMotor.setPower((DRIVE_SPEED/3) * dir);
-        rightMotor.setPower((DRIVE_SPEED/3) * dir);
+        final double MAX_CHANGE = 0.25; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This sould be somewhere a bit less than how far robot can drive in 1/10 second.
+        double prevDist;
+        double curDist;
+        double curChange;
+        double targetChange = 0.0;
+        double desiredChange;
+        double targetDist = 10.0;
+        double deltaFromTarget;
+
+        prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+        sleep(100);
+        leftMotor.setPower((APPROACH_SPEED) * dir);
+        rightMotor.setPower((APPROACH_SPEED) * dir);
         runtime.reset();
             while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 8 ) {
             telemetry.addData("Light Level", opticalSensor.getLightDetected());
             String out = Double.toString(opticalSensor.getLightDetected());
             RobotLog.d(out);
+
+                // First calculate how fast we want to be moving towards target
+                curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+                deltaFromTarget = curDist - targetDist; // positive if currently greater than target
+                if (deltaFromTarget > 10.0) { // Far from target
+                    desiredChange = -1 * MAX_CHANGE;
+                } else if (deltaFromTarget > 1.0) { // Getting close to target
+                    desiredChange = -1 * (deltaFromTarget / 10.0) * MAX_CHANGE; // between zero and negative max based on how far from target
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
+                } else if (deltaFromTarget < -1.0) { // Went past target
+                    desiredChange = -1 * (deltaFromTarget / 10.0) * MAX_CHANGE; // between zero and positive max based on how far from target
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
+                } else { // On target
+                    desiredChange = 0;
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
+                }
                /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
                     leftMotor.setPower((0.9) * dir);
                     rightMotor.setPower((0.1) * dir);
