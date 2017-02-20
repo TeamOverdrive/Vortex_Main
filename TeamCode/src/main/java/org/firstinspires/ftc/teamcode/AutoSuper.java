@@ -109,14 +109,14 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 90 degree left turn
     public void turn90L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 9.7, -9.7, 3.0); //reduced from 13.0 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, 13.0, -13.0, 3.0); //reduced from 13.0 for change in gearing
         sleep(100);
     }
 
     //Encoder 90 degree right turn
     public void turn90R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -9.7, 9.7, 3.0); //reduced from 13.0 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, -13.0, 13.0, 3.0); //reduced from 13.0 for change in gearing
         sleep(100);
     }
 
@@ -138,21 +138,21 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 45 degree left turn
     public void turn45L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 4.9, -4.9, 3.0); //reduced from 6.5 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, 6.5, -6.5, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 45 degree right turn
     public void turn45R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -4.9, 4.9, 3.0); //reduced from 6.5 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, -6.5, 6.5, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
 
     //Red Side 45 degree left turn
     public void turn45L_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, 7.9, -7.9, 3.0); //reduced from 10.5 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, 5.5, -5.5, 3.0); //reduced from 10.5 for change in gearing
         sleep(100);
     }
 
@@ -195,14 +195,14 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 180 degree left turn
     public void turn180L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 16.5, -16.5, 3.0); //reduced from 22.0 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, 26.0, -26.0, 3.0); //reduced from 22.0 for change in gearing
         sleep(100);
     }
 
     //Encoder 180 degree right turn
     public void turn180R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -16.5, 16.5, 3.0); //reduced from 22.0 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, -26.0, 26.0, 3.0); //reduced from 22.0 for change in gearing
         sleep(100);
     }
 
@@ -358,7 +358,7 @@ public class AutoSuper extends LinearOpMode {
      * @param dir Positive for forward, negative for reverse.
      */
     public boolean driveToWLine(int dir) {
-        final double MAX_CHANGE = 0.25; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This sould be somewhere a bit less than how far robot can drive in 1/10 second.
+        final double MAX_CHANGE = 0.5; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This sould be somewhere a bit less than how far robot can drive in 1/10 second.
         double prevDist;
         double curDist;
         double curChange;
@@ -376,12 +376,14 @@ public class AutoSuper extends LinearOpMode {
             telemetry.addData("Light Level", opticalSensor.getLightDetected());
             String out = Double.toString(opticalSensor.getLightDetected());
             RobotLog.d(out);
-
+/*
                 // First calculate how fast we want to be moving towards target
                 curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
                 deltaFromTarget = curDist - targetDist; // positive if currently greater than target
-                if (deltaFromTarget > 10.0) { // Far from target
+                if (deltaFromTarget > 20.0) { // Far from target
                     desiredChange = -1 * MAX_CHANGE;
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
                 } else if (deltaFromTarget > 1.0) { // Getting close to target
                     desiredChange = -1 * (deltaFromTarget / 10.0) * MAX_CHANGE; // between zero and negative max based on how far from target
                     leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
@@ -395,6 +397,7 @@ public class AutoSuper extends LinearOpMode {
                     leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
                     rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
                 }
+
                /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
                     leftMotor.setPower((0.9) * dir);
                     rightMotor.setPower((0.1) * dir);
