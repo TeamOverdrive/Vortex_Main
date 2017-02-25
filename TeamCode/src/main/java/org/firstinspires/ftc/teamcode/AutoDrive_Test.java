@@ -23,13 +23,14 @@ public class AutoDrive_Test extends AutoSuper {
 
    // Blue Side Test Autonomous
         //Step 1: Drive to side wall to position for beacon pushing.
-        encoderDrive(DRIVE_SPEED * .75, -20.0, -20.0, 5.0);
+        encoderDrive(DRIVE_SPEED * .6, -22.0, -22.0, 5.0);
         launchBalls(2);
         turn45R();
-        encoderDrive(DRIVE_SPEED * .75, -53.0, -53.0, 5.0); //reduced from 72 (75% of 72 inches for change in gearing)
+        encoderDrive(DRIVE_SPEED * .6, -53.0, -53.0, 5.0); //reduced from 72 (75% of 72 inches for change in gearing)
         turn180L();
-        encoderDrive(DRIVE_SPEED * .75, 16.5, 16.5, 5.0);  //reduced from 22 (75% of 22 inches for change in gearing)
-        turn45L_RED();
+        encoderDrive(DRIVE_SPEED * .6, 11.0, 11.0, 5.0);  //reduced from 22 (75% of 22 inches for change in gearing)
+        turn45L();
+        encoderDrive(DRIVE_SPEED * .6, 10.0, 10.0, 3.0);
 
         //Step 2:  Run beacon push routine
         pushBeaconBackward(false);
@@ -43,11 +44,11 @@ public class AutoDrive_Test extends AutoSuper {
 /*
    // Red Side Test Autonomous
         //Step 1: Drive to side wall to position for beacon pushing.
-        gyroDrive(DRIVE_SPEED, -12.0, 0.0);
+        encoderDrive(DRIVE_SPEED * .6, -20.0, -20.0, 5.0);
         launchBalls(2);
         gyroDrive(DRIVE_SPEED, -18.0, 0.0);
         turn45L();
-        encoderDrive(DRIVE_SPEED, -72.0, -72.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -53.0, -53.0, 5.0);
         turn90R();
         encoderDrive(DRIVE_SPEED, 22.0, 22.0, 5.0);
         turn45L();
