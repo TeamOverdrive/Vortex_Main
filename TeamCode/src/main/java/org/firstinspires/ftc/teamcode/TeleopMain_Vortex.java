@@ -158,7 +158,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
             if (opticalSensor.getLightDetected() > 0.08) lineFlag.setPosition(0.0);
             else lineFlag.setPosition(0.5);
             //Triggers the correct distance to the wall flag (black flag)
-            if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 10.0) {
+            if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 13.0) {
                 distanceFlag.setPosition(0.0);
             }
             else distanceFlag.setPosition(0.5);

@@ -1,7 +1,7 @@
 #Internal package file, do not edit.
-#Tue Jan 31 19:15:05 EST 2017
+#Sat Feb 25 19:19:35 EST 2017
 175.set=ASSET
-122.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\xml\\preferences.xml
+122.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\digital_device.xml
 60.set=ASSET
 129.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\icon_menu.png
 52.set=ASSET
@@ -24,7 +24,7 @@
 100.set=ANDROID_RESOURCE
 106.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 162.set=ANDROID_RESOURCE
-143.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\pwms.xml
+143.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\ftc_robot_controller.xml
 153.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
 52.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\FTC_2016-17.xml
 62.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
@@ -85,7 +85,7 @@
 99.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
 121.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\blockly\\media\\handdelete.cur
 50.set=ANDROID_RESOURCE
-128.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\raw\\nxtstartupsound.wav
+128.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_ftc_configuration.xml
 42.set=ASSET
 175.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\blocks\\led.js
 143.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
@@ -107,7 +107,7 @@
 160.set=ANDROID_RESOURCE
 105.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
 152.set=ASSET
-142.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\ftc_robot_controller.xml
+142.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\pwms.xml
 152.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 51.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\header.xml
 144.set=ANDROID_RESOURCE
@@ -168,7 +168,7 @@
 98.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 120.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\images\\ftcCompassSensor.png
 40.set=ANDROID_RESOURCE
-127.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_ftc_configuration.xml
+127.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\raw\\nxtstartupsound.wav
 32.set=ANDROID_RESOURCE
 174.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\images\\ftcGamepad.png
 142.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
@@ -211,7 +211,7 @@
 23.set=ANDROID_RESOURCE
 103.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\blocks\\color.js
 15.set=ASSET
-150.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\analog_inputs.xml
+150.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_swap_usb_devices.xml
 93.set=ASSET
 19.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\blockly\\blockly_compressed.js
 85.set=ASSET
@@ -278,7 +278,7 @@
 66.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 108.set=ASSET
 110.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
-149.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_swap_usb_devices.xml
+149.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\analog_inputs.xml
 117.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
 16.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\blocks\\ir_seeker_sensor.js
 26.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
@@ -299,7 +299,7 @@
 80.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 59.set=ANDROID_RESOURCE
 87.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
-116.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\analog_outputs.xml
+116.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\button_shape.xml
 126.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 25.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\images\\ftcGyroSensor.png
 163.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\device_interface_module.xml
@@ -335,7 +335,7 @@
 58.set=ASSET
 132.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\xml\\k9legacybot.xml
 41.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\toolbox\\gamepad.xml
-139.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\AndroidManifest.xml
+139.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\servo_controller_banner.xml
 4.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\motor_controller_banner.xml
 149.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
 48.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\legacy.xml
@@ -376,7 +376,7 @@ count=184
 39.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 49.set=ANDROID_RESOURCE
 86.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
-115.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\button_shape.xml
+115.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\analog_outputs.xml
 125.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 24.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\blocks\\toolbox_util.js
 0.set=ANDROID_RESOURCE
@@ -402,7 +402,7 @@ count=184
 95.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
 10.set=ASSET
 124.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\blockly\\media\\1x1.gif
-171.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\pwm_device.xml
+171.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\xml\\squarebot.xml
 80.set=ASSET
 179.set=ASSET
 72.set=ASSET
@@ -414,7 +414,7 @@ count=184
 48.set=ANDROID_RESOURCE
 131.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_config_wifi_direct.xml
 40.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\menu_server.xml
-138.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\servo_controller_banner.xml
+138.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\AndroidManifest.xml
 3.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\digital_devices.xml
 148.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
 15.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug
@@ -477,9 +477,9 @@ count=184
 47.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
 84.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\images\\ftcColorSensor.png
 94.base=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_
-123.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\digital_device.xml
+123.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\xml\\preferences.xml
 177.set=ASSET
-170.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\xml\\squarebot.xml
+170.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\pwm_device.xml
 70.set=ASSET
 62.set=ASSET
 177.file=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\assets\\debug\\toolbox\\elapsed_time.xml

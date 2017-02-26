@@ -123,14 +123,14 @@ public class AutoSuper extends LinearOpMode {
     //Red Side 90 degree left turn
     public void turn90L_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, 8.6, -8.6, 3.0); //reduced from 11.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.4, 11.1, -11.1, 3.0); //reduced from 11.5 for change in gearing
         sleep(100);
     }
 
     //Red Side 90 degree right turn
     public void turn90R_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, -8.6, 8.6, 3.0); //reduced from 11.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.4, -11.1, 11.1, 3.0); //reduced from 11.5 for change in gearing
         sleep(100);
     }
 
@@ -152,28 +152,28 @@ public class AutoSuper extends LinearOpMode {
     //Red Side 45 degree left turn
     public void turn45L_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, 6.5, -6.5, 3.0); //reduced from 10.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.4, 6.5, -6.5, 3.0); //reduced from 10.5 for change in gearing
         sleep(100);
     }
 
     //Red Side 45 degree right turn
     public void turn45R_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, -6.5, 6.5, 3.0); //reduced from 10.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.4, -6.5, 6.5, 3.0); //reduced from 10.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 135 degree left turn
     public void turn135L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, 14.6, -14.6, 3.0); //reduced from 19.5 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, 19.5, -19.5, 3.0); //reduced from 19.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 135 degree right turn
     public void turn135R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED/2, -14.6, 14.6, 3.0); //reduced from 19.5 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, -19.5, 19.5, 3.0); //reduced from 19.5 for change in gearing
         sleep(100);
     }
 
@@ -181,14 +181,14 @@ public class AutoSuper extends LinearOpMode {
     //Red Side 135 degree left turn
     public void turn135L_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, 13.1, -13.1, 3.0); //reduced from 17.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.4, 18.4, -18.4, 3.0); //reduced from 17.5 for change in gearing
         sleep(100);
     }
 
     //Red Side 135 degree right turn
     public void turn135R_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, -13.1, 13.1, 3.0); //reduced from 17.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.4, -18.4, 18.4, 3.0); //reduced from 17.5 for change in gearing
         sleep(100);
     }
 
@@ -210,14 +210,14 @@ public class AutoSuper extends LinearOpMode {
     //Red Side 180 degree left turn
     public void turn180L_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, 16.5, -16.5, 3.0); //reduced from 22.0 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, 26.0, -26.0, 3.0); //reduced from 22.0 for change in gearing
         sleep(100);
     }
 
     //Red Side 180 degree right turn
     public void turn180R_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED/2, -16.5, 16.5, 3.0); //reduced from 22.0 for change in gearing
+        encoderDrive(DRIVE_SPEED/2, -26.0, 26.0, 3.0); //reduced from 22.0 for change in gearing
         sleep(100);
     }
 
@@ -279,7 +279,7 @@ public class AutoSuper extends LinearOpMode {
     public void pushBeaconForward(boolean red) {
         driveToWLine(-1);
         if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED, 24.0, 24.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, 24.0, 24.0, 5.0);
         driveToWLine(1);
         if (!pushButton(red)) pushButton(red);
     }
@@ -292,7 +292,7 @@ public class AutoSuper extends LinearOpMode {
     public void pushBeaconBackward(boolean red) {
         driveToWLine(1);
         if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.7, -24.0, -24.0, 5.0);
         driveToWLine(-1);
         if (!pushButton(red)) pushButton(red);
     }
@@ -377,6 +377,7 @@ public class AutoSuper extends LinearOpMode {
             String out = Double.toString(opticalSensor.getLightDetected());
             RobotLog.d(out);
 
+                /*
                 // First calculate how fast we want to be moving towards target
                 curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
                 deltaFromTarget = curDist - targetDist; // positive if currently greater than target
@@ -384,11 +385,11 @@ public class AutoSuper extends LinearOpMode {
                     desiredChange = -1 * (MAX_CHANGE / 100);
                     leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
                     rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
-                } else if (deltaFromTarget > 1.0) { // Getting close to target
+                } else if (deltaFromTarget > 1.5) { // Getting close to target
                     desiredChange = -1 * (deltaFromTarget / 100.0) * MAX_CHANGE; // between zero and negative max based on how far from target
                     leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
                     rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
-                } else if (deltaFromTarget < -1.0) { // Went past target
+                } else if (deltaFromTarget < -1.5) { // Went past target
                     desiredChange = -1 * (deltaFromTarget / 100.0) * MAX_CHANGE; // between zero and positive max based on how far from target
                     leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
                     rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
@@ -397,7 +398,7 @@ public class AutoSuper extends LinearOpMode {
                     leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
                     rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
                 }
-
+                */
                /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
                     leftMotor.setPower((0.9) * dir);
                     rightMotor.setPower((0.1) * dir);

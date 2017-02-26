@@ -23,45 +23,26 @@ public class AutoDrive_Test extends AutoSuper {
 
    // Blue Side Test Autonomous
         //Step 1: Drive to side wall to position for beacon pushing.
-        encoderDrive(DRIVE_SPEED * .6, -22.0, -22.0, 5.0);
+        encoderDrive(DRIVE_SPEED * .5, -21.0, -21.0, 5.0);
+        //Step 2: Launch 2 balls into center vertex
         launchBalls(2);
+        //Step 3: Drive to position along beacon wall
+        encoderDrive(DRIVE_SPEED * 0.7, -7.0, -7.0, 3.0);
         turn45R();
-        encoderDrive(DRIVE_SPEED * .6, -53.0, -53.0, 5.0); //reduced from 72 (75% of 72 inches for change in gearing)
-        turn180L();
-        encoderDrive(DRIVE_SPEED * .6, 11.0, 11.0, 5.0);  //reduced from 22 (75% of 22 inches for change in gearing)
-        turn45L();
-        encoderDrive(DRIVE_SPEED * .6, 10.0, 10.0, 3.0);
+        encoderDrive(DRIVE_SPEED * 0.7, -53.5, -53.5, 5.0); //reduced from 72 (75% of 72 inches for change in gearing)
+        turn135L_RED();
+        encoderDrive(DRIVE_SPEED * 0.5, 12.0, 12.0, 5.0);  //reduced from 22 (75% of 22 inches for change in gearing)
+        sleep(500);
+        encoderDrive(DRIVE_SPEED * 0.5, -5.5, -5.5, 3.0);
+        turn90L_RED();
 
-        //Step 2:  Run beacon push routine
-        pushBeaconBackward(false);
+        //Step 4:  Run beacon push routine
+        pushBeaconForward(false);
 
-        //Step 3:  Position for and launch the balls
-        turn90R();
-        encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
+        //Step 5:  Drive to center and stop
+       turn45R();
+       encoderDrive(DRIVE_SPEED, -74.0, -74.0, 5.0);
 
-        //Step 4:  Drive to center and stop
-
-/*
-   // Red Side Test Autonomous
-        //Step 1: Drive to side wall to position for beacon pushing.
-        encoderDrive(DRIVE_SPEED * .6, -20.0, -20.0, 5.0);
-        launchBalls(2);
-        gyroDrive(DRIVE_SPEED, -18.0, 0.0);
-        turn45L();
-        encoderDrive(DRIVE_SPEED, -53.0, -53.0, 5.0);
-        turn90R();
-        encoderDrive(DRIVE_SPEED, 22.0, 22.0, 5.0);
-        turn45L();
-
-        //Step 2:  Run beacon push routine
-        pushBeaconForward(true);
-
-        //Step 3:  Position for and launch the balls
-        turn90R();
-        encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
-
-        //Step 4:  Drive to center and stop
-*/
     }
 }
         /*

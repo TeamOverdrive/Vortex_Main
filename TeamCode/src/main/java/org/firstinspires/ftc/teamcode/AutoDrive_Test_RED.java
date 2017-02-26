@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  * @version 2017.1.13
  */
 
-@Autonomous(name="AutoDrive: Test", group="Vortex")
+@Autonomous(name="AutoDrive: Test (RED)", group="Vortex")
 
 public class AutoDrive_Test_RED extends AutoSuper {
     @Override
@@ -18,21 +18,28 @@ public class AutoDrive_Test_RED extends AutoSuper {
 
    // Red Side Test Autonomous
         //Step 1: Drive to side wall to position for beacon pushing.
-        encoderDrive(DRIVE_SPEED * .6, -20.0, -20.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, -21.0, -21.0, 5.0);
         launchBalls(2);
-        gyroDrive(DRIVE_SPEED, -18.0, 0.0);
+        encoderDrive(DRIVE_SPEED * 0.7, -7.0, -7.0, 3.0);
         turn45L();
-        encoderDrive(DRIVE_SPEED, -53.0, -53.0, 5.0);
-        turn90R();
-        encoderDrive(DRIVE_SPEED, 22.0, 22.0, 5.0);
-        turn45L();
+        encoderDrive(DRIVE_SPEED * 0.7, -53.5, -53.5, 5.0);
+        turn135R_RED();
+        encoderDrive(DRIVE_SPEED * 0.7, 12.0, 12.0, 5.0);
+        sleep(500);
+        encoderDrive(DRIVE_SPEED * 0.4, -5.5, -5.5, 3.0);
+        turn90L_RED();
+
+        //turn90R();
+        //encoderDrive(DRIVE_SPEED * 0.7, 9.0, 9.0, 5.0);
+        //turn45L();
+        //encoderDrive(DRIVE_SPEED *0.7, -24.0, -24.0, 5.0);
 
         //Step 2:  Run beacon push routine
         pushBeaconForward(true);
 
         //Step 3:  Position for and launch the balls
         turn90R();
-        encoderDrive(DRIVE_SPEED, -36.0, -36.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -38.0, -36.0, 5.0);
 
         //Step 4:  Drive to center and stop
 

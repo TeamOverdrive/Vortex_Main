@@ -72,16 +72,16 @@
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\pwms.xml"
     },
     {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\i2c_device.xml"
+    },
+    {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_devices.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\digital_devices.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
-    },
-    {
-        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
-        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\i2c_device.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
