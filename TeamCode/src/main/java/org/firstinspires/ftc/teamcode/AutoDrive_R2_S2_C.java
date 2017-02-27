@@ -16,13 +16,11 @@ public class AutoDrive_R2_S2_C extends AutoSuper {
         waitForStart();
         sleep(10*1000);
         //Step 1: Launch the balls.
-        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
-        turn90L();
-        encoderDrive(DRIVE_SPEED, -32.0, -32.0, 5.0);
-        turn90R();
+        encoderDrive(DRIVE_SPEED * 0.5, -14.0, -14.0, 5.0);
+        turn45L();
+        encoderDrive(DRIVE_SPEED * 0.5, -28.0, -28.0, 5.0);
         launchBalls(2);
         //Step 2: Go to the center.
-        encoderDrive(DRIVE_SPEED, -24.0, -24.0, 5.0);
-        turn90L();
+        encoderDrive(DRIVE_SPEED, -18.0, -18.0, 5.0);
     }
 }

@@ -24,7 +24,7 @@ public class AutoDrive_Test_RED extends AutoSuper {
         turn45L();
         encoderDrive(DRIVE_SPEED * 0.7, -53.5, -53.5, 5.0);
         turn135R_RED();
-        encoderDrive(DRIVE_SPEED * 0.7, 12.0, 12.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.7, 11.0, 11.0, 5.0);
         sleep(500);
         encoderDrive(DRIVE_SPEED * 0.4, -5.5, -5.5, 3.0);
         turn90L_RED();

@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * Created by S Turner on 1/27/2017.
  */
 
 @Autonomous(name = "AutoDrive-Red: P1 B2 S2 Ctr", group = "Vortex")
-
+@Disabled //Disabled program to drop from phone list
 public class AutoDrive_R1_B2_S2_C extends AutoSuper {
     @Override
     public void runOpMode() {

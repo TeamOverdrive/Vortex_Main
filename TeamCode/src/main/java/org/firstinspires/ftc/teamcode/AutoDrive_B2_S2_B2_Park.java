@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * Created by S Turner on 2/5/2017.
  * Starting position is forward on the right side of the 5th floor tile
  */
 @Autonomous(name="AutoDrive-Blue: P2 S2 B2 Park", group="Vortex")
-
+@Disabled //Disabled program to drop from the phone list
 public class AutoDrive_B2_S2_B2_Park extends AutoSuper {
     @Override
     public void runOpMode() {

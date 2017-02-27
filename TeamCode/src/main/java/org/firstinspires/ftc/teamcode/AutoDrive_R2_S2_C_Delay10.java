@@ -17,12 +17,12 @@ public class AutoDrive_R2_S2_C_Delay10 extends AutoSuper {
         //Step 1: Delay 10 seconds
         sleep(10 * 1000);
         //Step 2: Move to shooting position
-        encoderDrive(DRIVE_SPEED, -14.0, -14.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, -14.0, -14.0, 5.0);
         turn45L();
-        encoderDrive(DRIVE_SPEED, -16.0, -16.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, -28.0, -28.0, 5.0);
         //Step 3: Launch Balls
         launchBalls(2);
         //Step 4: Go to the center.
-        encoderDrive(DRIVE_SPEED, -27.0, -27.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -18.0, -18.0, 5.0);
     }
 }

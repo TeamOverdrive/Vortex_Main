@@ -456,11 +456,12 @@ public class AutoSuper extends LinearOpMode {
                 sleep(1000);  //Set the gate open process to delay for 1st ball to be launched
                 ballRelease.setPosition(0.0); //Set to open the gate to release the second ball
                 sleep(500);  //Set to hold open the gate to allow the second ball to pass the gate
-                ballRelease.setPosition(0.4);  //Set to close the gate after the second ball is released
+                ballRelease.setPosition(0.0);  //Set to close the gate after the second ball is released
             }
         }
         shooterMotor.setPower(0.0);
         intakeMotor.setPower(0.0);
+        ballRelease.setPosition(0.4);
     }
 
     /**  Method gyro calibration
