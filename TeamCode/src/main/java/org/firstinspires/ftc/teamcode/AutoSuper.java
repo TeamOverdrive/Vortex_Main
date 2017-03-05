@@ -188,7 +188,7 @@ public class AutoSuper extends LinearOpMode {
     //Red Side 135 degree right turn
     public void turn135R_RED() {
         sleep (250);
-        encoderDrive(DRIVE_SPEED * 0.4, -18.9, 18.9, 3.0); //reduced from 17.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.4, -19.3, 19.3, 3.0); //reduced from 17.5 for change in gearing
         sleep(100);
     }
 
