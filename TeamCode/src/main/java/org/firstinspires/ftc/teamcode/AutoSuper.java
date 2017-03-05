@@ -289,9 +289,10 @@ public class AutoSuper extends LinearOpMode {
         }
     }
 
+    // Drive Easy Encoder Drive
     // set the speed and distance on the left and right motors
     protected void encoderDriveEasy(double speed, double l, double r, double timeout) {
-        double endPercent = 4/Math.abs(l); // Percent of the drive that is the last 4 inches
+        double endPercent = 6/Math.abs(l); // Percent of the drive that is the last 4 inches
         encoderDrive(speed, l*(1-endPercent), r*(1-endPercent), timeout*(1-endPercent));
         encoderDrive(DRIVE_SPEED * 0.2, l*endPercent, r*endPercent, timeout*(1-endPercent));
     }
@@ -773,6 +774,10 @@ public class AutoSuper extends LinearOpMode {
                     (runtime.seconds() < timeoutS) &&
                     (leftMotor.isBusy() && rightMotor.isBusy())) {
 
+                if (Math.abs(newLeftTarget - leftMotor.getCurrentPosition())< (6.0*COUNTS_PER_INCH)) {
+                    leftMotor.setPower(Math.abs(speed * 0.3));
+                    rightMotor.setPower(Math.abs(speed * 0.3));
+                }
                 // Display it for the driver.
                 telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
                 telemetry.addData("Path2", "Running at %7d :%7d",
