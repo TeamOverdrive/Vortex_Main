@@ -18,16 +18,16 @@ public class AutoDrive_Test_RED extends AutoSuper {
 
    // Red Side Test Autonomous
         //Step 1: Drive to side wall to position for beacon pushing.
-        encoderDrive(DRIVE_SPEED * 0.5, -21.0, -21.0, 5.0);
+        encoderDriveEasy(DRIVE_SPEED, -21.0, -21.0, 5.0);
         launchBalls(2);
-        encoderDrive(DRIVE_SPEED * 0.7, -7.0, -7.0, 3.0);
+        encoderDriveEasy(DRIVE_SPEED, -7.0, -7.0, 3.0);
         turn45L();
-        encoderDrive(DRIVE_SPEED * 0.7, -45.0, -45.0, 5.0);
-        encoderDrive(DRIVE_SPEED * 0.2, -4.0, -4.0, 3.0);
+        encoderDriveEasy(DRIVE_SPEED, -45.0, -45.0, 5.0);
+        encoderDriveEasy(DRIVE_SPEED * 0.2, -4.0, -4.0, 3.0);
         turn135R_RED();
-        encoderDrive(DRIVE_SPEED * 0.4, 11.0, 11.0, 5.0);
+        encoderDriveEasy(DRIVE_SPEED, 11.0, 11.0, 5.0);
         sleep(500);
-        encoderDrive(DRIVE_SPEED * 0.4, -6.5, -6.5, 3.0);
+        encoderDriveEasy(DRIVE_SPEED, -6.5, -6.5, 3.0);
         turn90L_RED();
 
         //turn90R();

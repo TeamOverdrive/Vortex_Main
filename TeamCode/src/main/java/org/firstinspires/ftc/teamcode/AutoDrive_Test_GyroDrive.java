@@ -21,17 +21,18 @@ public class AutoDrive_Test_GyroDrive extends AutoSuper {
         gyroDrive(DRIVE_SPEED * 0.5, -21.0, 0);
         //encoderDrive(DRIVE_SPEED * .5, -21.0, -21.0, 5.0);
         //Step 2: Launch 2 balls into center vertex
-        //launchBalls(2);
+        launchBalls(2);
         //Step 3: Drive to position along beacon wall
-        turnWithGyro(45);
+        turnGyroAbsL(45);
         //encoderDrive(DRIVE_SPEED * 0.7, -7.0, -7.0, 3.0);
         //turn45R();
-        encoderDrive(DRIVE_SPEED * 0.7, -53.5, -53.5, 5.0); //reduced from 72 (75% of 72 inches for change in gearing)
+        encoderDrive(DRIVE_SPEED * 0.7, -45.0, -45.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.2, -4.0, -4.0, 3.0);
         turn135L_RED();
-        encoderDrive(DRIVE_SPEED * 0.5, 12.0, 12.0, 5.0);  //reduced from 22 (75% of 22 inches for change in gearing)
+        encoderDrive(DRIVE_SPEED * 0.5, 11.0, 11.0, 5.0);  //reduced from 22 (75% of 22 inches for change in gearing)
         sleep(500);
-        encoderDrive(DRIVE_SPEED * 0.5, -5.5, -5.5, 3.0);
-        turn90L_RED();
+        encoderDrive(DRIVE_SPEED * 0.5, -6.5, -6.5, 3.0);
+        turnGyroAbsL(0);
 
         //Step 4:  Run beacon push routine
         pushBeaconForward(false);

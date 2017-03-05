@@ -229,7 +229,7 @@ public class AutoSuper extends LinearOpMode {
      * Don't use degrees > 180 for safety reasons.
      * @param deg The number of degrees to turn.
      */
-    public void turnGyroRelL(int deg) {
+        public void turnGyroRelL(int deg) {
         sleep(250);
         int tDeg = ((gyroSensor.getHeading() + deg)) % 360;
         while (gyroSensor.getHeading() != tDeg) {
@@ -239,10 +239,30 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
+    public void turnGyroAbsCW(int deg) {
+
+        while(opModeIsActive() && Math.abs(deg-gyroSensor.getHeading())<2) {
+            if (Math.abs(deg-gyroSensor.getHeading())>10) {
+                leftMotor.setPower(-DRIVE_SPEED * 0.2);
+                rightMotor.setPower(DRIVE_SPEED * 0.2);
+            } else {
+                leftMotor.setPower(-DRIVE_SPEED * 0.05);
+                rightMotor.setPower(DRIVE_SPEED * 0.05);
+            }
+        }
+
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+    }
+
+
     public void turnGyroAbsL(int deg) {
+        telemetry.addData("Gyro_Heading",gyroSensor.getHeading());
+        telemetry.update();
         while(opModeIsActive() && gyroSensor.getHeading() != deg) {
-            leftMotor.setPower(-DRIVE_SPEED * 0.2);
-            rightMotor.setPower(DRIVE_SPEED * 0.2);
+            leftMotor.setPower(DRIVE_SPEED * 0.2);
+            rightMotor.setPower(-DRIVE_SPEED * 0.2);
+            telemetry.update();
         }
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
@@ -250,8 +270,8 @@ public class AutoSuper extends LinearOpMode {
 
     public void turnGyroAbsR(int deg) {
         while(opModeIsActive() && gyroSensor.getHeading() != deg) {
-            leftMotor.setPower(DRIVE_SPEED * 0.2);
-            rightMotor.setPower(-DRIVE_SPEED * 0.2);
+            leftMotor.setPower(-DRIVE_SPEED * 0.2);
+            rightMotor.setPower(DRIVE_SPEED * 0.2);
         }
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
@@ -269,6 +289,12 @@ public class AutoSuper extends LinearOpMode {
         }
     }
 
+    // set the speed and distance on the left and right motors
+    protected void encoderDriveEasy(double speed, double l, double r, double timeout) {
+        double endPercent = 4/Math.abs(l); // Percent of the drive that is the last 4 inches
+        encoderDrive(speed, l*(1-endPercent), r*(1-endPercent), timeout*(1-endPercent));
+        encoderDrive(DRIVE_SPEED * 0.2, l*endPercent, r*endPercent, timeout*(1-endPercent));
+    }
 
     /**  Methods for Beacon Pushing
      *
@@ -279,7 +305,7 @@ public class AutoSuper extends LinearOpMode {
     public void pushBeaconForward(boolean red) {
         driveToWLine(-1);
         if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED * 0.5, 24.0, 24.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, 20.0, 20.0, 5.0);
         driveToWLine(1);
         if (!pushButton(red)) pushButton(red);
     }
@@ -292,7 +318,7 @@ public class AutoSuper extends LinearOpMode {
     public void pushBeaconBackward(boolean red) {
         driveToWLine(1);
         if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED * 0.7, -24.0, -24.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, -20.0, -20.0, 5.0);
         driveToWLine(-1);
         if (!pushButton(red)) pushButton(red);
     }
