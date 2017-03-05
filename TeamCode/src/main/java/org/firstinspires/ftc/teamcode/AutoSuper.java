@@ -759,6 +759,8 @@ public class AutoSuper extends LinearOpMode {
             newRightTarget = rightMotor.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
             leftMotor.setTargetPosition(newLeftTarget);
             rightMotor.setTargetPosition(newRightTarget);
+            int counter1 = 0;
+            int counter2 = 0;
 
             // Turn On RUN_TO_POSITION
             leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -773,16 +775,20 @@ public class AutoSuper extends LinearOpMode {
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (leftMotor.isBusy() && rightMotor.isBusy())) {
-
-                if (Math.abs(newLeftTarget - leftMotor.getCurrentPosition())< (6.0*COUNTS_PER_INCH)) {
+                counter1++;
+                if (Math.abs(newLeftTarget - leftMotor.getCurrentPosition()) < (6.0*COUNTS_PER_INCH)) {
                     leftMotor.setPower(Math.abs(speed * 0.3));
                     rightMotor.setPower(Math.abs(speed * 0.3));
+                    counter2++;
                 }
                 // Display it for the driver.
                 telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
                 telemetry.addData("Path2", "Running at %7d :%7d",
                         leftMotor.getCurrentPosition(),
                         rightMotor.getCurrentPosition());
+                telemetry.addData("Distance", Math.abs(newLeftTarget - leftMotor.getCurrentPosition()));
+                telemetry.addData("While counter", counter1);
+                telemetry.addData("If counter", counter2);
                 telemetry.update();
             }
 
