@@ -403,8 +403,6 @@ public class AutoSuper extends LinearOpMode {
             telemetry.addData("Light Level", opticalSensor.getLightDetected());
             String out = Double.toString(opticalSensor.getLightDetected());
             RobotLog.d(out);
-
-                /*
                 // First calculate how fast we want to be moving towards target
                 curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
                 deltaFromTarget = curDist - targetDist; // positive if currently greater than target
@@ -425,7 +423,6 @@ public class AutoSuper extends LinearOpMode {
                     leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
                     rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
                 }
-                */
                /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
                     leftMotor.setPower((0.9) * dir);
                     rightMotor.setPower((0.1) * dir);
@@ -440,7 +437,6 @@ public class AutoSuper extends LinearOpMode {
                     rightMotor.setPower((DRIVE_SPEED/2) * dir);
                 }
                 */
-                sleep(100);
                 telemetry.update();
         }
         leftMotor.setPower(0.0);

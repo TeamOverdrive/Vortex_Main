@@ -21,6 +21,10 @@ public class AutoDrive_Test extends AutoSuper {
         calibrateGyro();
         waitForStart();
 
+        gyroDrive(DRIVE_SPEED, -48.0, 0);
+    }
+}
+        /*
    // Blue Side Test Autonomous
         //Step 1: Drive to side wall to position for beacon pushing.
         encoderDrive(DRIVE_SPEED * .5, -21.0, -21.0, 5.0);
