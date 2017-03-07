@@ -241,18 +241,19 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
+    //delta = ((deg + 360) - heading) % 360
     public void turnGyroAbsCW(int deg) {
-
-        while (opModeIsActive() && Math.abs(deg - gyroSensor.getHeading()) < 2) {
-            if (Math.abs(deg - gyroSensor.getHeading()) > 10) {
-                leftMotor.setPower(-DRIVE_SPEED * 0.2);
-                rightMotor.setPower(DRIVE_SPEED * 0.2);
+        int delta = (Math.abs(gyroSensor.getHeading() - deg));
+        while (opModeIsActive() && delta > 3) {
+            if (delta > 15) {
+                leftMotor.setPower(-DRIVE_SPEED * 0.4);
+                rightMotor.setPower(DRIVE_SPEED * 0.4);
             } else {
-                leftMotor.setPower(-DRIVE_SPEED * 0.05);
-                rightMotor.setPower(DRIVE_SPEED * 0.05);
+                leftMotor.setPower(-DRIVE_SPEED * 0.1);
+                rightMotor.setPower(DRIVE_SPEED * 0.1);
             }
+            delta = (Math.abs(gyroSensor.getHeading() - deg));
         }
-
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
     }
@@ -475,18 +476,20 @@ public class AutoSuper extends LinearOpMode {
             deltaFromTarget = curDist - targetDist; // positive if currently greater than target
 
             if (deltaFromTarget > 10.0) { // Far from target
-                desiredAngle = 0 + 20;
-            } else if (deltaFromTarget > 1.5) { // Getting close to target
-                desiredAngle = 0 + (int) ((deltaFromTarget / 10) * 20); // between +10 and -10 degrees
-            } else if (deltaFromTarget < -1.5) { // Went past target
-                desiredAngle = 0 + (int) ((deltaFromTarget / 10) * 20);
+                desiredAngle = 0 + 15;
+            } else if (deltaFromTarget > 2.5) { // Getting close to target
+                desiredAngle = 0 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15); // between +10 and -10 degrees
+            } else if (deltaFromTarget < -2.5) { // Went past target
+                desiredAngle = 0 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10);
             } else { // On target
                 desiredAngle = 0;
             }
 
-            if (desiredAngle < 0) desiredAngle += 360;
+            //if (desiredAngle < 0) desiredAngle += 360;
 
             curAngle = gyroSensor.getHeading();
+
+            if (curAngle > 180) curAngle -= 360;
 
             if (desiredAngle < curAngle - 1) {
                 leftMotor.setPower((APPROACH_SPEED + APPROACH_SPEED * 0.5) * dir);
@@ -527,10 +530,13 @@ public class AutoSuper extends LinearOpMode {
                 */
             telemetry.addData("currrent angle", curAngle);
             telemetry.addData("desired angle", desiredAngle);
+            telemetry.addData("current distance", curDist);
+            telemetry.addData("delta from target", deltaFromTarget);
             telemetry.update();
         }
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
+        //Turn to zero at this point
         return runtime.seconds() < 3;
     }
 

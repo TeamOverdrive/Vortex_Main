@@ -21,7 +21,11 @@ public class AutoDrive_Test extends AutoSuper {
         calibrateGyro();
         waitForStart();
 
-        driveToWLine(1);
+        turnGyroAbsCW(45);
+        sleep(2000);
+        turnGyroAbsCW(90);
+        sleep(2000);
+        turnGyroAbsCW(10);
     }
 }
         /*

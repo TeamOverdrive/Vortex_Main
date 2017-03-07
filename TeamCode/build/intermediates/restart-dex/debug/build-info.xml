@@ -5,19 +5,19 @@
     density="xhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="270679411856307"
+    timestamp="360161924725227"
     token="7586708121168103481"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="461" />
+        duration="731" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="23" />
+        duration="28" />
     <task
         name="verifier"
         duration="8" />
