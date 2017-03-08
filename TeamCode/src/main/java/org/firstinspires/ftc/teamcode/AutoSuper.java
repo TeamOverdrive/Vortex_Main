@@ -124,7 +124,7 @@ public class AutoSuper extends LinearOpMode {
     //Red Side 90 degree left turn
     public void turn90L_RED() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED * 0.4, 11.1, -11.1, 3.0); //reduced from 11.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.3, 11.1, -11.1, 3.0); //reduced from 11.5 for change in gearing
         sleep(100);
     }
 
@@ -139,14 +139,14 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 45 degree left turn
     public void turn45L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED / 2, 6.5, -6.5, 3.0); //reduced from 6.5 for change in gearing
+        encoderDrive(DRIVE_SPEED / 3, 6.5, -6.5, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 45 degree right turn
     public void turn45R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED / 2, -6.5, 6.5, 3.0); //reduced from 6.5 for change in gearing
+        encoderDrive(DRIVE_SPEED / 3, -6.5, 6.5, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
 
@@ -189,7 +189,7 @@ public class AutoSuper extends LinearOpMode {
     //Red Side 135 degree right turn
     public void turn135R_RED() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED * 0.4, -19.3, 19.3, 3.0); //reduced from 17.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.3, -20.8, 20.8, 3.0); //reduced from 17.5 for change in gearing
         sleep(100);
     }
 
@@ -241,18 +241,58 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
-    //delta = ((deg + 360) - heading) % 360
-    public void turnGyroAbsCW(int deg) {
-        int delta = (Math.abs(gyroSensor.getHeading() - deg));
-        while (opModeIsActive() && delta > 3) {
-            if (delta > 15) {
-                leftMotor.setPower(-DRIVE_SPEED * 0.4);
-                rightMotor.setPower(DRIVE_SPEED * 0.4);
-            } else {
-                leftMotor.setPower(-DRIVE_SPEED * 0.1);
-                rightMotor.setPower(DRIVE_SPEED * 0.1);
+    public void turnGyroAbs(int deg) {
+        int delta = (deg - gyroSensor.getHeading() + 360) % 360;
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        if (delta >= 180) {
+            turnGyroAbsCCW(deg);
+        }
+        else {
+            turnGyroAbsCW(deg);
+        }
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    private void turnGyroAbsCCW(int deg) {
+        double delta = (deg - gyroSensor.getHeading() + 360) % 360;
+        while (opModeIsActive() && delta < 355 && delta > 180) {
+            if (((-delta + 360) / 180) > 90) {
+                leftMotor.setPower(0.5);
+                rightMotor.setPower(-0.5);
             }
-            delta = (Math.abs(gyroSensor.getHeading() - deg));
+            else {
+                leftMotor.setPower(((-delta + 360) / 180) + 0.3);
+                rightMotor.setPower(-(((-delta + 360) / 180) + 0.3));
+            }
+            delta = (deg - gyroSensor.getHeading() + 360) % 360;
+            telemetry.addData("Degrees off", delta);
+            telemetry.addData("Speed modifier", (delta/180));
+            telemetry.addData("Turning", "counterclockwise");
+            telemetry.update();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+    }
+
+    //delta = ((deg + 360) - heading) % 360
+    private void turnGyroAbsCW(int deg) {
+        double delta = (deg - gyroSensor.getHeading() + 360) % 360;
+        while (opModeIsActive() && delta > 5 && delta < 180) {
+            if ((delta / 180) > 90) {
+                leftMotor.setPower(-0.5);
+                rightMotor.setPower(0.5);
+            }
+            else {
+                leftMotor.setPower(-((delta / 180) + 0.3));
+                rightMotor.setPower(((delta / 180) + 0.3));
+            }
+            delta = (deg - gyroSensor.getHeading() + 360) % 360;
+            telemetry.addData("Degrees off", delta);
+            telemetry.addData("Speed modifier", (delta/180));
+            telemetry.addData("Turning", "clockwise");
+            telemetry.update();
         }
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
@@ -476,11 +516,11 @@ public class AutoSuper extends LinearOpMode {
             deltaFromTarget = curDist - targetDist; // positive if currently greater than target
 
             if (deltaFromTarget > 10.0) { // Far from target
-                desiredAngle = 0 + 15;
+                desiredAngle = dir *(0 + 15);
             } else if (deltaFromTarget > 2.5) { // Getting close to target
-                desiredAngle = 0 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15); // between +10 and -10 degrees
+                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15)); // between +10 and -10 degrees
             } else if (deltaFromTarget < -2.5) { // Went past target
-                desiredAngle = 0 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10);
+                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10));
             } else { // On target
                 desiredAngle = 0;
             }
