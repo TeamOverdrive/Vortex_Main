@@ -496,7 +496,7 @@ public class AutoSuper extends LinearOpMode {
         double curDist;
         int desiredAngle;
         int curAngle;
-        double targetDist = 10.0;
+        double targetDist = 7.0;
         double deltaFromTarget;
 
         prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
@@ -532,11 +532,11 @@ public class AutoSuper extends LinearOpMode {
             if (curAngle > 180) curAngle -= 360;
 
             if (desiredAngle < curAngle - 1) {
-                leftMotor.setPower((APPROACH_SPEED + APPROACH_SPEED * 0.5) * dir);
-                rightMotor.setPower((APPROACH_SPEED - APPROACH_SPEED * 0.5) * dir);
+                leftMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
+                rightMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
             } else if (desiredAngle > curAngle + 1) {
-                leftMotor.setPower((APPROACH_SPEED - APPROACH_SPEED * 0.5) * dir);
-                rightMotor.setPower((APPROACH_SPEED + APPROACH_SPEED * 0.5) * dir);
+                leftMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
+                rightMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
             } else {
                 leftMotor.setPower((APPROACH_SPEED) * dir);
                 rightMotor.setPower((APPROACH_SPEED) * dir);

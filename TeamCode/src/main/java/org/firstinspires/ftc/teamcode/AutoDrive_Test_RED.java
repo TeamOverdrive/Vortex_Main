@@ -22,14 +22,15 @@ public class AutoDrive_Test_RED extends AutoSuper {
         encoderDrive(DRIVE_SPEED * 0.5, -4.0, -4.0, 2.0);
         launchBalls(2);
         encoderDrive(DRIVE_SPEED * 0.7, -7.0, -7.0, 3.0);
-        turn45L();
+        turnGyroAbs(315);
         encoderDrive(DRIVE_SPEED, -46.0, -46.0, 5.0);
         encoderDrive(DRIVE_SPEED * 0.5, -6.0, -6.0, 3.0);
-        turn135R_RED();
+        turnGyroAbs(0);
+        /*
         encoderDrive(DRIVE_SPEED * 0.5, 11.0, 11.0, 5.0);
         sleep(250);
         encoderDrive(DRIVE_SPEED * 0.4, -6.5, -6.5, 3.0);
-        turn90L_RED();
+        turn90L_RED();*/
 
         //turn90R();
         //encoderDrive(DRIVE_SPEED * 0.7, 9.0, 9.0, 5.0);
@@ -40,7 +41,7 @@ public class AutoDrive_Test_RED extends AutoSuper {
         pushBeaconForward(true);
 
         //Step 3:  Position for and launch the balls
-        turn90R();
+        turnGyroAbs(90);
         encoderDrive(DRIVE_SPEED, -38.0, -36.0, 5.0);
 
         //Step 4:  Drive to center and stop

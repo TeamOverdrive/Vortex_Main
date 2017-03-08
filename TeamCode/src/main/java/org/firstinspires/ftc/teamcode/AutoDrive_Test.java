@@ -21,11 +21,7 @@ public class AutoDrive_Test extends AutoSuper {
         calibrateGyro();
         waitForStart();
 
-        driveToWLine(-1);
-
-        sleep(10000);
-
-        driveToWLine(1);
+        pushBeaconForward(false);
     }
 }
         /*
