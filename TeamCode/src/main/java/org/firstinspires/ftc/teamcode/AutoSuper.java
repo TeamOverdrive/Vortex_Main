@@ -606,17 +606,14 @@ public class AutoSuper extends LinearOpMode {
     public void launchBalls(int num) {
         intakeMotor.setPower(0.0);      //Set intakeMotor to off since it's not needed
         for (int i = 0; i < num; i++) {
-
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 1.8)) {
+            while (opModeIsActive() && (runtime.seconds() < 0.9)) {
                 shooterMotor.setPower(-1.0);
             }
             // shooterMotor.setPower(0.0);
             if (opModeIsActive()) {
-                sleep(1000);  //Set the gate open process to delay for 1st ball to be launched
                 ballRelease.setPosition(0.0); //Set to open the gate to release the second ball
                 sleep(500);  //Set to hold open the gate to allow the second ball to pass the gate
-                ballRelease.setPosition(0.0);  //Set to close the gate after the second ball is released
             }
         }
         shooterMotor.setPower(0.0);

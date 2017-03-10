@@ -18,12 +18,12 @@ public class AutoDrive_Test_RED extends AutoSuper {
 
    // Red Side Test Autonomous
         //Step 1: Drive to side wall to position for beacon pushing.
-        encoderDrive(DRIVE_SPEED, -17.0, -17.0, 5.0);
-        encoderDrive(DRIVE_SPEED * 0.5, -4.0, -4.0, 2.0);
+        encoderDrive(1.0, -17.0, -17.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, -6.0, -6.0, 2.0);
         launchBalls(2);
-        encoderDrive(DRIVE_SPEED * 0.7, -7.0, -7.0, 3.0);
-        turnGyroAbs(315);
-        encoderDrive(DRIVE_SPEED, -46.0, -46.0, 5.0);
+        encoderDrive(DRIVE_SPEED, -9.0, -9.0, 3.0);
+        turnGyroAbs(325);
+        encoderDrive(1.0, -46.0, -46.0, 5.0);
         encoderDrive(DRIVE_SPEED * 0.5, -6.0, -6.0, 3.0);
         turnGyroAbs(0);
         /*
@@ -42,7 +42,7 @@ public class AutoDrive_Test_RED extends AutoSuper {
 
         //Step 3:  Position for and launch the balls
         turnGyroAbs(90);
-        encoderDrive(DRIVE_SPEED, -38.0, -36.0, 5.0);
+        encoderDrive(1.0, -38.0, -36.0, 5.0);
 
         //Step 4:  Drive to center and stop
 

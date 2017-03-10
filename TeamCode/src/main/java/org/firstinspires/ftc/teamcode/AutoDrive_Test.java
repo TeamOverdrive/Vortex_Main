@@ -21,7 +21,7 @@ public class AutoDrive_Test extends AutoSuper {
         calibrateGyro();
         waitForStart();
 
-        pushBeaconForward(false);
+        launchBalls(2);
     }
 }
         /*
