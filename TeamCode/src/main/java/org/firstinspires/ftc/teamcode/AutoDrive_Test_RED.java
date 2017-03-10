@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  * @author Samuel Turner
@@ -17,35 +18,30 @@ public class AutoDrive_Test_RED extends AutoSuper {
         waitForStart();
 
    // Red Side Test Autonomous
-        //Step 1: Drive to side wall to position for beacon pushing.
+        //Step 1: Drive up and shoot the balls
         encoderDrive(1.0, -17.0, -17.0, 5.0);
         encoderDrive(DRIVE_SPEED * 0.5, -6.0, -6.0, 2.0);
         launchBalls(2);
-        encoderDrive(DRIVE_SPEED, -9.0, -9.0, 3.0);
-        turnGyroAbs(325);
-        encoderDrive(1.0, -46.0, -46.0, 5.0);
-        encoderDrive(DRIVE_SPEED * 0.5, -6.0, -6.0, 3.0);
+
+        //Step 2: Position to push the beacons
+        turnGyroAbs(320);
+        encoderDrive(1.0, -50.0, -50.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, -10.0, -10.0, 3.0);
         turnGyroAbs(0);
-        /*
-        encoderDrive(DRIVE_SPEED * 0.5, 11.0, 11.0, 5.0);
-        sleep(250);
-        encoderDrive(DRIVE_SPEED * 0.4, -6.5, -6.5, 3.0);
-        turn90L_RED();*/
 
-        //turn90R();
-        //encoderDrive(DRIVE_SPEED * 0.7, 9.0, 9.0, 5.0);
-        //turn45L();
-        //encoderDrive(DRIVE_SPEED *0.7, -24.0, -24.0, 5.0);
-
-        //Step 2:  Run beacon push routine
+        //Step 3:  Run beacon push routine
         pushBeaconForward(true);
 
-        //Step 3:  Position for and launch the balls
-        turnGyroAbs(90);
-        encoderDrive(1.0, -38.0, -36.0, 5.0);
-
-        //Step 4:  Drive to center and stop
-
+        //Step 4: Go to the ramp
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftMotor.setPower(1.0);
+        rightMotor.setPower(0.4);
+        sleep(1500);
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }
         /*

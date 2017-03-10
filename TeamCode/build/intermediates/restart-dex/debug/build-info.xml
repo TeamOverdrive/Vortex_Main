@@ -5,27 +5,41 @@
     density="xhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="615099078692399"
+    timestamp="624674471518951"
     token="7586708121168103481"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="2185" />
+        duration="680" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="80" />
+        duration="30" />
     <task
         name="verifier"
-        duration="13" />
+        duration="10" />
 
     <artifact
-        location="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\outputs\apk\TeamCode-debug.apk"
-        type="MAIN" />
+        location="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\5\slice_2\classes.dex"
+        type="DEX" />
 
+    <build
+        timestamp="624647268407437"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\outputs\apk\TeamCode-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="624674471518951"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\5\slice_2\classes.dex"
+            type="DEX" />
+    </build>
     <build
         timestamp="884164592195859"
         verifier="FULL_BUILD_REQUESTED" >

@@ -47,6 +47,7 @@ public class AutoSuper extends LinearOpMode {
     static final double P_TURN_COEFF = 0.1;     // Larger is more responsive but less stable - increased from 0.1
     static final double P_DRIVE_COEFF = 0.15;   // Larger is more responsive but less stable
     static double SONIC_RANGE;
+    static final double targetDist = 9.0;
 
     //The following objects are all protected and thus can only be accessed by the autonomous sub-classes.
     /* Declare OpMode members. */
@@ -258,7 +259,7 @@ public class AutoSuper extends LinearOpMode {
     private void turnGyroAbsCCW(int deg) {
         double delta = (deg - gyroSensor.getHeading() + 360) % 360;
         while (opModeIsActive() && delta < 355 && delta > 180) {
-            if (((-delta + 360) / 180) > 90) {
+            if ((-delta + 360) > 90) {
                 leftMotor.setPower(0.5);
                 rightMotor.setPower(-0.5);
             }
@@ -351,9 +352,11 @@ public class AutoSuper extends LinearOpMode {
      */
     public void pushBeaconForward(boolean red) {
         driveToWLine(-1);
+        turnGyroAbs(0);
         if (!pushButton(red)) pushButton(red);
         encoderDrive(DRIVE_SPEED * 0.5, 20.0, 20.0, 5.0);
         driveToWLine(1);
+        turnGyroAbs(0);
         if (!pushButton(red)) pushButton(red);
     }
 
@@ -365,9 +368,11 @@ public class AutoSuper extends LinearOpMode {
      */
     public void pushBeaconBackward(boolean red) {
         driveToWLine(1);
+        turnGyroAbs(180);
         if (!pushButton(red)) pushButton(red);
         encoderDrive(DRIVE_SPEED * 0.5, -20.0, -20.0, 5.0);
         driveToWLine(-1);
+        turnGyroAbs(180);
         if (!pushButton(red)) pushButton(red);
     }
 
@@ -496,7 +501,6 @@ public class AutoSuper extends LinearOpMode {
         double curDist;
         int desiredAngle;
         int curAngle;
-        double targetDist = 7.0;
         double deltaFromTarget;
 
         prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
@@ -515,11 +519,11 @@ public class AutoSuper extends LinearOpMode {
             curDist *= Math.cos(Math.toRadians(gyroSensor.getHeading()));
             deltaFromTarget = curDist - targetDist; // positive if currently greater than target
 
-            if (deltaFromTarget > 10.0) { // Far from target
+            if (deltaFromTarget > 13.0) { // Far from target
                 desiredAngle = dir *(0 + 15);
             } else if (deltaFromTarget > 2.5) { // Getting close to target
                 desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15)); // between +10 and -10 degrees
-            } else if (deltaFromTarget < -2.5) { // Went past target
+            } else if (deltaFromTarget < -2.5) { // Went past target **Consider changing this value
                 desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10));
             } else { // On target
                 desiredAngle = 0;
@@ -541,33 +545,6 @@ public class AutoSuper extends LinearOpMode {
                 leftMotor.setPower((APPROACH_SPEED) * dir);
                 rightMotor.setPower((APPROACH_SPEED) * dir);
             }
-               /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
-
-                    leftMotor.setPower((0.9) * dir);
-
-                    rightMotor.setPower((0.1) * dir);
-
-                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 9) {
-
-                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-
-                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-
-                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 7) {
-
-                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-
-                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-
-                } else {
-
-                    leftMotor.setPower((DRIVE_SPEED/2) * dir);
-
-                    rightMotor.setPower((DRIVE_SPEED/2) * dir);
-
-                }
-
-                */
             telemetry.addData("currrent angle", curAngle);
             telemetry.addData("desired angle", desiredAngle);
             telemetry.addData("current distance", curDist);
@@ -604,7 +581,7 @@ public class AutoSuper extends LinearOpMode {
      * @param num The number of balls in the hopper. This is a positive integer <= 2
      */
     public void launchBalls(int num) {
-        intakeMotor.setPower(0.0);      //Set intakeMotor to off since it's not needed
+        intakeMotor.setPower(1.0);
         for (int i = 0; i < num; i++) {
             runtime.reset();
             while (opModeIsActive() && (runtime.seconds() < 0.9)) {
