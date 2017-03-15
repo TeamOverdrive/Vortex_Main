@@ -24,7 +24,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  * public class 'name' extends AutoSuper {
  * super.runOpMode();
  *
- * @author S Turner
+ * @author Samuel Turner
  * @verson 2017.1.3
  */
 
@@ -35,7 +35,7 @@ public class AutoSuper extends LinearOpMode {
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.6;  //modified speed from 0.6
-    static final double TURN_SPEED = 0.2;  //modified turn speed from 0.5
+    static final double TURN_SPEED = 0.3;  //modified turn speed from 0.5
     static final double PUSH_MAX1 = 0.0;
     static final double PUSH_MAX2 = 0.5;
     static final double PUSH_MIN1 = 0.5;
@@ -47,7 +47,7 @@ public class AutoSuper extends LinearOpMode {
     static final double P_TURN_COEFF = 0.1;     // Larger is more responsive but less stable - increased from 0.1
     static final double P_DRIVE_COEFF = 0.15;   // Larger is more responsive but less stable
     static double SONIC_RANGE;
-    static final double targetDist = 9.0;
+    static final double targetDist = 7.0;
 
     //The following objects are all protected and thus can only be accessed by the autonomous sub-classes.
     /* Declare OpMode members. */
@@ -104,6 +104,379 @@ public class AutoSuper extends LinearOpMode {
         ultrasonicSensor = init.getUltrasonicSensor();
     }
 
+    public void turnGyroAbs(int deg) {
+        int delta = (deg - gyroSensor.getHeading() + 360) % 360;
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        if (delta >= 180) {
+            turnGyroAbsCCW(deg);
+        }
+        else {
+            turnGyroAbsCW(deg);
+        }
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    private void turnGyroAbsCCW(int deg) {
+        double delta = (deg - gyroSensor.getHeading() + 360) % 360;
+        runtime.reset();
+        while (opModeIsActive() && delta < 355 && delta > 180 && runtime.seconds() < 4.0) {
+            if ((-delta + 360) > 90) {
+                leftMotor.setPower(0.5);
+                rightMotor.setPower(-0.5);
+            }
+            else {
+                leftMotor.setPower(((-delta + 360) / 180) + 0.3);
+                rightMotor.setPower(-(((-delta + 360) / 180) + 0.3));
+            }
+            delta = (deg - gyroSensor.getHeading() + 360) % 360;
+            telemetry.addData("Degrees off", delta);
+            telemetry.addData("Speed modifier", (delta/180));
+            telemetry.addData("Turning", "counterclockwise");
+            telemetry.update();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+    }
+
+    //delta = ((deg + 360) - heading) % 360
+    private void turnGyroAbsCW(int deg) {
+        double delta = (deg - gyroSensor.getHeading() + 360) % 360;
+        runtime.reset();
+        while (opModeIsActive() && delta > 5 && delta < 180 && runtime.seconds() < 4.0) {
+            if ((delta / 180) > 90) {
+                leftMotor.setPower(-0.5);
+                rightMotor.setPower(0.5);
+            }
+            else {
+                leftMotor.setPower(-((delta / 180) + 0.3));
+                rightMotor.setPower(((delta / 180) + 0.3));
+            }
+            delta = (deg - gyroSensor.getHeading() + 360) % 360;
+            telemetry.addData("Degrees off", delta);
+            telemetry.addData("Speed modifier", (delta/180));
+            telemetry.addData("Turning", "clockwise");
+            telemetry.update();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+    }
+
+    /**
+     * Turns relative to the initial heading.
+     *
+     * @param degrees The degrees relative to the starting heading.
+     * @precondition The gyro has been calibrated properly in user code.
+     */
+    public void turnWithGyro(int degrees) {
+        runtime.reset();
+        while (opModeIsActive() && runtime.seconds() < 4.0) {
+
+        }
+    }
+
+    // Drive Easy Encoder Drive
+    // set the speed and distance on the left and right motors
+    protected void encoderDriveEasy(double speed, double l, double r, double timeout) {
+        double endPercent = 6 / Math.abs(l); // Percent of the drive that is the last 4 inches
+        encoderDrive(speed, l * (1 - endPercent), r * (1 - endPercent), timeout * (1 - endPercent));
+        encoderDrive(DRIVE_SPEED * 0.2, l * endPercent, r * endPercent, timeout * (1 - endPercent));
+    }
+
+    /**
+     * Methods for Beacon Pushing
+     * <p>
+     * Pushes the buttons on the beacon starting by moving forward, then reversing to
+     * the second beacon.
+     *
+     * @param red A boolean answer to whether or not the desired color is red.
+     */
+    public void pushBeaconForward(boolean red) {
+        driveToWLine(-1);
+        turnGyroAbs(0);
+        if (!pushButton(red)) pushButton(red);
+        encoderDrive(DRIVE_SPEED * 0.8, 20.0, 20.0, 4.0);
+        encoderDrive(DRIVE_SPEED * 0.4, 6.0, 6.0, 3.0);
+        driveToWLine(1);
+        turnGyroAbs(0);
+        if (!pushButton(red)) pushButton(red);
+    }
+
+    /**
+     * Pushes the buttons on the beacon starting by moving backward, then moving forward
+     * to the second beacon.
+     *
+     * @param red A boolean answer to whether or not the desired color is red.
+     */
+    public void pushBeaconBackward(boolean red) {
+        driveToWLine(1);
+        turnGyroAbs(180);
+        if (!pushButton(red)) pushButton(red);
+        encoderDrive(DRIVE_SPEED * 0.8, -16.0, -16.0, 4.0);
+        encoderDrive(DRIVE_SPEED * 0.4, -6.0, -6.0, 5.0);
+        driveToWLine(-1);
+        turnGyroAbs(180);
+        if (!pushButton(red)) pushButton(red);
+    }
+
+    /**
+     * Pushes the button on the beacon based on alliance color and the randomized side that should
+     * be used.
+     *
+     * @param red A boolean representing whether or not the desired color is red.
+     */
+    public boolean pushButton(boolean red) {
+        colorSensor1.enableLed(false);
+        colorSensor2.enableLed(false);
+        telemetry.addData("color1 red", colorSensor1.red());
+        telemetry.addData("color1 blue", colorSensor1.blue());
+        telemetry.addData("color2 red", colorSensor2.red());
+        telemetry.addData("color2 blue", colorSensor2.blue());
+        telemetry.update();
+        if (red) {
+            if (colorSensor1.red() >= 2 && colorSensor2.red() >= 2) {
+                return true;
+            }
+            if (colorSensor1.red() >= 2) {
+                pushButton1.setPosition(PUSH_MAX1);
+                sleep(750);
+                pushButton1.setPosition(PUSH_MIN1);
+            } else if (colorSensor2.red() >= 2) {
+                pushButton2.setPosition(PUSH_MAX2);
+                sleep(750);
+                pushButton2.setPosition(PUSH_MIN2);
+            }
+            sleep(500);
+            if (colorSensor1.red() >= 2 && colorSensor2.red() >= 2) {
+                return true;
+            }
+        } else {
+            if (colorSensor1.blue() >= 2 && colorSensor2.blue() >= 2) {
+                return true;
+            }
+            if (colorSensor1.blue() >= 2) {
+                pushButton1.setPosition(PUSH_MAX1);
+                sleep(750);
+                pushButton1.setPosition(PUSH_MIN1);
+            } else if (colorSensor2.blue() >= 2) {
+                pushButton2.setPosition(PUSH_MAX2);
+                sleep(750);
+                pushButton2.setPosition(PUSH_MIN2);
+            }
+            sleep(500);
+            if (colorSensor1.blue() >= 2 && colorSensor2.blue() >= 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean driveToWLine(int dir) {
+        //final double MAX_CHANGE = 2.5; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This should be somewhere a bit less than how far robot can drive in 1/10 second.
+        double prevDist;
+        double curDist;
+        int desiredAngle;
+        int curAngle;
+        double deltaFromTarget;
+
+        prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+        sleep(100);
+        leftMotor.setPower((APPROACH_SPEED) * dir);
+        rightMotor.setPower((APPROACH_SPEED) * dir);
+        runtime.reset();
+
+        while (opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 8) {
+            telemetry.addData("Light Level", opticalSensor.getLightDetected());
+            String out = Double.toString(opticalSensor.getLightDetected());
+            RobotLog.d(out);
+
+            // First calculate how fast we want to be moving towards target
+            curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+            curDist *= Math.cos(Math.toRadians(gyroSensor.getHeading()));
+            deltaFromTarget = curDist - targetDist; // positive if currently greater than target
+
+            if (deltaFromTarget > 13.0) { // Far from target
+                desiredAngle = dir *(0 + 15);
+            } else if (deltaFromTarget > 2.5) { // Getting close to target
+                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15)); // between +10 and -10 degrees
+            } else if (deltaFromTarget < -2.5) { // Went past target **Consider changing this value
+                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10));
+            } else { // On target
+                desiredAngle = 0;
+            }
+
+            //if (desiredAngle < 0) desiredAngle += 360;
+
+            curAngle = gyroSensor.getHeading();
+
+            if (curAngle > 180) curAngle -= 360;
+
+            if (desiredAngle < curAngle - 1) {
+                leftMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
+                rightMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
+            } else if (desiredAngle > curAngle + 1) {
+                leftMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
+                rightMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
+            } else {
+                leftMotor.setPower((APPROACH_SPEED) * dir);
+                rightMotor.setPower((APPROACH_SPEED) * dir);
+            }
+            telemetry.addData("currrent angle", curAngle);
+            telemetry.addData("desired angle", desiredAngle);
+            telemetry.addData("current distance", curDist);
+            telemetry.addData("delta from target", deltaFromTarget);
+            telemetry.update();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+        //Turn to zero at this point
+        return runtime.seconds() < 3;
+    }
+
+    /**
+     * Method for launching balls
+     * Launch the balls loaded in the hopper at the center structure.
+     * Takes approximately 2 seconds per ball.
+     *
+     * @param num The number of balls in the hopper. This is a positive integer <= 2
+     */
+    public void launchBalls(int num) {
+        intakeMotor.setPower(1.0);
+        for (int i = 0; i < num; i++) {
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 0.9)) {
+                shooterMotor.setPower(-1.0);
+            }
+            // shooterMotor.setPower(0.0);
+            if (opModeIsActive()) {
+                ballRelease.setPosition(0.0); //Set to open the gate to release the second ball
+                sleep(500);  //Set to hold open the gate to allow the second ball to pass the gate
+            }
+        }
+        shooterMotor.setPower(0.0);
+        intakeMotor.setPower(0.0);
+        ballRelease.setPosition(0.4);
+    }
+
+    /**
+     * Method gyro calibration
+     * <p>
+     * Autonomous initialization routine that calibrates the gyro and resets
+     * the drive motor encoders before the start of the autonomous program.
+     * <p>
+     * This code is copied and then modified from the sample code.
+     */
+    public void calibrateGyro() {
+        telemetry.addData(">", "Gyro Calibrating. Do Not move!");
+        telemetry.update();
+        gyroSensor.calibrate();                                     // Calibrate Gyro Sensor
+        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);  // Reset left motor encoder
+        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Reset right motor encoder
+        // make sure the gyro is calibrated.
+        while (!isStopRequested() && gyroSensor.isCalibrating()) {
+            sleep(50);
+            idle();
+        }
+        telemetry.addData(">", "Gyro Calibrated.  Press Start.");
+        telemetry.update();
+
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    /**
+     * Method to perform a relative move, based on encoder counts.
+     * Encoders are not reset as the move is based on the current position.
+     * Move will stop if any of three conditions occur:
+     * 1) Move gets to the desired position
+     * 2) Move runs out of time
+     * 3) Driver stops the opmode running.
+     *
+     * @param speed       The speed that the motors are moving.
+     * @param leftInches  The distance that the robot should move to the left.
+     * @param rightInches The distance that the robot should move to the right.
+     * @param timeoutS    The amount of time this method is allowed to execute.
+     */
+    public void encoderDrive(double speed,
+                             double leftInches, double rightInches,
+                             double timeoutS) {
+        int newLeftTarget;
+        int newRightTarget;
+
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            newLeftTarget = leftMotor.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newRightTarget = rightMotor.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
+            leftMotor.setTargetPosition(newLeftTarget);
+            rightMotor.setTargetPosition(newRightTarget);
+            int counter1 = 0;
+            int counter2 = 0;
+
+            // Turn On RUN_TO_POSITION
+            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            leftMotor.setPower(Math.abs(speed));
+            rightMotor.setPower(Math.abs(speed));
+
+            // keep looping while we are still active, and there is time left, and both motors are running.
+            while (opModeIsActive() &&
+                    (runtime.seconds() < timeoutS) &&
+                    (leftMotor.isBusy() && rightMotor.isBusy())) {
+                counter1++;
+                if (Math.abs(newLeftTarget - leftMotor.getCurrentPosition()) < (6.0 * COUNTS_PER_INCH)) {
+                    leftMotor.setPower(Math.abs(speed * 0.3));
+                    rightMotor.setPower(Math.abs(speed * 0.3));
+                    counter2++;
+                }
+                // Display it for the driver.
+                telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
+                telemetry.addData("Path2", "Running at %7d :%7d",
+                        leftMotor.getCurrentPosition(),
+                        rightMotor.getCurrentPosition());
+                telemetry.addData("Distance", Math.abs(newLeftTarget - leftMotor.getCurrentPosition()));
+                telemetry.addData("While counter", counter1);
+                telemetry.addData("If counter", counter2);
+                telemetry.update();
+            }
+
+            // Stop all motion;
+            leftMotor.setPower(0);
+            rightMotor.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            //  sleep(250);   // optional pause after each move
+        }
+    }
+
+    //Theoretically unusable methods, DO NOT USE THESE.
+    /**
+     * Methods for Gyro Sensor turning excluding turn correction / adjustments
+     * <p>
+     * Turns the robot the given number of degrees in the given direction.
+     * Negative is left and positive is right.
+     * Don't use degrees > 180 for safety reasons.
+     *
+     * @param deg The number of degrees to turn.
+     */
+    public void turnGyroRelL(int deg) {
+        sleep(250);
+        int tDeg = ((gyroSensor.getHeading() + deg)) % 360;
+        while (gyroSensor.getHeading() != tDeg) {
+            leftMotor.setPower(-DRIVE_SPEED * 0.2);
+            rightMotor.setPower(DRIVE_SPEED * 0.2);
+        }
+        sleep(100);
+    }
+
     /**
      * Methods for Encoder based turns -- these methods do not use the Gyro Sensors to
      * make corrections for over/under turning.
@@ -140,16 +513,31 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 45 degree left turn
     public void turn45L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED / 3, 6.5, -6.5, 3.0); //reduced from 6.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.5, 6.5, -6.5, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
 
     //Encoder 45 degree right turn
     public void turn45R() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED / 3, -6.5, 6.5, 3.0); //reduced from 6.5 for change in gearing
+        encoderDrive(DRIVE_SPEED * 0.5, -6.5, 6.5, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
+
+    //Encoder 45 degree left turn
+    public void turn35L() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED * 0.5, 5.0, -5.0, 3.0); //reduced from 6.5 for change in gearing
+        sleep(100);
+    }
+
+    //Encoder 45 degree right turn
+    public void turn35R() {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED * 0.5, -5.0, 5.0, 3.0); //reduced from 6.5 for change in gearing
+        sleep(100);
+    }
+
 
     //Red Side 45 degree left turn
     public void turn45L_RED() {
@@ -223,83 +611,6 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
-    /**
-     * Methods for Gyro Sensor turning excluding turn correction / adjustments
-     * <p>
-     * Turns the robot the given number of degrees in the given direction.
-     * Negative is left and positive is right.
-     * Don't use degrees > 180 for safety reasons.
-     *
-     * @param deg The number of degrees to turn.
-     */
-    public void turnGyroRelL(int deg) {
-        sleep(250);
-        int tDeg = ((gyroSensor.getHeading() + deg)) % 360;
-        while (gyroSensor.getHeading() != tDeg) {
-            leftMotor.setPower(-DRIVE_SPEED * 0.2);
-            rightMotor.setPower(DRIVE_SPEED * 0.2);
-        }
-        sleep(100);
-    }
-
-    public void turnGyroAbs(int deg) {
-        int delta = (deg - gyroSensor.getHeading() + 360) % 360;
-        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        if (delta >= 180) {
-            turnGyroAbsCCW(deg);
-        }
-        else {
-            turnGyroAbsCW(deg);
-        }
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-
-    private void turnGyroAbsCCW(int deg) {
-        double delta = (deg - gyroSensor.getHeading() + 360) % 360;
-        while (opModeIsActive() && delta < 355 && delta > 180) {
-            if ((-delta + 360) > 90) {
-                leftMotor.setPower(0.5);
-                rightMotor.setPower(-0.5);
-            }
-            else {
-                leftMotor.setPower(((-delta + 360) / 180) + 0.3);
-                rightMotor.setPower(-(((-delta + 360) / 180) + 0.3));
-            }
-            delta = (deg - gyroSensor.getHeading() + 360) % 360;
-            telemetry.addData("Degrees off", delta);
-            telemetry.addData("Speed modifier", (delta/180));
-            telemetry.addData("Turning", "counterclockwise");
-            telemetry.update();
-        }
-        leftMotor.setPower(0.0);
-        rightMotor.setPower(0.0);
-    }
-
-    //delta = ((deg + 360) - heading) % 360
-    private void turnGyroAbsCW(int deg) {
-        double delta = (deg - gyroSensor.getHeading() + 360) % 360;
-        while (opModeIsActive() && delta > 5 && delta < 180) {
-            if ((delta / 180) > 90) {
-                leftMotor.setPower(-0.5);
-                rightMotor.setPower(0.5);
-            }
-            else {
-                leftMotor.setPower(-((delta / 180) + 0.3));
-                rightMotor.setPower(((delta / 180) + 0.3));
-            }
-            delta = (deg - gyroSensor.getHeading() + 360) % 360;
-            telemetry.addData("Degrees off", delta);
-            telemetry.addData("Speed modifier", (delta/180));
-            telemetry.addData("Turning", "clockwise");
-            telemetry.update();
-        }
-        leftMotor.setPower(0.0);
-        rightMotor.setPower(0.0);
-    }
-
-
     public void turnGyroAbsL(int deg) {
         telemetry.addData("Gyro_Heading", gyroSensor.getHeading());
         telemetry.update();
@@ -321,247 +632,12 @@ public class AutoSuper extends LinearOpMode {
         rightMotor.setPower(0.0);
     }
 
-    /**
-     * Turns relative to the initial heading.
-     *
-     * @param degrees The degrees relative to the starting heading.
-     * @precondition The gyro has been calibrated properly in user code.
+
+    /* Method approachWall is used for course adjustments to remain at the correct distance
+     *  from the wall during autonomous driving.  The method uses the ultrasonic sensor to
+     *  determine the distance from the wall and to make a course correction by adjusting
+     *  motor speed.
      */
-    public void turnWithGyro(int degrees) {
-        runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 4.0) {
-
-        }
-    }
-
-    // Drive Easy Encoder Drive
-    // set the speed and distance on the left and right motors
-    protected void encoderDriveEasy(double speed, double l, double r, double timeout) {
-        double endPercent = 6 / Math.abs(l); // Percent of the drive that is the last 4 inches
-        encoderDrive(speed, l * (1 - endPercent), r * (1 - endPercent), timeout * (1 - endPercent));
-        encoderDrive(DRIVE_SPEED * 0.2, l * endPercent, r * endPercent, timeout * (1 - endPercent));
-    }
-
-    /**
-     * Methods for Beacon Pushing
-     * <p>
-     * Pushes the buttons on the beacon starting by moving forward, then reversing to
-     * the second beacon.
-     *
-     * @param red A boolean answer to whether or not the desired color is red.
-     */
-    public void pushBeaconForward(boolean red) {
-        driveToWLine(-1);
-        turnGyroAbs(0);
-        if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED * 0.5, 20.0, 20.0, 5.0);
-        driveToWLine(1);
-        turnGyroAbs(0);
-        if (!pushButton(red)) pushButton(red);
-    }
-
-    /**
-     * Pushes the buttons on the beacon starting by moving backward, then moving forward
-     * to the second beacon.
-     *
-     * @param red A boolean answer to whether or not the desired color is red.
-     */
-    public void pushBeaconBackward(boolean red) {
-        driveToWLine(1);
-        turnGyroAbs(180);
-        if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED * 0.5, -20.0, -20.0, 5.0);
-        driveToWLine(-1);
-        turnGyroAbs(180);
-        if (!pushButton(red)) pushButton(red);
-    }
-
-    /**
-     * Pushes the button on the beacon based on alliance color and the randomized side that should
-     * be used.
-     *
-     * @param red A boolean representing whether or not the desired color is red.
-     */
-    public boolean pushButton(boolean red) {
-        colorSensor1.enableLed(false);
-        colorSensor2.enableLed(false);
-        telemetry.addData("color1 red", colorSensor1.red());
-        telemetry.addData("color1 blue", colorSensor1.blue());
-        telemetry.addData("color2 red", colorSensor2.red());
-        telemetry.addData("color2 blue", colorSensor2.blue());
-        telemetry.update();
-        if (red) {
-            if (colorSensor1.red() >= 2 && colorSensor2.red() >= 2) {
-                return true;
-            }
-            if (colorSensor1.red() >= 2) {
-                pushButton1.setPosition(PUSH_MAX1);
-                sleep(750);
-                pushButton1.setPosition(PUSH_MIN1);
-            } else if (colorSensor2.red() >= 2) {
-                pushButton2.setPosition(PUSH_MAX2);
-                sleep(750);
-                pushButton2.setPosition(PUSH_MIN2);
-            }
-            sleep(500);
-            if (colorSensor1.red() >= 2 && colorSensor2.red() >= 2) {
-                return true;
-            }
-        } else {
-            if (colorSensor1.blue() >= 2 && colorSensor2.blue() >= 2) {
-                return true;
-            }
-            if (colorSensor1.blue() >= 2) {
-                pushButton1.setPosition(PUSH_MAX1);
-                sleep(750);
-                pushButton1.setPosition(PUSH_MIN1);
-            } else if (colorSensor2.blue() >= 2) {
-                pushButton2.setPosition(PUSH_MAX2);
-                sleep(750);
-                pushButton2.setPosition(PUSH_MIN2);
-            }
-            sleep(500);
-            if (colorSensor1.blue() >= 2 && colorSensor2.blue() >= 2) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Method for white line identification and movement between lines
-     * <p>
-     * Drives until it reaches a white line on the ground.
-     * ONLY USE 1 OR -1 AS INPUT VALUES.
-     *
-     * @param dir Positive for forward, negative for reverse.
-     *//*
-    public boolean driveToWLine(int dir) {
-        final double MAX_CHANGE = 2.5; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This should be somewhere a bit less than how far robot can drive in 1/10 second.
-        double prevDist;
-        double curDist;
-        double curChange;
-        double targetChange = 0.0;
-        double desiredChange;
-        double targetDist = 10.0;
-        double deltaFromTarget;
-
-        prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
-        sleep(100);
-        leftMotor.setPower((APPROACH_SPEED) * dir);
-        rightMotor.setPower((APPROACH_SPEED) * dir);
-        runtime.reset();
-            while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 8 ) {
-            telemetry.addData("Light Level", opticalSensor.getLightDetected());
-            String out = Double.toString(opticalSensor.getLightDetected());
-            RobotLog.d(out);
-                // First calculate how fast we want to be moving towards target
-                curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
-                deltaFromTarget = curDist - targetDist; // positive if currently greater than target
-                if (deltaFromTarget > 10.0) { // Far from target
-                    desiredChange = -1 * (MAX_CHANGE / 100);
-                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
-                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
-                } else if (deltaFromTarget > 1.5) { // Getting close to target
-                    desiredChange = -1 * (deltaFromTarget / 100.0) * MAX_CHANGE; // between zero and negative max based on how far from target
-                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
-                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
-                } else if (deltaFromTarget < -1.5) { // Went past target
-                    desiredChange = -1 * (deltaFromTarget / 100.0) * MAX_CHANGE; // between zero and positive max based on how far from target
-                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
-                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
-                } else { // On target
-                    desiredChange = 0;
-                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
-                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
-                }
-               /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
-                    leftMotor.setPower((0.9) * dir);
-                    rightMotor.setPower((0.1) * dir);
-                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 9) {
-                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 7) {
-                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
-                } else {
-                    leftMotor.setPower((DRIVE_SPEED/2) * dir);
-                    rightMotor.setPower((DRIVE_SPEED/2) * dir);
-                }
-                telemetry.update();
-        }
-        leftMotor.setPower(0.0);
-        rightMotor.setPower(0.0);
-        return runtime.seconds() < 3;
-    }
-*/
-    public boolean driveToWLine(int dir) {
-        //final double MAX_CHANGE = 2.5; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This should be somewhere a bit less than how far robot can drive in 1/10 second.
-        double prevDist;
-        double curDist;
-        int desiredAngle;
-        int curAngle;
-        double deltaFromTarget;
-
-        prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
-        sleep(100);
-        leftMotor.setPower((APPROACH_SPEED) * dir);
-        rightMotor.setPower((APPROACH_SPEED) * dir);
-        runtime.reset();
-
-        while (opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 8) {
-            telemetry.addData("Light Level", opticalSensor.getLightDetected());
-            String out = Double.toString(opticalSensor.getLightDetected());
-            RobotLog.d(out);
-
-            // First calculate how fast we want to be moving towards target
-            curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
-            curDist *= Math.cos(Math.toRadians(gyroSensor.getHeading()));
-            deltaFromTarget = curDist - targetDist; // positive if currently greater than target
-
-            if (deltaFromTarget > 13.0) { // Far from target
-                desiredAngle = dir *(0 + 15);
-            } else if (deltaFromTarget > 2.5) { // Getting close to target
-                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15)); // between +10 and -10 degrees
-            } else if (deltaFromTarget < -2.5) { // Went past target **Consider changing this value
-                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10));
-            } else { // On target
-                desiredAngle = 0;
-            }
-
-            //if (desiredAngle < 0) desiredAngle += 360;
-
-            curAngle = gyroSensor.getHeading();
-
-            if (curAngle > 180) curAngle -= 360;
-
-            if (desiredAngle < curAngle - 1) {
-                leftMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
-                rightMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
-            } else if (desiredAngle > curAngle + 1) {
-                leftMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
-                rightMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
-            } else {
-                leftMotor.setPower((APPROACH_SPEED) * dir);
-                rightMotor.setPower((APPROACH_SPEED) * dir);
-            }
-            telemetry.addData("currrent angle", curAngle);
-            telemetry.addData("desired angle", desiredAngle);
-            telemetry.addData("current distance", curDist);
-            telemetry.addData("delta from target", deltaFromTarget);
-            telemetry.update();
-        }
-        leftMotor.setPower(0.0);
-        rightMotor.setPower(0.0);
-        //Turn to zero at this point
-        return runtime.seconds() < 3;
-    }
-
-/* Method approachWall is used for course adjustments to remain at the correct distance
-*  from the wall during autonomous driving.  The method uses the ultrasonic sensor to
-*  determine the distance from the wall and to make a course correction by adjusting
-*  motor speed.
- */
 
     public void approachWall() throws InterruptedException {
         while (opModeIsActive()) {
@@ -570,58 +646,6 @@ public class AutoSuper extends LinearOpMode {
             rightMotor.setPower(0.5 + ((8.0 - SONIC_RANGE) * 0.05));
         }
         driveToWLine(1);
-    }
-
-
-    /**
-     * Method for launching balls
-     * Launch the balls loaded in the hopper at the center structure.
-     * Takes approximately 2 seconds per ball.
-     *
-     * @param num The number of balls in the hopper. This is a positive integer <= 2
-     */
-    public void launchBalls(int num) {
-        intakeMotor.setPower(1.0);
-        for (int i = 0; i < num; i++) {
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 0.9)) {
-                shooterMotor.setPower(-1.0);
-            }
-            // shooterMotor.setPower(0.0);
-            if (opModeIsActive()) {
-                ballRelease.setPosition(0.0); //Set to open the gate to release the second ball
-                sleep(500);  //Set to hold open the gate to allow the second ball to pass the gate
-            }
-        }
-        shooterMotor.setPower(0.0);
-        intakeMotor.setPower(0.0);
-        ballRelease.setPosition(0.4);
-    }
-
-    /**
-     * Method gyro calibration
-     * <p>
-     * Autonomous initialization routine that calibrates the gyro and resets
-     * the drive motor encoders before the start of the autonomous program.
-     * <p>
-     * This code is copied and then modified from the sample code.
-     */
-    public void calibrateGyro() {
-        telemetry.addData(">", "Gyro Calibrating. Do Not move!");
-        telemetry.update();
-        gyroSensor.calibrate();                                     // Calibrate Gyro Sensor
-        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);  // Reset left motor encoder
-        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Reset right motor encoder
-        // make sure the gyro is calibrated.
-        while (!isStopRequested() && gyroSensor.isCalibrating()) {
-            sleep(50);
-            idle();
-        }
-        telemetry.addData(">", "Gyro Calibrated.  Press Start.");
-        telemetry.update();
-
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     /**
@@ -844,76 +868,73 @@ public class AutoSuper extends LinearOpMode {
         return Range.clip(error * PCoeff, -1, 1);
     }
 
-
+    //This is a legacy driveToWLine version.
+    //Uncomment at your own risk (preferably delete all of this).
     /**
-     * Method to perform a relative move, based on encoder counts.
-     * Encoders are not reset as the move is based on the current position.
-     * Move will stop if any of three conditions occur:
-     * 1) Move gets to the desired position
-     * 2) Move runs out of time
-     * 3) Driver stops the opmode running.
+     * Method for white line identification and movement between lines
+     * <p>
+     * Drives until it reaches a white line on the ground.
+     * ONLY USE 1 OR -1 AS INPUT VALUES.
      *
-     * @param speed       The speed that the motors are moving.
-     * @param leftInches  The distance that the robot should move to the left.
-     * @param rightInches The distance that the robot should move to the right.
-     * @param timeoutS    The amount of time this method is allowed to execute.
-     */
-    public void encoderDrive(double speed,
-                             double leftInches, double rightInches,
-                             double timeoutS) {
-        int newLeftTarget;
-        int newRightTarget;
+     * @param dir Positive for forward, negative for reverse.
+     *//*
+    public boolean driveToWLine(int dir) {
+        final double MAX_CHANGE = 2.5; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This should be somewhere a bit less than how far robot can drive in 1/10 second.
+        double prevDist;
+        double curDist;
+        double curChange;
+        double targetChange = 0.0;
+        double desiredChange;
+        double targetDist = 10.0;
+        double deltaFromTarget;
 
-        // Ensure that the opmode is still active
-        if (opModeIsActive()) {
-
-            // Determine new target position, and pass to motor controller
-            newLeftTarget = leftMotor.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
-            newRightTarget = rightMotor.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
-            leftMotor.setTargetPosition(newLeftTarget);
-            rightMotor.setTargetPosition(newRightTarget);
-            int counter1 = 0;
-            int counter2 = 0;
-
-            // Turn On RUN_TO_POSITION
-            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            // reset the timeout time and start motion.
-            runtime.reset();
-            leftMotor.setPower(Math.abs(speed));
-            rightMotor.setPower(Math.abs(speed));
-
-            // keep looping while we are still active, and there is time left, and both motors are running.
-            while (opModeIsActive() &&
-                    (runtime.seconds() < timeoutS) &&
-                    (leftMotor.isBusy() && rightMotor.isBusy())) {
-                counter1++;
-                if (Math.abs(newLeftTarget - leftMotor.getCurrentPosition()) < (6.0 * COUNTS_PER_INCH)) {
-                    leftMotor.setPower(Math.abs(speed * 0.3));
-                    rightMotor.setPower(Math.abs(speed * 0.3));
-                    counter2++;
+        prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+        sleep(100);
+        leftMotor.setPower((APPROACH_SPEED) * dir);
+        rightMotor.setPower((APPROACH_SPEED) * dir);
+        runtime.reset();
+            while(opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 8 ) {
+            telemetry.addData("Light Level", opticalSensor.getLightDetected());
+            String out = Double.toString(opticalSensor.getLightDetected());
+            RobotLog.d(out);
+                // First calculate how fast we want to be moving towards target
+                curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+                deltaFromTarget = curDist - targetDist; // positive if currently greater than target
+                if (deltaFromTarget > 10.0) { // Far from target
+                    desiredChange = -1 * (MAX_CHANGE / 100);
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
+                } else if (deltaFromTarget > 1.5) { // Getting close to target
+                    desiredChange = -1 * (deltaFromTarget / 100.0) * MAX_CHANGE; // between zero and negative max based on how far from target
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
+                } else if (deltaFromTarget < -1.5) { // Went past target
+                    desiredChange = -1 * (deltaFromTarget / 100.0) * MAX_CHANGE; // between zero and positive max based on how far from target
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
+                } else { // On target
+                    desiredChange = 0;
+                    leftMotor.setPower((APPROACH_SPEED + desiredChange) * dir);
+                    rightMotor.setPower((APPROACH_SPEED - desiredChange) * dir);
                 }
-                // Display it for the driver.
-                telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
-                telemetry.addData("Path2", "Running at %7d :%7d",
-                        leftMotor.getCurrentPosition(),
-                        rightMotor.getCurrentPosition());
-                telemetry.addData("Distance", Math.abs(newLeftTarget - leftMotor.getCurrentPosition()));
-                telemetry.addData("While counter", counter1);
-                telemetry.addData("If counter", counter2);
+               /* if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 17) {
+                    leftMotor.setPower((0.9) * dir);
+                    rightMotor.setPower((0.1) * dir);
+                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) >= 9) {
+                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                } else if (ultrasonicSensor.getDistance(DistanceUnit.CM) <= 7) {
+                    leftMotor.setPower((0.5 + ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                    rightMotor.setPower((0.5 - ((8.0 - ultrasonicSensor.getDistance(DistanceUnit.CM)) * 0.05)) * dir);
+                } else {
+                    leftMotor.setPower((DRIVE_SPEED/2) * dir);
+                    rightMotor.setPower((DRIVE_SPEED/2) * dir);
+                }
                 telemetry.update();
-            }
-
-            // Stop all motion;
-            leftMotor.setPower(0);
-            rightMotor.setPower(0);
-
-            // Turn off RUN_TO_POSITION
-            leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            //  sleep(250);   // optional pause after each move
         }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+        return runtime.seconds() < 3;
     }
+    */
 }

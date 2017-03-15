@@ -52,7 +52,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="b0a1384c3f251c8c03c96468647e87a2e72cd36c">
+        sha1="f08523f1757f09d286844c206a69e9070b53c6e4">
         <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_e54c2de32dc48082283b3ee30cb2ddb241aad350\classes.dex" />
     </item>
     <item
@@ -88,7 +88,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="a5d5ce149ab914f320f25da697be1f0435655404">
+        sha1="80741f96ffa10737cf10d18bf8046dd66d2f356b">
         <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0e0c5315e307c6cc57d80c13716df3f2ebf5241c\classes.dex" />
     </item>
     <item

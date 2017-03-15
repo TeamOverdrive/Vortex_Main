@@ -19,13 +19,15 @@ public class AutoDrive_Test_RED extends AutoSuper {
 
    // Red Side Test Autonomous
         //Step 1: Drive up and shoot the balls
-        encoderDrive(1.0, -17.0, -17.0, 5.0);
-        encoderDrive(DRIVE_SPEED * 0.5, -6.0, -6.0, 2.0);
+        encoderDrive(0.8, -13.0, -13.0, 5.0);
+        encoderDrive(DRIVE_SPEED * 0.5, -5.0, -5.0, 2.0);
         launchBalls(2);
+        //encoderDrive(DRIVE_SPEED * 0.5, -4.0, -4.0, 2.0);
 
         //Step 2: Position to push the beacons
-        turnGyroAbs(320);
-        encoderDrive(1.0, -50.0, -50.0, 5.0);
+        //turnGyroAbs(325);
+        turn35L();
+        encoderDrive(1.0, -61.0, -61.0, 5.0);
         encoderDrive(DRIVE_SPEED * 0.5, -10.0, -10.0, 3.0);
         turnGyroAbs(0);
 
