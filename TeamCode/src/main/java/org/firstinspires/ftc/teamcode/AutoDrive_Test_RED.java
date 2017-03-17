@@ -19,7 +19,7 @@ public class AutoDrive_Test_RED extends AutoSuper {
 
    // Red Side Test Autonomous
         //Step 1: Drive up and shoot the balls
-        encoderDrive(0.8, -13.0, -13.0, 5.0);
+        encoderDrive(0.8, -15.0, -15.0, 5.0);
         encoderDrive(DRIVE_SPEED * 0.5, -5.0, -5.0, 2.0);
         launchBalls(2);
         //encoderDrive(DRIVE_SPEED * 0.5, -4.0, -4.0, 2.0);

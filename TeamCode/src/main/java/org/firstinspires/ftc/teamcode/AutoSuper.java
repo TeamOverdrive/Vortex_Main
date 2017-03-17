@@ -196,7 +196,7 @@ public class AutoSuper extends LinearOpMode {
         driveToWLine(-1);
         turnGyroAbs(0);
         if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED * 0.8, 20.0, 20.0, 4.0);
+        encoderDrive(DRIVE_SPEED * 0.8, 34.0, 34.0, 4.0);
         encoderDrive(DRIVE_SPEED * 0.4, 6.0, 6.0, 3.0);
         driveToWLine(1);
         turnGyroAbs(0);
@@ -210,13 +210,13 @@ public class AutoSuper extends LinearOpMode {
      * @param red A boolean answer to whether or not the desired color is red.
      */
     public void pushBeaconBackward(boolean red) {
-        driveToWLine(1);
-        turnGyroAbs(180);
+        driveToWLineBlue(1);
+        turnGyroAbs(0);
         if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED * 0.8, -16.0, -16.0, 4.0);
-        encoderDrive(DRIVE_SPEED * 0.4, -6.0, -6.0, 5.0);
-        driveToWLine(-1);
-        turnGyroAbs(180);
+        encoderDrive(DRIVE_SPEED * 0.8, -34.0, -34.0, 4.0);
+        encoderDrive(DRIVE_SPEED * 0.4, -6.0, -6.0, 3.0);
+        driveToWLineBlue(-1);
+        turnGyroAbs(0);
         if (!pushButton(red)) pushButton(red);
     }
 
@@ -333,6 +333,69 @@ public class AutoSuper extends LinearOpMode {
         //Turn to zero at this point
         return runtime.seconds() < 3;
     }
+
+    public boolean driveToWLineBlue(int dir) {
+        //final double MAX_CHANGE = 2.5; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This should be somewhere a bit less than how far robot can drive in 1/10 second.
+        double prevDist;
+        double curDist;
+        int desiredAngle;
+        int curAngle;
+        double deltaFromTarget;
+
+        prevDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+        sleep(100);
+        leftMotor.setPower((APPROACH_SPEED) * dir);
+        rightMotor.setPower((APPROACH_SPEED) * dir);
+        runtime.reset();
+
+        while (opModeIsActive() && (opticalSensor.getLightDetected() < 0.08) && runtime.seconds() < 8) {
+            telemetry.addData("Light Level", opticalSensor.getLightDetected());
+            String out = Double.toString(opticalSensor.getLightDetected());
+            RobotLog.d(out);
+
+            // First calculate how fast we want to be moving towards target
+            curDist = ultrasonicSensor.getDistance(DistanceUnit.CM);
+            curDist *= Math.cos(Math.toRadians(gyroSensor.getHeading()));
+            deltaFromTarget = curDist - targetDist; // positive if currently greater than target
+
+            if (deltaFromTarget > 13.0) { // Far from target
+                desiredAngle = dir *(180 + 15);
+            } else if (deltaFromTarget > 2.5) { // Getting close to target
+                desiredAngle = dir * (180 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15)); // between +10 and -10 degrees
+            } else if (deltaFromTarget < -2.5) { // Went past target **Consider changing this value
+                desiredAngle = dir * (180 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10));
+            } else { // On target
+                desiredAngle = 180;
+            }
+
+            //if (desiredAngle < 0) desiredAngle += 360;
+
+            curAngle = gyroSensor.getHeading();
+
+            if (curAngle > 180) curAngle -= 360;
+
+            if (desiredAngle < curAngle - 1) {
+                leftMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
+                rightMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
+            } else if (desiredAngle > curAngle + 1) {
+                leftMotor.setPower((APPROACH_SPEED - (APPROACH_SPEED * 0.5 * dir)) * dir);
+                rightMotor.setPower((APPROACH_SPEED + (APPROACH_SPEED * 0.5 * dir)) * dir);
+            } else {
+                leftMotor.setPower((APPROACH_SPEED) * dir);
+                rightMotor.setPower((APPROACH_SPEED) * dir);
+            }
+            telemetry.addData("currrent angle", curAngle);
+            telemetry.addData("desired angle", desiredAngle);
+            telemetry.addData("current distance", curDist);
+            telemetry.addData("delta from target", deltaFromTarget);
+            telemetry.update();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+        //Turn to zero at this point
+        return runtime.seconds() < 3;
+    }
+
 
     /**
      * Method for launching balls
@@ -585,7 +648,7 @@ public class AutoSuper extends LinearOpMode {
     //Encoder 180 degree left turn
     public void turn180L() {
         sleep(250);
-        encoderDrive(DRIVE_SPEED / 2, 26.0, -26.0, 3.0); //reduced from 22.0 for change in gearing
+        encoderDrive(DRIVE_SPEED / 2, 25.0, -25.0, 3.0); //reduced from 22.0 for change in gearing
         sleep(100);
     }
 

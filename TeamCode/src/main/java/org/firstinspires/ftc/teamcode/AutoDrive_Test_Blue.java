@@ -20,18 +20,20 @@ public class AutoDrive_Test_Blue extends AutoSuper {
 
         // Blue Side Test Autonomous
         //Step 1: Drive up and shoot the balls
-        encoderDrive(1.0, -13.0, -13.0, 5.0);
+        encoderDrive(1.0, -16.0, -16.0, 5.0);
         encoderDrive(DRIVE_SPEED * 0.5, -4.0, -4.0, 2.0);
         launchBalls(2);
 
         //Step 2: Position to push the beacons
         //turnGyroAbs(45);
         turn35R();
-        encoderDrive(1.0, -65.0, -65.0, 5.0);
+        encoderDrive(0.8, -62.0, -62.0, 5.0);
         encoderDrive(DRIVE_SPEED * 0.5, -5.0, -5.0, 3.0);
         turn180L();
         encoderDrive(DRIVE_SPEED * 0.5, 10.0, 10.0, 3.0);
-        turnGyroAbs(179);
+        turnGyroAbs(180);
+        calibrateGyro();    //Recalibrate the gyro to zero heading
+        sleep(2500);        //Wait for the gyro to reset
 
         //Step 3:  Run beacon push routine
         pushBeaconBackward(false);
@@ -39,8 +41,8 @@ public class AutoDrive_Test_Blue extends AutoSuper {
         //Step 4: Go to the ramp
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftMotor.setPower(-0.4);
-        rightMotor.setPower(-1.0);
+        leftMotor.setPower(-1.0);
+        rightMotor.setPower(-0.4);
         sleep(1500);
         leftMotor.setPower(0.0);
         rightMotor.setPower(0.0);
