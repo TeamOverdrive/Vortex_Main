@@ -93,7 +93,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
     private Servo pushButton2;
     private Servo ballRelease;
     private Servo distanceFlag;
-    private Servo forkRelease;
+    //private Servo forkRelease;
     private Servo lineFlag;
 
     /* Declare Sensors */
@@ -134,7 +134,7 @@ public class TeleopMain_Vortex extends LinearOpMode {
         pushButton1 = init.getPushButton1();
         pushButton2 = init.getPushButton2();
         distanceFlag = init.getDistanceFlag();
-        forkRelease = init.getForkRelease();
+        //forkRelease = init.getForkRelease();
         lineFlag = init.getLineFlag();
         ballRelease = init.getBallRelease();
 
@@ -231,9 +231,11 @@ public class TeleopMain_Vortex extends LinearOpMode {
             else ballRelease.setPosition(0.4);
 
             // Fork Release Control
+            /*
             if (gamepad2.dpad_up) forkRelease.setPosition(0.5);
             else if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.0);
             else forkRelease.setPosition(0.5);
+            */
             //if (gamepad1.y && gamepad2.y) forkRelease.setPosition(0.5);
             //else if (gamepad2.dpad_up) forkRelease.setPosition(0.0);
             //else forkRelease.setPosition(0.0);

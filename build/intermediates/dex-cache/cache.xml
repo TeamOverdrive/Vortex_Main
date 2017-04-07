@@ -21,12 +21,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="85048acf5fccd0f41459c49bcb8e68bc196ff5f7">
+        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0e0c5315e307c6cc57d80c13716df3f2ebf5241c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Inspection-release\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="b3051d2a26a36e5b402fd8aa14ec8a4bea328974">
         <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-Inspection-release_602512346de7f7586dcd5dc612650fbd99936397\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Hardware-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d30a44d837c8f25360e4190341f43399eea81172">
+        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-Hardware-release_5ab3c8be0538274f39dda1ec3a8df4a89c13f782\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5a051fb9930d4b0df111f4e71ba2c97136f8d1f7">
+        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_4aa5b036983aa8eb217e00bda70c80103617cbb5\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -48,12 +75,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\Vuforia.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f1dde8a0e6ed1172450c657386da45fd1d7565f4">
+        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\Vuforia_224c54ee67429b6d8a6abcdc5471148a0baff3e5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="f08523f1757f09d286844c206a69e9070b53c6e4">
+        sha1="5dea8589d6e8639db1e19e8547cd18ae92086ffd">
         <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_e54c2de32dc48082283b3ee30cb2ddb241aad350\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\WirelessP2p-release\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9403be210676ed196cdcc64c7391b9ae2361c174">
+        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-WirelessP2p-release_ce8d0ce6b1c6a36d9019fe19e99c50b7094bc9e5\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -81,51 +126,6 @@
         revision="23.0.3"
         sha1="d3fb718ef307cfff9ad988d06b98eadc292d1a34">
         <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.7_f3828747a574565a0f33d0955cd745206cf0d395\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="80741f96ffa10737cf10d18bf8046dd66d2f356b">
-        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0e0c5315e307c6cc57d80c13716df3f2ebf5241c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\Hardware-release\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d30a44d837c8f25360e4190341f43399eea81172">
-        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-Hardware-release_5ab3c8be0538274f39dda1ec3a8df4a89c13f782\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\support-annotations-23.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="5a051fb9930d4b0df111f4e71ba2c97136f8d1f7">
-        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_4aa5b036983aa8eb217e00bda70c80103617cbb5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\RobotCore-release\jars\libs\Vuforia.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="f1dde8a0e6ed1172450c657386da45fd1d7565f4">
-        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\Vuforia_224c54ee67429b6d8a6abcdc5471148a0baff3e5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\exploded-aar\WirelessP2p-release\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="9403be210676ed196cdcc64c7391b9ae2361c174">
-        <dex dex="C:\Users\david.turner\Documents\GitHub\Vortex_Main\TeamCode\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-WirelessP2p-release_ce8d0ce6b1c6a36d9019fe19e99c50b7094bc9e5\classes.dex" />
     </item>
 
 </items>

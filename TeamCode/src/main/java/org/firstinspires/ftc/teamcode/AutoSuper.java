@@ -37,12 +37,12 @@ public class AutoSuper extends LinearOpMode {
     static final double DRIVE_SPEED = 0.6;  //modified speed from 0.6
     static final double TURN_SPEED = 0.3;  //modified turn speed from 0.5
     static final double PUSH_MAX1 = 0.0;
-    static final double PUSH_MAX2 = 0.5;
-    static final double PUSH_MIN1 = 0.5;
+    static final double PUSH_MAX2 = 0.6;
+    static final double PUSH_MIN1 = 0.6;
     static final double PUSH_MIN2 = 0.0;
 
     static final double WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
-    static final double APPROACH_SPEED = 0.1;//0.3;  // Approach speed is set to allow the robot to stop on the white line and not go past
+    static final double APPROACH_SPEED = 0.2;//0.3;  // Approach speed is set to allow the robot to stop on the white line and not go past
     static final double HEADING_THRESHOLD = 1;  // As tight as possible with an integer gyro - increased from 1
     static final double P_TURN_COEFF = 0.1;     // Larger is more responsive but less stable - increased from 0.1
     static final double P_DRIVE_COEFF = 0.15;   // Larger is more responsive but less stable
@@ -196,8 +196,8 @@ public class AutoSuper extends LinearOpMode {
         driveToWLine(-1);
         turnGyroAbs(0);
         if (!pushButton(red)) pushButton(red);
-        encoderDrive(DRIVE_SPEED * 0.8, 34.0, 34.0, 4.0);
-        encoderDrive(DRIVE_SPEED * 0.4, 6.0, 6.0, 3.0);
+        encoderDrive(DRIVE_SPEED * 0.8, 26.0, 26.0, 4.0);
+        encoderDrive(DRIVE_SPEED * 0.4, 4.0, 4.0, 3.0);
         driveToWLine(1);
         turnGyroAbs(0);
         if (!pushButton(red)) pushButton(red);
@@ -240,11 +240,11 @@ public class AutoSuper extends LinearOpMode {
             }
             if (colorSensor1.red() >= 2) {
                 pushButton1.setPosition(PUSH_MAX1);
-                sleep(750);
+                sleep(1200);
                 pushButton1.setPosition(PUSH_MIN1);
             } else if (colorSensor2.red() >= 2) {
                 pushButton2.setPosition(PUSH_MAX2);
-                sleep(750);
+                sleep(1200);
                 pushButton2.setPosition(PUSH_MIN2);
             }
             sleep(500);
@@ -257,11 +257,11 @@ public class AutoSuper extends LinearOpMode {
             }
             if (colorSensor1.blue() >= 2) {
                 pushButton1.setPosition(PUSH_MAX1);
-                sleep(750);
+                sleep(1000);
                 pushButton1.setPosition(PUSH_MIN1);
             } else if (colorSensor2.blue() >= 2) {
                 pushButton2.setPosition(PUSH_MAX2);
-                sleep(750);
+                sleep(1000);
                 pushButton2.setPosition(PUSH_MIN2);
             }
             sleep(500);
@@ -273,7 +273,7 @@ public class AutoSuper extends LinearOpMode {
     }
 
     public boolean driveToWLine(int dir) {
-        //final double MAX_CHANGE = 2.5; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This should be somewhere a bit less than how far robot can drive in 1/10 second.
+        //final double MAX_CHANGE = 2.0; // Max expected cm change per cycle. No idea what to expect here. Tune up or down. This should be somewhere a bit less than how far robot can drive in 1/10 second.
         double prevDist;
         double curDist;
         int desiredAngle;
@@ -298,10 +298,10 @@ public class AutoSuper extends LinearOpMode {
 
             if (deltaFromTarget > 13.0) { // Far from target
                 desiredAngle = dir *(0 + 15);
-            } else if (deltaFromTarget > 2.5) { // Getting close to target
-                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5)/ (10 - 2.5)) * 15)); // between +10 and -10 degrees
-            } else if (deltaFromTarget < -2.5) { // Went past target **Consider changing this value
-                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.5) / (10 - 2.5)) * 10));
+            } else if (deltaFromTarget > 2.0) { // Getting close to target
+                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.0)/ (10 - 2.0)) * 15)); // between +10 and -10 degrees
+            } else if (deltaFromTarget < -2.0) { // Went past target **Consider changing this value
+                desiredAngle = dir * (0 + (int) (((deltaFromTarget - 2.0) / (10 - 2.0)) * 10));
             } else { // On target
                 desiredAngle = 0;
             }
@@ -587,14 +587,28 @@ public class AutoSuper extends LinearOpMode {
         sleep(100);
     }
 
-    //Encoder 45 degree left turn
+    //Encoder 30 degree left turn
+    public void turn30L()  {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED * 0.8, 4.5, -4.5, 2.0);
+        sleep(100);
+    }
+
+    //Encoder 30 degree right turn
+    public void turn30R()  {
+        sleep(250);
+        encoderDrive(DRIVE_SPEED * 0.8, -4.5, 4.5, 2.0);
+        sleep(100);
+    }
+
+    //Encoder 35 degree left turn
     public void turn35L() {
         sleep(250);
         encoderDrive(DRIVE_SPEED * 0.5, 5.0, -5.0, 3.0); //reduced from 6.5 for change in gearing
         sleep(100);
     }
 
-    //Encoder 45 degree right turn
+    //Encoder 35 degree right turn
     public void turn35R() {
         sleep(250);
         encoderDrive(DRIVE_SPEED * 0.5, -5.0, 5.0, 3.0); //reduced from 6.5 for change in gearing

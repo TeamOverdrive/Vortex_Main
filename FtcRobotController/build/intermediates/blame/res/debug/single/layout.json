@@ -140,12 +140,12 @@
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\Inspection-release\\res\\layout\\activity_inspection.xml"
     },
     {
-        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
-        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\servo.xml"
-    },
-    {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
         "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\i2c_device.xml"
+    },
+    {
+        "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
+        "source": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\exploded-aar\\FtcCommon-release\\res\\layout\\servo.xml"
     },
     {
         "merged": "C:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\layout\\shape.xml",

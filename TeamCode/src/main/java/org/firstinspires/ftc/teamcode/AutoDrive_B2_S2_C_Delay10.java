@@ -14,8 +14,8 @@ public class AutoDrive_B2_S2_C_Delay10 extends AutoSuper {
         //Initialize everything.
         super.runOpMode();
         waitForStart();
-        //Step 1: Delay 10 seconds
-        sleep(10 * 1000);
+        //Step 1: Delay 11 seconds
+        sleep(11 * 1000);
         //Step 2: Move to shooting position
         encoderDrive(DRIVE_SPEED * 0.5, -18.0, -18.0, 5.0);
         turn45R();

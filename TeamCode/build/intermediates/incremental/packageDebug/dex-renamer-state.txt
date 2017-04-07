@@ -1,4 +1,4 @@
-#Fri Mar 17 09:22:50 EDT 2017
+#Sun Mar 19 09:42:38 EDT 2017
 base.0=C\:\\Users\\david.turner\\Documents\\GitHub\\Vortex_Main\\TeamCode\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_e54c2de32dc48082283b3ee30cb2ddb241aad350
 renamed.1=classes.dex
 renamed.0=classes2.dex
